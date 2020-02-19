@@ -1,0 +1,89 @@
+﻿<Window x:Class="PMS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PMS"
+        mc:Ignorable="d" Title="LoginForm" Height="460" Width="370"
+        AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="NoResize" PreviewKeyDown="Window_PreviewKeyDown"
+        MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <Style x:Key="BorderStyle" TargetType="Border" >
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="255"/>
+            <Setter Property="Height" Value="1.5"/>
+            <Setter Property="Opacity" Value="0.6"/>
+        </Style>
+        
+     
+    </Window.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.RowSpan="2" CornerRadius="15">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Aqua" Offset="0.0"/>
+                        <GradientStop Color="MediumVioletRed" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="/Images/logo.png" Width="220"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="1" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBox FontFamily="Helvetica"
+                             FontSize="19" 
+                             FontWeight="Thin"
+                             Text="Username"          
+                             Background="Transparent"
+                             Foreground="White"
+                             Width="235"
+                             Height="26"
+                             Opacity="0.6"
+                             BorderThickness="0"
+                             Margin="64,0,0,0"/>
+
+                </StackPanel>
+                <Border Style="{StaticResource BorderStyle}"/>
+
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <PasswordBox FontFamily="Helvetica"
+                                 FontSize="19"
+                                 FontWeight="Thin"
+                                 Password="Password"
+                                 Background="Transparent"
+                                 Foreground="White"
+                                 Width="235"
+                                 Height="26"
+                                 Opacity="0.6"
+                                 BorderThickness="0"
+                                 Margin="64,0,0,0"/>
+                </StackPanel>
+                <Border Style="{StaticResource BorderStyle}"/>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                    <Button Name ="LoginB" Click="LoginButton" Width="100" Height="40" Content="LOGIN" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" Margin="60,0,60,0"/>
+                    <Button Name ="RegisterB" Click="RegisterButton" Width="100" Height="40" Content="REGISTER" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" />
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
