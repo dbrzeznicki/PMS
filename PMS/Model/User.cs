@@ -12,10 +12,12 @@ namespace PMS.Model
     {
         [Key]
         public int UserID { get; set; }
-        
+
 
         [ForeignKey("UserRole")]
         public int UserRoleID { get; set; }
+        [ForeignKey("Team")]
+        public int ?TeamID { get; set; }
 
 
         public string FirstName { get; set; }
@@ -27,10 +29,10 @@ namespace PMS.Model
         public string Email { get; set; }
         public DateTime AccountCreationDate { get; set; }
         public DateTime HiredDate { get; set; } // data zatrudnienia
-        public DateTime ?FiredDate { get; set; } //data zwolnienia
+        public DateTime? FiredDate { get; set; } //data zwolnienia
 
         //dane zameldowania (kod pocztowy, miasto, ulica, numer domu, numer mieszkania)
-        
+
         public string ResidenceStreet { get; set; }
         public string ResidenceHouseNumber { get; set; }
         public string ResidenceApartmentNumber { get; set; }
@@ -46,6 +48,9 @@ namespace PMS.Model
 
 
         public virtual UserRole UserRole { get; set; }
+        public virtual Team Team { get; set; }
+        public virtual ICollection<Vacation> Vacations { get; set; }
+        public virtual ICollection<Subtask> Subtasks { get; set; }
 
     }
 }

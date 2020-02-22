@@ -21,7 +21,20 @@ namespace PMS.DAL
         }
 
         //tutaj dodajmy wszystkie tabele jakie mamy w bazie/modelu
-        public DbSet<User> User { get; set; }
+
+
         public DbSet<UserRole> UserRole { get; set; }
+        public DbSet<User> User { get; set; }     
+        public DbSet<ProjectStatus> ProjectStatus { get; set; }
+        public DbSet<VacationType> VacationType { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Team> Team { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<MainTask> MainTask { get; set; }
+        public DbSet<SubtaskStatus> SubtaskStatus { get; set; }
+        public DbSet<Subtask> Subtask { get; set; }
+        public DbSet<Vacation> Vacation { get; set; }
+        public DbSet<Article> Article { get; set; }
+        public DbSet<RecentActivity> RecentActivity { get; set; }
     }
 }
