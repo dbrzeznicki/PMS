@@ -15,11 +15,14 @@ using System.Windows.Shapes;
 
 namespace PMS
 {
-    public partial class UserControlDashboard : UserControl
+    public partial class UserControlUsersList : UserControl
     {
-        public UserControlDashboard()
+        public UserControlUsersList()
         {
             InitializeComponent();
+            UsersListViewModel vm = new UsersListViewModel();
+            this.DataContext = vm;
         }
+
     }
 }

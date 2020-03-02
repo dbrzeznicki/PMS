@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,23 +21,18 @@ namespace PMS
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel vm = new MainWindowViewModel();
+            this.DataContext = vm;
         }
 
-        private void LoginButton(object sender, RoutedEventArgs e)
-        {
-            Login();
-        }
 
-        private void RegisterButton(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                Login();
+                MainWindowViewModel MMVV = new MainWindowViewModel();
+                MMVV.Zaloguj();
             } 
             else if (e.Key == Key.Escape)
             {
@@ -48,16 +44,6 @@ namespace PMS
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-        }
-
-        private void Login()
-        {
-
-            //sprawdzić kto zalogowany potem
-            Admin adminWindow = new Admin();
-            App.Current.MainWindow.Close();
-            App.Current.MainWindow = adminWindow;
-            adminWindow.Show();
         }
     }
 }

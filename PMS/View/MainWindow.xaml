@@ -47,7 +47,7 @@
                     <TextBox FontFamily="Helvetica"
                              FontSize="19" 
                              FontWeight="Thin"
-                             Text="Username"          
+                             Text="{Binding Path = Login}"          
                              Background="Transparent"
                              Foreground="White"
                              Width="235"
@@ -62,10 +62,10 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <PasswordBox FontFamily="Helvetica"
+                    <TextBox FontFamily="Helvetica"
                                  FontSize="19"
                                  FontWeight="Thin"
-                                 Password="Password"
+                                 Text="{Binding Path = Password}"
                                  Background="Transparent"
                                  Foreground="White"
                                  Width="235"
@@ -78,8 +78,8 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    <Button Name ="LoginB" Click="LoginButton" Width="100" Height="40" Content="LOGIN" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" Margin="60,0,60,0"/>
-                    <Button Name ="RegisterB" Click="RegisterButton" Width="100" Height="40" Content="REGISTER" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" />
+                    <Button Name ="LoginB" Command="{Binding ZalogujButton}" Width="100" Height="40" Content="LOGIN" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" Margin="60,0,60,0"/>
+                    <Button Name ="RegisterB" Command="{Binding ResetButton}" Width="100" Height="40" Content="RESET" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" />
                 </StackPanel>
 
             </StackPanel>

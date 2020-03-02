@@ -8,7 +8,7 @@
              mc:Ignorable="d" >
         <Grid>
         <materialDesign:PackIcon Kind="{Binding Path=Icon}" Foreground="White" Height="14" Width="14"  Margin="9 15"/>
-            <ListBoxItem Name="ListViewItemMenu" Content="{Binding Path=Name}" Foreground="White" Padding="36 13" FontSize="14" />
+        <ListBoxItem Name="ListViewItemMenu" Content="{Binding Path=Name}" Foreground="White" Padding="36 13" FontSize="14"/>
             <Expander Name="ExpanderMenu" Header="{Binding Path=Name}" IsExpanded="False" Width="210" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White">
             <ListView Name="ListViewMenu" ItemsSource="{Binding Path=SubItemsMenu}" Foreground="White" SelectionChanged="ListViewMenu_SwitchScreen">
                     <ListView.ItemTemplate>

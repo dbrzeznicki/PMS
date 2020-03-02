@@ -29,6 +29,7 @@ namespace PMS.Model
         public string Email { get; set; }
         public DateTime AccountCreationDate { get; set; }
         public DateTime HiredDate { get; set; } // data zatrudnienia
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? FiredDate { get; set; } //data zwolnienia
 
         //dane zameldowania (kod pocztowy, miasto, ulica, numer domu, numer mieszkania)
@@ -51,6 +52,28 @@ namespace PMS.Model
         public virtual Team Team { get; set; }
         public virtual ICollection<Vacation> Vacations { get; set; }
         public virtual ICollection<Subtask> Subtasks { get; set; }
+
+        public string FullResidenceAdress
+        {
+            get
+            {
+                if (ResidenceApartmentNumber == null || ResidenceApartmentNumber.Equals(""))
+                    return $"{ResidencePostcode} {ResidenceCity} {ResidenceStreet} {ResidenceHouseNumber}";
+                else
+                    return $"{ResidencePostcode} {ResidenceCity} {ResidenceStreet} {ResidenceHouseNumber}/{ResidenceApartmentNumber}";
+            }
+        }
+
+        public string FullCorrespondenceAdress
+        {
+            get
+            {
+                if (CorrespondenceApartmentNumber == null || CorrespondenceApartmentNumber.Equals(""))
+                    return $"{CorrespondencePostcode} {CorrespondenceCity} {CorrespondenceStreet} {CorrespondenceHouseNumber}";
+                else
+                    return $"{CorrespondencePostcode} {CorrespondenceCity} {CorrespondenceStreet} {CorrespondenceHouseNumber}/{CorrespondenceApartmentNumber}";
+            }
+        }
 
     }
 }

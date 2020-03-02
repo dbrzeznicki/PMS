@@ -29,7 +29,7 @@ namespace PMS.DAL
                 {
                     new UserRole() { UserRoleID=1, Name="Admin"},
                     new UserRole() { UserRoleID=2, Name="Manager"},
-                    new UserRole() { UserRoleID=3, Name="Senior"}
+                    new UserRole() { UserRoleID=3, Name="Employee"}
                 };
 
             userRole.ForEach(ur => context.UserRole.AddOrUpdate(ur));

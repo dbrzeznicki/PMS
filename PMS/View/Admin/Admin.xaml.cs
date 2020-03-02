@@ -24,15 +24,16 @@ namespace PMS
         public Admin()
         {
             InitializeComponent();
+            StackPanelMain.Children.Add(new UserControlAddUser());
 
             var myPMSSubItems = new List<SubItemMenu>();
-            myPMSSubItems.Add(new SubItemMenu("Dashboard", new UserControlDashboard()));
-            myPMSSubItems.Add(new SubItemMenu("Calendar", new UserControlCalendar()));
+            myPMSSubItems.Add(new SubItemMenu("Dashboard", new UserControlAddUser()));
+            myPMSSubItems.Add(new SubItemMenu("Calendar", new UserControlUsersList()));
             var myPMS = new ItemMenu("My PMS", myPMSSubItems, PackIconKind.House);
 
             var tasksSubItems = new List<SubItemMenu>();
-            tasksSubItems.Add(new SubItemMenu("Add task"));
-            tasksSubItems.Add(new SubItemMenu("Task list"));
+            tasksSubItems.Add(new SubItemMenu("Add task", new UserControlAddUser()));
+            tasksSubItems.Add(new SubItemMenu("Task list", new UserControlAddUser()));
             var tasks = new ItemMenu("Tasks", tasksSubItems, PackIconKind.CalendarTask);
 
             var projectsSubItems = new List<SubItemMenu>();
@@ -74,6 +75,20 @@ namespace PMS
         private void CloseButton(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ResizeButton(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
 
     }

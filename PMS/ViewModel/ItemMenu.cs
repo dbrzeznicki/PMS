@@ -14,7 +14,6 @@ namespace PMS.ViewModel
         public List<SubItemMenu> SubItemsMenu { get; set; }
         public PackIconKind Icon { get; set; }
         
-        //public UserControl Screen { get; private set; }
        
         public ItemMenu(string name, List<SubItemMenu> subItemsMenu, PackIconKind icon)
         {

@@ -1,14 +1,13 @@
-﻿<Window x:Class="PMS.Admin"
+﻿<Window x:Class="PMS.Employee"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PMS"
+        xmlns:global="clr-namespace:PMS.ViewModel"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Admin" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" MinWidth="800" MinHeight="560">
-
-    
+        Title="Employee" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" MinWidth="800" MinHeight="560">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -32,7 +31,9 @@
         <materialDesign:ColorZone Background="BlueViolet" Grid.ColumnSpan="2">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="FirstName LastName" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Text="You are logged as: " VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Text="{Binding Source={x:Static global:Global.user}, Path=FirstName}" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Text="{Binding Source={x:Static global:Global.user}, Path=LastName}" VerticalAlignment="Center" FontSize="16" Margin="5,0,0,0"/>
                     <materialDesign:PopupBox Margin="11">
                         <StackPanel Width="150">
                             <Button Content="Account"/>

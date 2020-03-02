@@ -15,11 +15,13 @@ using System.Windows.Shapes;
 
 namespace PMS
 {
-    public partial class UserControlCalendar : UserControl
+    public partial class UserControlAddUser : UserControl
     {
-        public UserControlCalendar()
+        public UserControlAddUser()
         {
             InitializeComponent();
+            AddUserViewModel vm = new AddUserViewModel();
+            this.DataContext = vm;
         }
     }
 }

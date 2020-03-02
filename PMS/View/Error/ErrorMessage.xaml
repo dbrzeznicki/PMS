@@ -1,0 +1,30 @@
+﻿<Window x:Class="PMS.ErrorMessage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PMS"
+        mc:Ignorable="d" Title="ErrorMessage" Height="150" Width="300"
+        Background="DarkGray" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Name="ErrorText" FontFamily="Helvetica"
+                             FontSize="15" 
+                             FontWeight="Thin"         
+                             Foreground="White"
+                             Width="Auto"
+                             Height="Auto" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name ="ErrorMessageB" Click="ShowErrorMessage" Width="100" Height="40" Content="OK" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" />
+        </StackPanel>
+    </Grid>
+</Window>
