@@ -35,7 +35,7 @@
                 </Expander>
 
 
-            <ListView Margin="10" ItemsSource="{Binding FilteredUsers}">
+            <ListView Margin="10" ItemsSource="{Binding FilteredUsers}" HorizontalContentAlignment="Stretch">
                 <ListView.View>
                     <GridView >
 

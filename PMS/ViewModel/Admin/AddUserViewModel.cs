@@ -18,15 +18,16 @@ namespace PMS
         private readonly PMSContext dbContext = new PMSContext();
 
         //Add user
+        public string _VisibilityTeam = "Visible"; //"Collapsed";
         private string _FirstName;
         private string _LastName;
         private string _Login;
         private string _Password;
-        private string _UserRole;
+        private string _UserRole = "Employee";
         private double _Salary;
         private string _PhoneNumber;
         private string _Email;
-        private string _Team;
+        private string _Team = "Scrum";
         private string _ResidenceStreet;
         private string _ResidenceHouseNumber;
         private string _ResidenceApartmentNumber;
@@ -114,11 +115,16 @@ namespace PMS
         {
             get
             {
+
                 return _UserRole;
             }
             set
             {
                 _UserRole = value;
+                if(_UserRole.Equals("Admin"))
+                    VisibilityTeam = "Collapsed";
+                else
+                    VisibilityTeam = "Visible";
                 RaisePropertyChanged("UserRole");
             }
         }
@@ -314,25 +320,35 @@ namespace PMS
                 RaisePropertyChanged("FiredDate");
             }
         }
-
+        public string VisibilityTeam
+        {
+            get
+            {
+                return _VisibilityTeam;
+            }
+            set
+            {
+                _VisibilityTeam = value;
+                RaisePropertyChanged("VisibilityTeam");
+            }
+        }
         private void AddUser()
         {
             User user;
 
             bool correctLogin = CheckLogin();
-            bool correctUserRole = CheckUserRole();
 
-            if (correctLogin == true && correctUserRole == true)
+            if (correctLogin == true)
             {
                 if (CorrespondenceCity == null)
                 {
                     user = AddUserWithoutCorrespondenceAdress();
 
-                    /*dbContext.User.Add(user);
-                    dbContext.SaveChanges();*/
+                    dbContext.User.Add(user);
+                    dbContext.SaveChanges();
 
-                    //_Users.Add(user);
-                    //_FilteredUsers.Add(user);
+                    UsersListViewModel._Users.Add(user);
+                    UsersListViewModel._FilteredUsers.Add(user);
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
@@ -340,11 +356,11 @@ namespace PMS
                 else
                 {
                     user = AddUserWithCorrespondenceAdress();
-                    /*dbContext.User.Add(user);
-                    dbContext.SaveChanges();*/
+                    dbContext.User.Add(user);
+                    dbContext.SaveChanges();
 
-                    //_Users.Add(user);
-                    //_FilteredUsers.Add(user);
+                    UsersListViewModel._Users.Add(user);
+                    UsersListViewModel._FilteredUsers.Add(user);
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
@@ -355,11 +371,6 @@ namespace PMS
                 ErrorMessage er = new ErrorMessage("Incorrect login!");
                 er.ShowDialog();
             }
-            else if (correctUserRole == false)
-            {
-                ErrorMessage er = new ErrorMessage("Incorrect user role!");
-                er.ShowDialog();
-            }
         }
 
 
@@ -367,35 +378,68 @@ namespace PMS
         {
             var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
             int userRoleID = userRole.UserRoleID;
-            var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-            int teamID = team.TeamID;
+            User user;
 
-            User user = new User()
+            if (_UserRole.Equals("Manager"))
             {
-                UserRoleID = userRoleID,
-                TeamID = teamID,
-                FirstName = _FirstName,
-                LastName = _LastName,
-                Login = _Login,
-                Password = _Password,
-                Salary = _Salary,
-                PhoneNumber = _PhoneNumber,
-                Email = _Email,
-                AccountCreationDate = DateTime.Now,
-                HiredDate = _HiredDate,
-                FiredDate = null,
-                ResidenceStreet = _ResidenceStreet,
-                ResidenceHouseNumber = _ResidenceHouseNumber,
-                ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                ResidenceCity = _ResidenceCity,
-                ResidencePostcode = _ResidencePostcode,
-                CorrespondenceStreet = _CorrespondenceStreet,
-                CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
-                CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
-                CorrespondencePostcode = _CorrespondencePostcode,
-                CorrespondenceCity = _CorrespondenceCity
-            };
+                user = new User()
+                {
+                    UserRoleID = userRoleID,
+                    TeamID = null,
+                    FirstName = _FirstName,
+                    LastName = _LastName,
+                    Login = _Login,
+                    Password = _Password,
+                    Salary = _Salary,
+                    PhoneNumber = _PhoneNumber,
+                    Email = _Email,
+                    AccountCreationDate = DateTime.Now,
+                    HiredDate = _HiredDate,
+                    FiredDate = null,
+                    ResidenceStreet = _ResidenceStreet,
+                    ResidenceHouseNumber = _ResidenceHouseNumber,
+                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
+                    ResidenceCity = _ResidenceCity,
+                    ResidencePostcode = _ResidencePostcode,
+                    CorrespondenceStreet = _CorrespondenceStreet,
+                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
+                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
+                    CorrespondencePostcode = _CorrespondencePostcode,
+                    CorrespondenceCity = _CorrespondenceCity
+                };
+            } 
+            else
+            {
+                var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
+                int teamID = team.TeamID;
 
+                user = new User()
+                {
+                    UserRoleID = userRoleID,
+                    TeamID = teamID,
+                    FirstName = _FirstName,
+                    LastName = _LastName,
+                    Login = _Login,
+                    Password = _Password,
+                    Salary = _Salary,
+                    PhoneNumber = _PhoneNumber,
+                    Email = _Email,
+                    AccountCreationDate = DateTime.Now,
+                    HiredDate = _HiredDate,
+                    FiredDate = null,
+                    ResidenceStreet = _ResidenceStreet,
+                    ResidenceHouseNumber = _ResidenceHouseNumber,
+                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
+                    ResidenceCity = _ResidenceCity,
+                    ResidencePostcode = _ResidencePostcode,
+                    CorrespondenceStreet = _CorrespondenceStreet,
+                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
+                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
+                    CorrespondencePostcode = _CorrespondencePostcode,
+                    CorrespondenceCity = _CorrespondenceCity
+                };
+            }
+            
             return user;
         }
 
@@ -403,58 +447,80 @@ namespace PMS
         {
             var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
             int userRoleID = userRole.UserRoleID;
-            var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-            int teamID = team.TeamID;
+            User user;
 
-            User user = new User()
+            if (_UserRole.Equals("Manager"))
             {
-                UserRoleID = userRoleID,
-                TeamID = teamID,
-                FirstName = _FirstName,
-                LastName = _LastName,
-                Login = _Login,
-                Password = _Password,
-                Salary = _Salary,
-                PhoneNumber = _PhoneNumber,
-                Email = _Email,
-                AccountCreationDate = DateTime.Now,
-                HiredDate = _HiredDate,
-                FiredDate = null,
-                ResidenceStreet = _ResidenceStreet,
-                ResidenceHouseNumber = _ResidenceHouseNumber,
-                ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                ResidenceCity = _ResidenceCity,
-                ResidencePostcode = _ResidencePostcode,
-                CorrespondenceStreet = _ResidenceStreet,
-                CorrespondenceHouseNumber = _ResidenceHouseNumber,
-                CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
-                CorrespondencePostcode = _ResidencePostcode,
-                CorrespondenceCity = _ResidenceCity
-            };
+                user = new User()
+                {
+                    UserRoleID = userRoleID,
+                    TeamID = null,
+                    FirstName = _FirstName,
+                    LastName = _LastName,
+                    Login = _Login,
+                    Password = _Password,
+                    Salary = _Salary,
+                    PhoneNumber = _PhoneNumber,
+                    Email = _Email,
+                    AccountCreationDate = DateTime.Now,
+                    HiredDate = _HiredDate,
+                    FiredDate = null,
+                    ResidenceStreet = _ResidenceStreet,
+                    ResidenceHouseNumber = _ResidenceHouseNumber,
+                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
+                    ResidenceCity = _ResidenceCity,
+                    ResidencePostcode = _ResidencePostcode,
+                    CorrespondenceStreet = _ResidenceStreet,
+                    CorrespondenceHouseNumber = _ResidenceHouseNumber,
+                    CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
+                    CorrespondencePostcode = _ResidencePostcode,
+                    CorrespondenceCity = _ResidenceCity
+                };
+            }
+            else
+            {
+                var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
+                int teamID = team.TeamID;
+
+                user = new User()
+                {
+                    UserRoleID = userRoleID,
+                    TeamID = teamID,
+                    FirstName = _FirstName,
+                    LastName = _LastName,
+                    Login = _Login,
+                    Password = _Password,
+                    Salary = _Salary,
+                    PhoneNumber = _PhoneNumber,
+                    Email = _Email,
+                    AccountCreationDate = DateTime.Now,
+                    HiredDate = _HiredDate,
+                    FiredDate = null,
+                    ResidenceStreet = _ResidenceStreet,
+                    ResidenceHouseNumber = _ResidenceHouseNumber,
+                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
+                    ResidenceCity = _ResidenceCity,
+                    ResidencePostcode = _ResidencePostcode,
+                    CorrespondenceStreet = _ResidenceStreet,
+                    CorrespondenceHouseNumber = _ResidenceHouseNumber,
+                    CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
+                    CorrespondencePostcode = _ResidencePostcode,
+                    CorrespondenceCity = _ResidenceCity
+                };
+            }
 
             return user;
         }
 
         private bool CheckLogin()
         {
-            var check = dbContext.User.Where(x => x.Login.Equals(Login)).SingleOrDefault();
+            List<User> users = dbContext.User.ToList();
+            var check = users.Where(x => x.Login == _Login).SingleOrDefault();
 
             if (check != null || _Login == null || _Login == "")
             {
                 return false;
             } else
-            {
-                return true;
-            }
-        }
-
-        private bool CheckUserRole()
-        {
-            if (_UserRole == null)
-            {
-                return false;
-            } 
-            else
             {
                 return true;
             }

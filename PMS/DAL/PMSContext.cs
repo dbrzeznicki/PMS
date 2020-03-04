@@ -24,7 +24,7 @@ namespace PMS.DAL
 
 
         public DbSet<UserRole> UserRole { get; set; }
-        public DbSet<User> User { get; set; }     
+        public DbSet<User> User { get; set; }
         public DbSet<ProjectStatus> ProjectStatus { get; set; }
         public DbSet<VacationType> VacationType { get; set; }
         public DbSet<Client> Client { get; set; }
@@ -36,5 +36,12 @@ namespace PMS.DAL
         public DbSet<Vacation> Vacation { get; set; }
         public DbSet<Article> Article { get; set; }
         public DbSet<RecentActivity> RecentActivity { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //...
+            //modelBuilder.Entity<Parent>().HasMany(e => e.ParentDetails).WithOptional(s => s.Parent).WillCascadeOnDelete(true);
+            //...
+        }
     }
 }

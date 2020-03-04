@@ -36,28 +36,11 @@ namespace PMS
             tasksSubItems.Add(new SubItemMenu("Task list", new UserControlAddUser()));
             var tasks = new ItemMenu("Tasks", tasksSubItems, PackIconKind.CalendarTask);
 
-            var projectsSubItems = new List<SubItemMenu>();
-            projectsSubItems.Add(new SubItemMenu("Add project"));
-            projectsSubItems.Add(new SubItemMenu("Project list"));
-            var projects = new ItemMenu("Projects", projectsSubItems, PackIconKind.Projector);
-
-            var reportsSubItems = new List<SubItemMenu>();
-            reportsSubItems.Add(new SubItemMenu("Financial"));
-            var reports = new ItemMenu("Reports", reportsSubItems, PackIconKind.Report);
-
-            var employeesSubItems = new List<SubItemMenu>();
-            employeesSubItems.Add(new SubItemMenu("Add employee"));
-            employeesSubItems.Add(new SubItemMenu("List employee"));
-            var employees = new ItemMenu("Employees", employeesSubItems, PackIconKind.Worker);
-
             //var wikiSubItems = new List<SubItemMenu>();
             var wiki = new ItemMenu("Wiki", null, PackIconKind.Worker);
 
             Menu.Children.Add(new UserControlMenuItem(myPMS, this));
             Menu.Children.Add(new UserControlMenuItem(tasks, this));
-            Menu.Children.Add(new UserControlMenuItem(projects, this));
-            Menu.Children.Add(new UserControlMenuItem(reports, this));
-            Menu.Children.Add(new UserControlMenuItem(employees, this));
             Menu.Children.Add(new UserControlMenuItem(wiki, this));
         }
 

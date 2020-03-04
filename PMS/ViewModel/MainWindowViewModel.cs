@@ -1,4 +1,5 @@
 ﻿using PMS.DAL;
+using PMS.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -67,9 +68,12 @@ namespace PMS.ViewModel
         #region Method
         public void Zaloguj()
         {
-            var user = dbContext.User.Where(x => x.Login.Equals(Login) && x.Password.Equals(Password)).SingleOrDefault();
-
+            List<User> users = dbContext.User.ToList();
             var userRole = "";
+
+            var user = users.Where(x => x.Login == _Login && x.Password == _Password).SingleOrDefault();
+            
+            
             if (user != null)
             {
                 userRole = dbContext.UserRole.Find(user.UserRoleID).Name.ToString();
@@ -82,8 +86,6 @@ namespace PMS.ViewModel
                 ErrorMessage er = new ErrorMessage("Incorrect login or password!");
                 er.ShowDialog();
             }
-
-
             else if (userRole.Equals("Admin"))
             {
                 Admin adminWindow = new Admin();
@@ -91,7 +93,6 @@ namespace PMS.ViewModel
                 App.Current.MainWindow = adminWindow;
                 adminWindow.Show();
             }
-
             else if (userRole.Equals("Manager"))
             {
                 Manager managerWindow = new Manager();
@@ -99,7 +100,6 @@ namespace PMS.ViewModel
                 App.Current.MainWindow = managerWindow;
                 managerWindow.Show();
             }
-
             else if (userRole.Equals("Employee"))
             {
                 Employee employeeWindow = new Employee();

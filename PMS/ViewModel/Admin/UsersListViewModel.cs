@@ -18,10 +18,10 @@ namespace PMS
         private readonly PMSContext dbContext = new PMSContext();
 
         //Users list
-        private ObservableCollection<User> _Users { get; set; }
+        static public ObservableCollection<User> _Users { get; set; }
 
         //Filtered
-        private ObservableCollection<User> _FilteredUsers { get; set; }
+        static public ObservableCollection<User> _FilteredUsers { get; set; }
         private ObservableCollection<string> _FilteredUsersRole { get; set; }
         private string _SelectedUserRole { get; set; }
         private string _SelectedName { get; set; }

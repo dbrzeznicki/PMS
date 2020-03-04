@@ -1,4 +1,6 @@
-﻿using PMS.ViewModel;
+﻿using PMS.DAL;
+using PMS.Model;
+using PMS.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace PMS
 {
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,12 +32,7 @@ namespace PMS
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                MainWindowViewModel MMVV = new MainWindowViewModel();
-                MMVV.Zaloguj();
-            } 
-            else if (e.Key == Key.Escape)
+            if (e.Key == Key.Escape)
             {
                 Close();
             }
