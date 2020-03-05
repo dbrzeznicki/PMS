@@ -52,14 +52,14 @@
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Residence adress"  DisplayMemberBinding="{Binding FullResidenceAdress}" Width="Auto"/>
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Team"  DisplayMemberBinding="{Binding Team.Name}" Width="Auto"/>
 
-                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Remove" Width="Auto">
+                        <!--<GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Remove" Width="Auto">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate >
                                     <Button Content="Remove" CommandParameter="{Binding UserID}" Command="{Binding Path=DataContext.RemoveUserButton, 
                                                     RelativeSource={RelativeSource AncestorType=ListView, Mode=FindAncestor}}"></Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
                     </GridView>
                 </ListView.View>
             </ListView>

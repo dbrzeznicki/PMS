@@ -17,7 +17,7 @@ namespace PMS.DAL
 
         static PMSContext()
         {
-            Database.SetInitializer<PMSContext>(new PMSInitializer());
+            //Database.SetInitializer<PMSContext>(new PMSInitializer());
         }
 
         //tutaj dodajmy wszystkie tabele jakie mamy w bazie/modelu
@@ -37,11 +37,11 @@ namespace PMS.DAL
         public DbSet<Article> Article { get; set; }
         public DbSet<RecentActivity> RecentActivity { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //...
-            //modelBuilder.Entity<Parent>().HasMany(e => e.ParentDetails).WithOptional(s => s.Parent).WillCascadeOnDelete(true);
-            //...
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    //...
+        //    //modelBuilder.Entity<Parent>().HasMany(e => e.ParentDetails).WithOptional(s => s.Parent).WillCascadeOnDelete(true);
+        //    //...
+        //}
     }
 }

@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,23 +12,26 @@ using System.Windows.Input;
 
 namespace PMS
 {
-    public class AddUserViewModel : BindableBase
+    public class EditUserViewModel : BindableBase
     {
-
-        #region variable
+        #region variables
         private readonly PMSContext dbContext = new PMSContext();
 
-        //Add user
+        static public ObservableCollection<User> _Users { get; set; }
+        private User _mySelectedUser;
+
         public string _VisibilityTeam = "Visible"; //"Collapsed";
+        public bool _CheckBoxAdress = false;
+        public bool _IsEnabledEditButton = false;
         private string _FirstName;
         private string _LastName;
-        private string _Login;
+        //private string _Login;
         private string _Password;
-        private string _UserRole = "Employee";
+        //private string _UserRole;
         private double _Salary;
         private string _PhoneNumber;
         private string _Email;
-        private string _Team = "Scrum";
+        private string _Team;
         private string _ResidenceStreet;
         private string _ResidenceHouseNumber;
         private string _ResidenceApartmentNumber;
@@ -40,26 +44,23 @@ namespace PMS
         private string _CorrespondenceCity;
         public DateTime _HiredDate = new DateTime(2020, 03, 02);
         public DateTime? _FiredDate;
-
         #endregion
-
-
 
         #region command
 
-        public ICommand AddUserButton { get; set; }
+        public ICommand EditUserButton { get; set; }
 
         #endregion
-
 
         #region constructor
 
-        public AddUserViewModel()
+        public EditUserViewModel()
         {
-            AddUserButton = new DelegateCommand(AddUser);
+            EditUserButton = new DelegateCommand(EditUser);
         }
 
         #endregion
+
 
         #region properties
 
@@ -87,7 +88,7 @@ namespace PMS
                 RaisePropertyChanged("LastName");
             }
         }
-        public string Login
+        /*public string Login
         {
             get
             {
@@ -98,7 +99,7 @@ namespace PMS
                 _Login = value;
                 RaisePropertyChanged("Login");
             }
-        }
+        }*/
         public string Password
         {
             get
@@ -111,7 +112,7 @@ namespace PMS
                 RaisePropertyChanged("Password");
             }
         }
-        public string UserRole
+        /*public string UserRole
         {
             get
             {
@@ -121,13 +122,13 @@ namespace PMS
             set
             {
                 _UserRole = value;
-                if(_UserRole.Equals("Admin"))
+                if (_UserRole.Equals("Admin"))
                     VisibilityTeam = "Collapsed";
                 else
                     VisibilityTeam = "Visible";
                 RaisePropertyChanged("UserRole");
             }
-        }
+        }*/
         public double Salary
         {
             get
@@ -332,191 +333,159 @@ namespace PMS
                 RaisePropertyChanged("VisibilityTeam");
             }
         }
-
-        #endregion
-
-
-        private void AddUser()
+        public bool CheckBoxAdress
         {
-            User user;
-
-            bool correctLogin = CheckLogin();
-
-            if (correctLogin == true)
+            get
             {
-                if (CorrespondenceCity == null)
+                return _CheckBoxAdress;
+            }
+            set
+            {
+                _CheckBoxAdress = value;
+                RaisePropertyChanged("CheckBoxAdress");
+            }
+        }
+
+        public bool IsEnabledEditButton
+        {
+            get
+            {
+                return _IsEnabledEditButton;
+            }
+            set
+            {
+                _IsEnabledEditButton = value;
+                RaisePropertyChanged("IsEnabledEditButton");
+            }
+        }
+
+        public User MySelectedUser
+        {
+            get { return _mySelectedUser; }
+            set
+            {
+                _mySelectedUser = value;
+
+                IsEnabledEditButton = true;
+
+                FirstName = _mySelectedUser.FirstName;
+                LastName = _mySelectedUser.LastName;
+                //Login = _mySelectedUser.Login;
+                Password = _mySelectedUser.Password;
+                //UserRole = _mySelectedUser.UserRole.Name;
+                Salary = _mySelectedUser.Salary;
+                PhoneNumber = _mySelectedUser.PhoneNumber;
+                Email = _mySelectedUser.Email;
+                if (_mySelectedUser.Team != null)
+                    Team = _mySelectedUser.Team.Name;
+                else
+                    Team = null;
+                ResidenceStreet = _mySelectedUser.ResidenceStreet;
+                ResidenceHouseNumber = _mySelectedUser.ResidenceHouseNumber;
+                ResidenceApartmentNumber = _mySelectedUser.ResidenceApartmentNumber;
+                ResidencePostcode = _mySelectedUser.ResidencePostcode;
+                ResidenceCity = _mySelectedUser.ResidenceCity;
+                if (_mySelectedUser.CorrespondenceStreet == _mySelectedUser.ResidenceStreet)
                 {
-                    user = AddUserWithoutCorrespondenceAdress();
-
-                    dbContext.User.Add(user);
-                    dbContext.SaveChanges();
-
-                    //UsersListViewModel._Users.Add(user);
-                    UsersListViewModel._FilteredUsers.Add(user);
-                    ErrorMessage er = new ErrorMessage("User created successfully!");
-                    er.ShowDialog();
+                    CheckBoxAdress = false;
+                    //_CheckBoxAdress = false;
                 }
 
                 else
                 {
-                    user = AddUserWithCorrespondenceAdress();
-                    dbContext.User.Add(user);
-                    dbContext.SaveChanges();
-
-                    //UsersListViewModel._Users.Add(user);
-                    UsersListViewModel._FilteredUsers.Add(user);
-                    ErrorMessage er = new ErrorMessage("User created successfully!");
-                    er.ShowDialog();
+                    CheckBoxAdress = true;
+                    //_CheckBoxAdress = true;
                 }
 
-            } 
-            else if (correctLogin == false)
-            {
-                ErrorMessage er = new ErrorMessage("Incorrect login!");
-                er.ShowDialog();
+                CorrespondenceStreet = _mySelectedUser.CorrespondenceStreet;
+                CorrespondenceHouseNumber = _mySelectedUser.CorrespondenceHouseNumber;
+                CorrespondenceApartmentNumber = _mySelectedUser.CorrespondenceApartmentNumber;
+                CorrespondencePostcode = _mySelectedUser.CorrespondencePostcode;
+                CorrespondenceCity = _mySelectedUser.CorrespondenceCity;
+                HiredDate = _mySelectedUser.HiredDate;
+                FiredDate = _mySelectedUser.FiredDate;
+
+                RaisePropertyChanged("MySelectedUser");
             }
         }
 
 
-        private User AddUserWithCorrespondenceAdress ()
+        public ObservableCollection<User> Users
         {
-            var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
-            int userRoleID = userRole.UserRoleID;
-            User user;
-
-            if (_UserRole.Equals("Admin"))
+            get
             {
-                user = new User()
+                if (_Users == null)
                 {
-                    UserRoleID = userRoleID,
-                    TeamID = null,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = null,
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _CorrespondenceStreet,
-                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
-                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
-                    CorrespondencePostcode = _CorrespondencePostcode,
-                    CorrespondenceCity = _CorrespondenceCity
-                };
-            } 
-            else
+                    _Users = new ObservableCollection<User>(dbContext.User);
+                }
+                return _Users;
+            }
+            set
+            {
+                _Users = value;
+                RaisePropertyChanged("Users");
+            }
+        }
+        #endregion
+
+
+
+
+
+
+        private void EditUser()
+        {
+            //rozroznic admina bo jest null przy team
+            if (MySelectedUser.UserRole.Name != "Admin")
             {
                 var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
                 int teamID = team.TeamID;
+                MySelectedUser.TeamID = teamID;
+            } 
 
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = teamID,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = null,
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _CorrespondenceStreet,
-                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
-                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
-                    CorrespondencePostcode = _CorrespondencePostcode,
-                    CorrespondenceCity = _CorrespondenceCity
-                };
-            }
+            MySelectedUser.FirstName = FirstName;
+            MySelectedUser.LastName = LastName;
+
+            MySelectedUser.Password = Password;
+
+            MySelectedUser.Salary = Salary;
+            MySelectedUser.PhoneNumber = PhoneNumber;
+            MySelectedUser.Email = Email;
+            MySelectedUser.ResidenceStreet = ResidenceStreet;
+            MySelectedUser.ResidenceHouseNumber = ResidenceHouseNumber;
+            MySelectedUser.ResidenceApartmentNumber = ResidenceApartmentNumber;
+            MySelectedUser.ResidencePostcode = ResidencePostcode;
+            MySelectedUser.ResidenceCity = ResidenceCity;
+            MySelectedUser.CorrespondenceStreet = CorrespondenceStreet;
+            MySelectedUser.CorrespondenceHouseNumber = CorrespondenceHouseNumber;
+            MySelectedUser.CorrespondenceApartmentNumber = CorrespondenceApartmentNumber;
+            MySelectedUser.CorrespondencePostcode = CorrespondencePostcode;
+            MySelectedUser.CorrespondenceCity = CorrespondenceCity;
+            MySelectedUser.HiredDate = HiredDate;
+            MySelectedUser.FiredDate = FiredDate;
+
+            dbContext.SaveChanges();
+
+
+            Users = new ObservableCollection<User>(dbContext.User);
+
+            UsersListViewModel ULVM = new UsersListViewModel();
+            ULVM.RefreshAfterEditUser();
             
-            return user;
+            ErrorMessage er = new ErrorMessage("User edit successfully!");
+            er.ShowDialog();
+
+
+            //}
+            //else if (correctLogin == false)
+            //{
+            //    ErrorMessage er = new ErrorMessage("Incorrect login!");
+            //    er.ShowDialog();
+            //}
         }
 
-        private User AddUserWithoutCorrespondenceAdress()
-        {
-            var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
-            int userRoleID = userRole.UserRoleID;
-            User user;
 
-            if (_UserRole.Equals("Admin"))
-            {
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = null,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = null,
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _ResidenceStreet,
-                    CorrespondenceHouseNumber = _ResidenceHouseNumber,
-                    CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
-                    CorrespondencePostcode = _ResidencePostcode,
-                    CorrespondenceCity = _ResidenceCity
-                };
-            }
-            else
-            {
-                var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-                int teamID = team.TeamID;
-
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = teamID,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = null,
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _ResidenceStreet,
-                    CorrespondenceHouseNumber = _ResidenceHouseNumber,
-                    CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
-                    CorrespondencePostcode = _ResidencePostcode,
-                    CorrespondenceCity = _ResidenceCity
-                };
-            }
-
-            return user;
-        }
-
-        private bool CheckLogin()
+        /*private bool CheckLogin()
         {
             List<User> users = dbContext.User.ToList();
             var check = users.Where(x => x.Login == _Login).SingleOrDefault();
@@ -524,11 +493,12 @@ namespace PMS
             if (check != null || _Login == null || _Login == "")
             {
                 return false;
-            } else
+            }
+            else
             {
                 return true;
             }
-        }
+        }*/
 
         public List<UserRole> UsersRole
         {

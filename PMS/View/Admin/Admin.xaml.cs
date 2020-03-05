@@ -27,14 +27,13 @@ namespace PMS
             StackPanelMain.Children.Add(new UserControlAddUser());
 
             var myPMSSubItems = new List<SubItemMenu>();
-            myPMSSubItems.Add(new SubItemMenu("Dashboard", new UserControlAddUser()));
-            myPMSSubItems.Add(new SubItemMenu("Calendar", new UserControlUsersList()));
-            var myPMS = new ItemMenu("My PMS", myPMSSubItems, PackIconKind.House);
+            myPMSSubItems.Add(new SubItemMenu("Add user", new UserControlAddUser()));
+            myPMSSubItems.Add(new SubItemMenu("Users list", new UserControlUsersList()));
+            var myPMS = new ItemMenu("User 1", myPMSSubItems, PackIconKind.House);
 
             var tasksSubItems = new List<SubItemMenu>();
-            tasksSubItems.Add(new SubItemMenu("Add task", new UserControlAddUser()));
-            tasksSubItems.Add(new SubItemMenu("Task list", new UserControlAddUser()));
-            var tasks = new ItemMenu("Tasks", tasksSubItems, PackIconKind.CalendarTask);
+            tasksSubItems.Add(new SubItemMenu("Edit user", new UserControlEditUser()));
+            var tasks = new ItemMenu("User 2", tasksSubItems, PackIconKind.CalendarTask);
 
             //var wikiSubItems = new List<SubItemMenu>();
             var wiki = new ItemMenu("Wiki", null, PackIconKind.Worker);

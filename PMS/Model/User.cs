@@ -75,5 +75,13 @@ namespace PMS.Model
             }
         }
 
+        public string SearchEditUser
+        {
+            get
+            {
+                    return $"{FirstName} {LastName} {PhoneNumber}";
+            }
+        }
+
     }
 }
