@@ -24,33 +24,31 @@ namespace PMS
         public Admin()
         {
             InitializeComponent();
-            StackPanelMain.Children.Add(new UserControlAddUser());
-
-            var myPMSSubItems = new List<SubItemMenu>();
-            myPMSSubItems.Add(new SubItemMenu("Add user", new UserControlAddUser()));
-            myPMSSubItems.Add(new SubItemMenu("Users list", new UserControlUsersList()));
-            var myPMS = new ItemMenu("User 1", myPMSSubItems, PackIconKind.House);
-
-            var tasksSubItems = new List<SubItemMenu>();
-            tasksSubItems.Add(new SubItemMenu("Edit user", new UserControlEditUser()));
-            var tasks = new ItemMenu("User 2", tasksSubItems, PackIconKind.CalendarTask);
-
-            //var wikiSubItems = new List<SubItemMenu>();
-            var wiki = new ItemMenu("Wiki", null, PackIconKind.Worker);
-
-            Menu.Children.Add(new UserControlMenuItem(myPMS, this));
-            Menu.Children.Add(new UserControlMenuItem(tasks, this));
-            Menu.Children.Add(new UserControlMenuItem(wiki, this));
+            StackPanelMain.Children.Add(new UserControlUsersList());
         }
 
-        internal void SwitchScreen(object sender)
-        {
-            var userControl = ((UserControl)sender);
 
-            if (userControl != null)
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UserControl usc = null;
+            StackPanelMain.Children.Clear();
+
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                StackPanelMain.Children.Clear();
-                StackPanelMain.Children.Add(userControl);
+                case "UsersList":
+                    usc = new UserControlUsersList();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "AddUser":
+                    usc = new UserControlAddUser();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "EditUser":
+                    usc = new UserControlEditUser();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -72,7 +70,6 @@ namespace PMS
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
-
     }
 }
 

@@ -118,5 +118,3 @@
         </DockPanel>
     </Grid>
 </UserControl>
-<!--SelectedValuePath="Name" SelectedValue="{Binding UserRole}" SelectedIndex="1"
-                              SelectionChanged="ComboBox_SelectionChanged"-->

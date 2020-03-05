@@ -17,17 +17,15 @@ namespace PMS
         #region variables
         private readonly PMSContext dbContext = new PMSContext();
 
-        static public ObservableCollection<User> _Users { get; set; }
+        private ObservableCollection<User> _Users { get; set; }
         private User _mySelectedUser;
 
-        public string _VisibilityTeam = "Visible"; //"Collapsed";
-        public bool _CheckBoxAdress = false;
-        public bool _IsEnabledEditButton = false;
+        private string _VisibilityTeam = "Visible";
+        private bool _CheckBoxAdress = false;
+        private bool _IsEnabledEditButton = false;
         private string _FirstName;
         private string _LastName;
-        //private string _Login;
         private string _Password;
-        //private string _UserRole;
         private double _Salary;
         private string _PhoneNumber;
         private string _Email;
@@ -42,8 +40,8 @@ namespace PMS
         private string _CorrespondenceApartmentNumber;
         private string _CorrespondencePostcode;
         private string _CorrespondenceCity;
-        public DateTime _HiredDate = new DateTime(2020, 03, 02);
-        public DateTime? _FiredDate;
+        private DateTime _HiredDate = new DateTime(2020, 03, 02);
+        private DateTime? _FiredDate;
         #endregion
 
         #region command
@@ -88,18 +86,6 @@ namespace PMS
                 RaisePropertyChanged("LastName");
             }
         }
-        /*public string Login
-        {
-            get
-            {
-                return _Login;
-            }
-            set
-            {
-                _Login = value;
-                RaisePropertyChanged("Login");
-            }
-        }*/
         public string Password
         {
             get
@@ -112,23 +98,6 @@ namespace PMS
                 RaisePropertyChanged("Password");
             }
         }
-        /*public string UserRole
-        {
-            get
-            {
-
-                return _UserRole;
-            }
-            set
-            {
-                _UserRole = value;
-                if (_UserRole.Equals("Admin"))
-                    VisibilityTeam = "Collapsed";
-                else
-                    VisibilityTeam = "Visible";
-                RaisePropertyChanged("UserRole");
-            }
-        }*/
         public double Salary
         {
             get
@@ -345,7 +314,6 @@ namespace PMS
                 RaisePropertyChanged("CheckBoxAdress");
             }
         }
-
         public bool IsEnabledEditButton
         {
             get
@@ -359,27 +327,34 @@ namespace PMS
             }
         }
 
+
         public User MySelectedUser
         {
             get { return _mySelectedUser; }
             set
             {
+                //_mySelectedUser was null.
                 _mySelectedUser = value;
 
                 IsEnabledEditButton = true;
 
                 FirstName = _mySelectedUser.FirstName;
                 LastName = _mySelectedUser.LastName;
-                //Login = _mySelectedUser.Login;
                 Password = _mySelectedUser.Password;
-                //UserRole = _mySelectedUser.UserRole.Name;
                 Salary = _mySelectedUser.Salary;
                 PhoneNumber = _mySelectedUser.PhoneNumber;
                 Email = _mySelectedUser.Email;
                 if (_mySelectedUser.Team != null)
-                    Team = _mySelectedUser.Team.Name;
+                {
+                    VisibilityTeam = "Visible";
+                    Team = _mySelectedUser.Team.Name;        
+                }
                 else
+                {
+                    VisibilityTeam = "Collapsed";
                     Team = null;
+                }
+                    
                 ResidenceStreet = _mySelectedUser.ResidenceStreet;
                 ResidenceHouseNumber = _mySelectedUser.ResidenceHouseNumber;
                 ResidenceApartmentNumber = _mySelectedUser.ResidenceApartmentNumber;
@@ -388,13 +363,11 @@ namespace PMS
                 if (_mySelectedUser.CorrespondenceStreet == _mySelectedUser.ResidenceStreet)
                 {
                     CheckBoxAdress = false;
-                    //_CheckBoxAdress = false;
                 }
 
                 else
                 {
                     CheckBoxAdress = true;
-                    //_CheckBoxAdress = true;
                 }
 
                 CorrespondenceStreet = _mySelectedUser.CorrespondenceStreet;
@@ -468,9 +441,6 @@ namespace PMS
 
 
             Users = new ObservableCollection<User>(dbContext.User);
-
-            UsersListViewModel ULVM = new UsersListViewModel();
-            ULVM.RefreshAfterEditUser();
             
             ErrorMessage er = new ErrorMessage("User edit successfully!");
             er.ShowDialog();

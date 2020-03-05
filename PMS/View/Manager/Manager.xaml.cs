@@ -25,7 +25,7 @@ namespace PMS
         {
             InitializeComponent();
 
-            var myPMSSubItems = new List<SubItemMenu>();
+           /* var myPMSSubItems = new List<SubItemMenu>();
             myPMSSubItems.Add(new SubItemMenu("Dashboard", new UserControlAddUser()));
             myPMSSubItems.Add(new SubItemMenu("Calendar", new UserControlUsersList()));
             var myPMS = new ItemMenu("My PMS", myPMSSubItems, PackIconKind.House);
@@ -57,10 +57,10 @@ namespace PMS
             Menu.Children.Add(new UserControlMenuItem(projects, this));
             Menu.Children.Add(new UserControlMenuItem(reports, this));
             Menu.Children.Add(new UserControlMenuItem(employees, this));
-            Menu.Children.Add(new UserControlMenuItem(wiki, this));
+            Menu.Children.Add(new UserControlMenuItem(wiki, this));*/
         }
 
-        internal void SwitchScreen(object sender)
+        /*internal void SwitchScreen(object sender)
         {
             var userControl = ((UserControl)sender);
 
@@ -69,7 +69,7 @@ namespace PMS
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(userControl);
             }
-        }
+        }*/
 
         private void CloseButton(object sender, RoutedEventArgs e)
         {

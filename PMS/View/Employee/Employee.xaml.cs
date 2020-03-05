@@ -24,8 +24,8 @@ namespace PMS
         public Employee()
         {
             InitializeComponent();
-
-            var myPMSSubItems = new List<SubItemMenu>();
+        }
+            /*var myPMSSubItems = new List<SubItemMenu>();
             myPMSSubItems.Add(new SubItemMenu("Dashboard", new UserControlAddUser()));
             myPMSSubItems.Add(new SubItemMenu("Calendar", new UserControlUsersList()));
             var myPMS = new ItemMenu("My PMS", myPMSSubItems, PackIconKind.House);
@@ -70,7 +70,7 @@ namespace PMS
                 StackPanelMain.Children.Add(userControl);
             }
         }
-
+        */
         private void CloseButton(object sender, RoutedEventArgs e)
         {
             Close();

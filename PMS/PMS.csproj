@@ -125,14 +125,9 @@
     <Compile Include="View\Admin\UserControlEditUser.xaml.cs">
       <DependentUpon>UserControlEditUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\UserControlMenuItem.xaml.cs">
-      <DependentUpon>UserControlMenuItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Admin\UserControlUsersList.xaml.cs">
       <DependentUpon>UserControlUsersList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ItemMenu.cs" />
-    <Compile Include="ViewModel\SubItemMenu.cs" />
     <Compile Include="View\Error\ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>
@@ -174,10 +169,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Admin\UserControlAddUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\UserControlMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
