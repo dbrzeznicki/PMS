@@ -7,13 +7,13 @@ namespace PMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class editDatabase : IMigrationMetadata
+    public sealed partial class database : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(editDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(database));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002221842377_editDatabase"; }
+            get { return "202003052101272_database"; }
         }
         
         string IMigrationMetadata.Source

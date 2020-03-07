@@ -15,7 +15,6 @@ namespace PMS
     {
 
         #region variable
-        private readonly PMSContext dbContext = new PMSContext();
 
         //Add user
         public string _VisibilityTeam = "Visible"; //"Collapsed";
@@ -39,7 +38,7 @@ namespace PMS
         private string _CorrespondencePostcode;
         private string _CorrespondenceCity;
         public DateTime _HiredDate = new DateTime(2020, 03, 02);
-        public DateTime? _FiredDate;
+        public DateTime _FiredDate;
 
         #endregion
 
@@ -308,7 +307,7 @@ namespace PMS
                 RaisePropertyChanged("HiredDate");
             }
         }
-        public DateTime? FiredDate
+        public DateTime FiredDate
         {
             get
             {
@@ -338,8 +337,8 @@ namespace PMS
 
         private void AddUser()
         {
+            PMSContext dbContext = new PMSContext();
             User user;
-
             bool correctLogin = CheckLogin();
 
             if (correctLogin == true)
@@ -352,7 +351,7 @@ namespace PMS
                     dbContext.SaveChanges();
 
                     //UsersListViewModel._Users.Add(user);
-                    UsersListViewModel._FilteredUsers.Add(user);
+                    //UsersListViewModel._FilteredUsers.Add(user);
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
@@ -364,7 +363,7 @@ namespace PMS
                     dbContext.SaveChanges();
 
                     //UsersListViewModel._Users.Add(user);
-                    UsersListViewModel._FilteredUsers.Add(user);
+                    //UsersListViewModel._FilteredUsers.Add(user);
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
@@ -380,10 +379,10 @@ namespace PMS
 
         private User AddUserWithCorrespondenceAdress ()
         {
+            PMSContext dbContext = new PMSContext();
             var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
             int userRoleID = userRole.UserRoleID;
             User user;
-
             if (_UserRole.Equals("Admin"))
             {
                 user = new User()
@@ -399,7 +398,7 @@ namespace PMS
                     Email = _Email,
                     AccountCreationDate = DateTime.Now,
                     HiredDate = _HiredDate,
-                    FiredDate = null,
+                    FiredDate = _HiredDate.AddYears(5),
                     ResidenceStreet = _ResidenceStreet,
                     ResidenceHouseNumber = _ResidenceHouseNumber,
                     ResidenceApartmentNumber = _ResidenceApartmentNumber,
@@ -430,7 +429,7 @@ namespace PMS
                     Email = _Email,
                     AccountCreationDate = DateTime.Now,
                     HiredDate = _HiredDate,
-                    FiredDate = null,
+                    FiredDate = _HiredDate.AddYears(5),
                     ResidenceStreet = _ResidenceStreet,
                     ResidenceHouseNumber = _ResidenceHouseNumber,
                     ResidenceApartmentNumber = _ResidenceApartmentNumber,
@@ -449,6 +448,7 @@ namespace PMS
 
         private User AddUserWithoutCorrespondenceAdress()
         {
+            PMSContext dbContext = new PMSContext();
             var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
             int userRoleID = userRole.UserRoleID;
             User user;
@@ -468,7 +468,7 @@ namespace PMS
                     Email = _Email,
                     AccountCreationDate = DateTime.Now,
                     HiredDate = _HiredDate,
-                    FiredDate = null,
+                    FiredDate = _HiredDate.AddYears(5),
                     ResidenceStreet = _ResidenceStreet,
                     ResidenceHouseNumber = _ResidenceHouseNumber,
                     ResidenceApartmentNumber = _ResidenceApartmentNumber,
@@ -499,7 +499,7 @@ namespace PMS
                     Email = _Email,
                     AccountCreationDate = DateTime.Now,
                     HiredDate = _HiredDate,
-                    FiredDate = null,
+                    FiredDate = _HiredDate.AddYears(5),
                     ResidenceStreet = _ResidenceStreet,
                     ResidenceHouseNumber = _ResidenceHouseNumber,
                     ResidenceApartmentNumber = _ResidenceApartmentNumber,
@@ -518,6 +518,7 @@ namespace PMS
 
         private bool CheckLogin()
         {
+            PMSContext dbContext = new PMSContext();
             List<User> users = dbContext.User.ToList();
             var check = users.Where(x => x.Login == _Login).SingleOrDefault();
 
@@ -534,6 +535,7 @@ namespace PMS
         {
             get
             {
+                PMSContext dbContext = new PMSContext();
                 return dbContext.UserRole.ToList();
             }
         }
@@ -542,6 +544,7 @@ namespace PMS
         {
             get
             {
+                PMSContext dbContext = new PMSContext();
                 return dbContext.Team.ToList();
             }
         }

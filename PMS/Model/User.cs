@@ -29,10 +29,9 @@ namespace PMS.Model
         public string Email { get; set; }
         public DateTime AccountCreationDate { get; set; }
         public DateTime HiredDate { get; set; } // data zatrudnienia
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? FiredDate { get; set; } //data zwolnienia
-
-        //dane zameldowania (kod pocztowy, miasto, ulica, numer domu, numer mieszkania)
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[Column(TypeName = "datetime2")]
+        public DateTime FiredDate { get; set; } //data zwolnienia
 
         public string ResidenceStreet { get; set; }
         public string ResidenceHouseNumber { get; set; }

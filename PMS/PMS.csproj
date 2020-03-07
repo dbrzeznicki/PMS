@@ -88,17 +88,9 @@
     </ApplicationDefinition>
     <Compile Include="DAL\PMSContext.cs" />
     <Compile Include="DAL\PMSInitializer.cs" />
-    <Compile Include="Migrations\202002211145088_First.cs" />
-    <Compile Include="Migrations\202002211145088_First.Designer.cs">
-      <DependentUpon>202002211145088_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002221842377_editDatabase.cs" />
-    <Compile Include="Migrations\202002221842377_editDatabase.Designer.cs">
-      <DependentUpon>202002221842377_editDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003021302510_ComputedDateTime.cs" />
-    <Compile Include="Migrations\202003021302510_ComputedDateTime.Designer.cs">
-      <DependentUpon>202003021302510_ComputedDateTime.cs</DependentUpon>
+    <Compile Include="Migrations\202003052101272_database.cs" />
+    <Compile Include="Migrations\202003052101272_database.Designer.cs">
+      <DependentUpon>202003052101272_database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
@@ -195,14 +187,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202002211145088_First.resx">
-      <DependentUpon>202002211145088_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002221842377_editDatabase.resx">
-      <DependentUpon>202002221842377_editDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021302510_ComputedDateTime.resx">
-      <DependentUpon>202003021302510_ComputedDateTime.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003052101272_database.resx">
+      <DependentUpon>202003052101272_database.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

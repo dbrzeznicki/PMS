@@ -6,7 +6,7 @@ namespace PMS.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<PMS.DAL.PMSContext>
+    public class Configuration : DbMigrationsConfiguration<PMS.DAL.PMSContext>
     {
         public Configuration()
         {

@@ -3,7 +3,7 @@ namespace PMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class editDatabase : DbMigration
+    public partial class database : DbMigration
     {
         public override void Up()
         {
@@ -20,6 +20,40 @@ namespace PMS.Migrations
                 .PrimaryKey(t => t.ArticleID)
                 .ForeignKey("dbo.Users", t => t.WhoAdded_UserID)
                 .Index(t => t.WhoAdded_UserID);
+            
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        UserID = c.Int(nullable: false, identity: true),
+                        UserRoleID = c.Int(nullable: false),
+                        TeamID = c.Int(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Login = c.String(),
+                        Password = c.String(),
+                        Salary = c.Double(nullable: false),
+                        PhoneNumber = c.String(),
+                        Email = c.String(),
+                        AccountCreationDate = c.DateTime(nullable: false),
+                        HiredDate = c.DateTime(nullable: false),
+                        FiredDate = c.DateTime(nullable: false),
+                        ResidenceStreet = c.String(),
+                        ResidenceHouseNumber = c.String(),
+                        ResidenceApartmentNumber = c.String(),
+                        ResidencePostcode = c.String(),
+                        ResidenceCity = c.String(),
+                        CorrespondenceStreet = c.String(),
+                        CorrespondenceHouseNumber = c.String(),
+                        CorrespondenceApartmentNumber = c.String(),
+                        CorrespondencePostcode = c.String(),
+                        CorrespondenceCity = c.String(),
+                    })
+                .PrimaryKey(t => t.UserID)
+                .ForeignKey("dbo.Teams", t => t.TeamID)
+                .ForeignKey("dbo.UserRoles", t => t.UserRoleID, cascadeDelete: true)
+                .Index(t => t.TeamID)
+                .Index(t => t.UserRoleID);
             
             CreateTable(
                 "dbo.Subtasks",
@@ -130,6 +164,15 @@ namespace PMS.Migrations
                 .PrimaryKey(t => t.SubtaskStatusID);
             
             CreateTable(
+                "dbo.UserRoles",
+                c => new
+                    {
+                        UserRoleID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.UserRoleID);
+            
+            CreateTable(
                 "dbo.Vacations",
                 c => new
                     {
@@ -170,9 +213,6 @@ namespace PMS.Migrations
                 .ForeignKey("dbo.Users", t => t.WhoAdded_UserID)
                 .Index(t => t.WhoAdded_UserID);
             
-            AddColumn("dbo.Users", "TeamID", c => c.Int());
-            CreateIndex("dbo.Users", "TeamID");
-            AddForeignKey("dbo.Users", "TeamID", "dbo.Teams", "TeamID");
         }
         
         public override void Down()
@@ -181,6 +221,7 @@ namespace PMS.Migrations
             DropForeignKey("dbo.Articles", "WhoAdded_UserID", "dbo.Users");
             DropForeignKey("dbo.Vacations", "VacationTypeID", "dbo.VacationTypes");
             DropForeignKey("dbo.Vacations", "UserID", "dbo.Users");
+            DropForeignKey("dbo.Users", "UserRoleID", "dbo.UserRoles");
             DropForeignKey("dbo.Users", "TeamID", "dbo.Teams");
             DropForeignKey("dbo.Subtasks", "UserID", "dbo.Users");
             DropForeignKey("dbo.Subtasks", "SubtaskStatusID", "dbo.SubtaskStatus");
@@ -194,6 +235,7 @@ namespace PMS.Migrations
             DropIndex("dbo.Articles", new[] { "WhoAdded_UserID" });
             DropIndex("dbo.Vacations", new[] { "VacationTypeID" });
             DropIndex("dbo.Vacations", new[] { "UserID" });
+            DropIndex("dbo.Users", new[] { "UserRoleID" });
             DropIndex("dbo.Users", new[] { "TeamID" });
             DropIndex("dbo.Subtasks", new[] { "UserID" });
             DropIndex("dbo.Subtasks", new[] { "SubtaskStatusID" });
@@ -203,10 +245,10 @@ namespace PMS.Migrations
             DropIndex("dbo.Projects", new[] { "ProjectStatusID" });
             DropIndex("dbo.Projects", new[] { "ClientID" });
             DropIndex("dbo.MainTasks", new[] { "MainTask_MainTaskID" });
-            DropColumn("dbo.Users", "TeamID");
             DropTable("dbo.RecentActivities");
             DropTable("dbo.VacationTypes");
             DropTable("dbo.Vacations");
+            DropTable("dbo.UserRoles");
             DropTable("dbo.SubtaskStatus");
             DropTable("dbo.Teams");
             DropTable("dbo.ProjectStatus");
@@ -214,6 +256,7 @@ namespace PMS.Migrations
             DropTable("dbo.Projects");
             DropTable("dbo.MainTasks");
             DropTable("dbo.Subtasks");
+            DropTable("dbo.Users");
             DropTable("dbo.Articles");
         }
     }

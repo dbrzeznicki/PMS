@@ -7,7 +7,9 @@
         xmlns:global="clr-namespace:PMS.ViewModel"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Employee" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" MinWidth="800" MinHeight="560">
+        Title="Employee" Height="450" Width="800" WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" WindowState="Normal" MinWidth="800" MinHeight="560"
+        ResizeMode="CanResize" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -36,11 +38,8 @@
                     <TextBlock Text="{Binding Source={x:Static global:Global.user}, Path=LastName}" VerticalAlignment="Center" FontSize="16" Margin="5,0,0,0"/>
                     <materialDesign:PopupBox Margin="11">
                         <StackPanel Width="150">
-                            <Button Content="Account"/>
-                            <Button Content="Help"/>
-                            <Separator/>
-                            <Button Name="MinimalizeB" Content="Minimalize" Click="CloseButton"/>
-                            <Button Name="CloseB" Content="Logout" Click="CloseButton"/>
+                            <Button Name="ResizeB" Content="Resize" Click="ResizeButton"/>
+                            <Button Name="CloseB" Content="Close" Click="CloseButton"/>
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
@@ -59,11 +58,58 @@
 
             <!--HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"-->
             <ScrollViewer   Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <StackPanel x:Name="Menu" Margin="9" />
+                <StackPanel x:Name="Menu" Margin="9" >
+
+                    <Grid>
+
+
+
+                        <ListView x:Name="ListViewMenu" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged">
+                            <ListViewItem x:Name="UsersList" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Users list" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="AddUser" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Add user" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="EditUser" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Edit user" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Client list" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Add client" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Wiki" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+
+                    </Grid>
+                </StackPanel>
             </ScrollViewer>
         </Grid>
 
-        <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+        <Grid x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
 
     </Grid>
 </Window>

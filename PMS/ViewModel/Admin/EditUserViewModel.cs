@@ -14,8 +14,9 @@ namespace PMS
 {
     public class EditUserViewModel : BindableBase
     {
+
+        public readonly PMSContext dbContext = new PMSContext();
         #region variables
-        private readonly PMSContext dbContext = new PMSContext();
 
         private ObservableCollection<User> _Users { get; set; }
         private User _mySelectedUser;
@@ -41,7 +42,7 @@ namespace PMS
         private string _CorrespondencePostcode;
         private string _CorrespondenceCity;
         private DateTime _HiredDate = new DateTime(2020, 03, 02);
-        private DateTime? _FiredDate;
+        private DateTime _FiredDate;
         #endregion
 
         #region command
@@ -278,7 +279,7 @@ namespace PMS
                 RaisePropertyChanged("HiredDate");
             }
         }
-        public DateTime? FiredDate
+        public DateTime FiredDate
         {
             get
             {
@@ -335,6 +336,8 @@ namespace PMS
             {
                 //_mySelectedUser was null.
                 _mySelectedUser = value;
+                RaisePropertyChanged("MySelectedUser");
+
 
                 IsEnabledEditButton = true;
 
@@ -378,7 +381,7 @@ namespace PMS
                 HiredDate = _mySelectedUser.HiredDate;
                 FiredDate = _mySelectedUser.FiredDate;
 
-                RaisePropertyChanged("MySelectedUser");
+                
             }
         }
 
@@ -387,6 +390,7 @@ namespace PMS
         {
             get
             {
+                //PMSContext dbContext = new PMSContext();
                 if (_Users == null)
                 {
                     _Users = new ObservableCollection<User>(dbContext.User);
@@ -408,7 +412,8 @@ namespace PMS
 
         private void EditUser()
         {
-            //rozroznic admina bo jest null przy team
+            
+            //db context local
             if (MySelectedUser.UserRole.Name != "Admin")
             {
                 var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
@@ -445,35 +450,13 @@ namespace PMS
             ErrorMessage er = new ErrorMessage("User edit successfully!");
             er.ShowDialog();
 
-
-            //}
-            //else if (correctLogin == false)
-            //{
-            //    ErrorMessage er = new ErrorMessage("Incorrect login!");
-            //    er.ShowDialog();
-            //}
         }
-
-
-        /*private bool CheckLogin()
-        {
-            List<User> users = dbContext.User.ToList();
-            var check = users.Where(x => x.Login == _Login).SingleOrDefault();
-
-            if (check != null || _Login == null || _Login == "")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }*/
 
         public List<UserRole> UsersRole
         {
             get
             {
+                //PMSContext dbContext = new PMSContext();
                 return dbContext.UserRole.ToList();
             }
         }
@@ -482,6 +465,7 @@ namespace PMS
         {
             get
             {
+                //PMSContext dbContext = new PMSContext();
                 return dbContext.Team.ToList();
             }
         }

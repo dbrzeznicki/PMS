@@ -15,46 +15,25 @@ namespace PMS
     public class UsersListViewModel : BindableBase
     {
 
-        private readonly PMSContext dbContext = new PMSContext();
-
-        //Users list
-        //static public ObservableCollection<User> _Users { get; set; }
-
         //Filtered
-        static public ObservableCollection<User> _FilteredUsers { get; set; }
+        private ObservableCollection<User> _FilteredUsers { get; set; }
         private ObservableCollection<string> _FilteredUsersRole { get; set; }
         private string _SelectedUserRole { get; set; }
         private string _SelectedName { get; set; }
 
         //public ICommand RemoveUserButton { get; set; }
-        public ICommand AddAdressButton { get; set; }
+        //public ICommand AddAdressButton { get; set; }
         
         public UsersListViewModel()
         {
             //RemoveUserButton = new DelegateCommand<object>(RemoveUser);
         }
 
-        /*public ObservableCollection<User> Users
-        {
-            get
-            {
-                if (_Users == null)
-                {
-                    _Users = new ObservableCollection<User>(dbContext.User);
-                }
-                return _Users;
-            }
-            set
-            {
-                _Users = value;
-                RaisePropertyChanged("Users");
-            }
-        }*/
-
         public ObservableCollection<User> FilteredUsers
         {
             get
             {
+                PMSContext dbContext = new PMSContext();
                 if (_FilteredUsers == null)
                 {
                     _FilteredUsers = new ObservableCollection<User>(dbContext.User);
@@ -72,6 +51,7 @@ namespace PMS
         {
             get
             {
+                PMSContext dbContext = new PMSContext();
                 _FilteredUsersRole = new ObservableCollection<string>(dbContext.UserRole.Select(c => c.Name).Distinct());
                 _FilteredUsersRole.Insert(0, "All");
                 _SelectedUserRole = "All";
@@ -111,6 +91,7 @@ namespace PMS
         {
             get
             {
+                PMSContext dbContext = new PMSContext();
                 return dbContext.UserRole.ToList();
             }
         }
