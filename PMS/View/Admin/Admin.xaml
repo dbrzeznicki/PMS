@@ -85,7 +85,7 @@
                                     <TextBlock Text="Edit user" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem Height="60">
+                            <ListViewItem x:Name="ClientsList" Height="60">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Clients list" VerticalAlignment="Center"  Margin="20 10"/>

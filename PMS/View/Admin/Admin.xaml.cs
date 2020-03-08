@@ -34,6 +34,10 @@ namespace PMS
                     usc = new UserControlEditUser();
                     StackPanelMain.Children.Add(usc);
                     break;
+                case "ClientsList":
+                    usc = new UserControlClientsList();
+                    StackPanelMain.Children.Add(usc);
+                    break;
                 case "AddClient":
                     usc = new UserControlAddClient();
                     StackPanelMain.Children.Add(usc);

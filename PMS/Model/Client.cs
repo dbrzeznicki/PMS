@@ -24,5 +24,18 @@ namespace PMS.Model
         public string City { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
+
+
+
+        public string FullAdress
+        {
+            get
+            {
+                if (ApartmentNumber == null || ApartmentNumber.Equals(""))
+                    return $"{Postcode} {City} {Street} {HouseNumber}";
+                else
+                    return $"{Postcode} {City} {Street} {HouseNumber}/{ApartmentNumber}";
+            }
+        }
     }
 }

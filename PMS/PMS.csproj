@@ -108,6 +108,7 @@
     <Compile Include="Model\VacationType.cs" />
     <Compile Include="ViewModel\Admin\AddClientViewModel.cs" />
     <Compile Include="ViewModel\Admin\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\Admin\ClientsListViewModel.cs" />
     <Compile Include="ViewModel\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\UsersListViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
@@ -117,6 +118,9 @@
     </Compile>
     <Compile Include="View\Admin\UserControlAddUser.xaml.cs">
       <DependentUpon>UserControlAddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UserControlClientsList.xaml.cs">
+      <DependentUpon>UserControlClientsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\UserControlEditUser.xaml.cs">
       <DependentUpon>UserControlEditUser.xaml</DependentUpon>
@@ -135,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\UserControlAddClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\UserControlClientsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
