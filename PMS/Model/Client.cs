@@ -37,5 +37,14 @@ namespace PMS.Model
                     return $"{Postcode} {City} {Street} {HouseNumber}/{ApartmentNumber}";
             }
         }
+
+        public string SearchEditClient
+        {
+            get
+            {
+                return $"{CompanyName}, NIP: {NIP}, REGON: {REGON}";
+            }
+        }
+
     }
 }

@@ -42,6 +42,14 @@ namespace PMS
                     usc = new UserControlAddClient();
                     StackPanelMain.Children.Add(usc);
                     break;
+                case "EditClient":
+                    usc = new UserControlEditClient();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Wiki":
+                    usc = new UserControlWikiAdmin();
+                    StackPanelMain.Children.Add(usc);
+                    break;
                 default:
                     break;
             }

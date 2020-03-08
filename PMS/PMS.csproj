@@ -109,8 +109,10 @@
     <Compile Include="ViewModel\Admin\AddClientViewModel.cs" />
     <Compile Include="ViewModel\Admin\AddUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\ClientsListViewModel.cs" />
+    <Compile Include="ViewModel\Admin\EditClientViewModel.cs" />
     <Compile Include="ViewModel\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\UsersListViewModel.cs" />
+    <Compile Include="ViewModel\Admin\WikiAdminViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\Admin\UserControlAddClient.xaml.cs">
@@ -122,11 +124,17 @@
     <Compile Include="View\Admin\UserControlClientsList.xaml.cs">
       <DependentUpon>UserControlClientsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\UserControlEditClient.xaml.cs">
+      <DependentUpon>UserControlEditClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\UserControlEditUser.xaml.cs">
       <DependentUpon>UserControlEditUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\UserControlUsersList.xaml.cs">
       <DependentUpon>UserControlUsersList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UserControlWikiAdmin.xaml.cs">
+      <DependentUpon>UserControlWikiAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Error\ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
@@ -146,7 +154,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\UserControlEditClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\UserControlEditUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\UserControlWikiAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
