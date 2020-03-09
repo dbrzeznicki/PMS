@@ -51,6 +51,7 @@ namespace PMS.Model
         public virtual Team Team { get; set; }
         public virtual ICollection<Vacation> Vacations { get; set; }
         public virtual ICollection<Subtask> Subtasks { get; set; }
+        public virtual ICollection<Subtask> Articles { get; set; }
 
         public string FullResidenceAdress
         {
@@ -79,6 +80,14 @@ namespace PMS.Model
             get
             {
                     return $"{FirstName} {LastName} {PhoneNumber}";
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
             }
         }
 

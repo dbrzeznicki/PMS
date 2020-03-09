@@ -117,13 +117,13 @@ namespace PMS
             && c.FirstName.Contains(SelectedName)));
         }
 
-        public void RefreshAfterEditUser ()
-        {
-            PMSContext dbContext2 = new PMSContext();
-            SelectedUserRole = "All";
-            SelectedName = "";
-            FilteredUsers = new ObservableCollection<User>(dbContext2.User);
-        }
+        //public void RefreshAfterEditUser ()
+        //{
+        //    PMSContext dbContext2 = new PMSContext();
+        //    SelectedUserRole = "All";
+        //    SelectedName = "";
+        //    FilteredUsers = new ObservableCollection<User>(dbContext2.User);
+        //}
 
     }
 }

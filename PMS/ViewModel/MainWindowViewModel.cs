@@ -1,5 +1,6 @@
 ﻿using PMS.DAL;
 using PMS.Model;
+using PMS.ViewModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PMS.ViewModel
+namespace PMS
 {
     public class MainWindowViewModel : BindableBase
     {

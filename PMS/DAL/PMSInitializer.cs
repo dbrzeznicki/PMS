@@ -355,11 +355,11 @@ namespace PMS.DAL
             var article = new List<Article>
                 {
                     new Article() { ArticleID=1, Description="Artykuł dotyczący EF6 code first", Url="https://www.plukasiewicz.net/Artykuly/EntityFramework_Code_First", 
-                        DateAdded=new DateTime(2012, 07, 21), WhoAdded=user[5]},
+                        DateAdded=new DateTime(2012, 07, 21), UserID = 4},
                     new Article() { ArticleID=2, Description="Artykuł dotyczący SQL" , Url="https://www.w3schools.com/sql/",
-                        DateAdded=new DateTime(2013, 07, 21), WhoAdded=user[7]},
+                        DateAdded=new DateTime(2013, 07, 21), UserID = 7},
                     new Article() { ArticleID=3, Description="Artykuł dotyczący C#", Url="https://docs.microsoft.com/pl-pl/dotnet/csharp/",
-                        DateAdded=new DateTime(2014, 07, 21), WhoAdded=user[8]}
+                        DateAdded=new DateTime(2014, 07, 21), UserID = 8}
                 };
 
             article.ForEach(a => context.Article.AddOrUpdate(a));
