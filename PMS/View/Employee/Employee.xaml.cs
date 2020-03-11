@@ -12,7 +12,7 @@ namespace PMS
         public Employee()
         {
             InitializeComponent();
-            StackPanelMain.Children.Add(new UserControlUsersList());
+            StackPanelMain.Children.Add(new UserControlWikiEmployee());
 
         }
 
@@ -23,16 +23,24 @@ namespace PMS
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "UsersList":
-                    usc = new UserControlUsersList();
+                case "Home":
+                    usc = new UserControlWikiEmployee();
                     StackPanelMain.Children.Add(usc);
                     break;
-                case "AddUser":
-                    usc = new UserControlAddUser();
+                case "Task":
+                    usc = new UserControlWikiEmployee();
                     StackPanelMain.Children.Add(usc);
                     break;
-                case "EditUser":
-                    usc = new UserControlEditUser();
+                case "Project":
+                    usc = new UserControlWikiEmployee();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Calendar":
+                    usc = new UserControlWikiEmployee();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Wiki":
+                    usc = new UserControlWikiEmployee();
                     StackPanelMain.Children.Add(usc);
                     break;
                 default:

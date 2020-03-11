@@ -69,31 +69,31 @@
                         <ListView x:Name="ListViewMenu" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged">
                             <ListViewItem x:Name="UsersList" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="UserDetails" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Users list" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
                             <ListViewItem x:Name="AddUser" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="UserAdd" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Add user" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
                             <ListViewItem x:Name="EditUser" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="Edit" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Edit user" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
                             <ListViewItem x:Name="ClientsList" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="UserDetails" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Clients list" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
                             <ListViewItem x:Name="AddClient" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="UserAdd" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Add client" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
@@ -105,7 +105,7 @@
                             </ListViewItem>
                             <ListViewItem x:Name="Wiki" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="Wikipedia" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Wiki" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>

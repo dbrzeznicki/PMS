@@ -117,6 +117,7 @@
     <Compile Include="ViewModel\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\UsersListViewModel.cs" />
     <Compile Include="ViewModel\Admin\WikiAdminViewModel.cs" />
+    <Compile Include="ViewModel\Employee\WikiEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\Admin\UserControlAddClient.xaml.cs">
@@ -139,6 +140,9 @@
     </Compile>
     <Compile Include="View\Admin\UserControlWikiAdmin.xaml.cs">
       <DependentUpon>UserControlWikiAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employee\UserControlWikiEmployee.xaml.cs">
+      <DependentUpon>UserControlWikiEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Error\ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
@@ -171,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Employee\Employee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employee\UserControlWikiEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,7 +254,6 @@
     <Resource Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\Employee\" />
     <Folder Include="ViewModel\Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
