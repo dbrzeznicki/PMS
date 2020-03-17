@@ -7,13 +7,13 @@ namespace PMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class userarticle_Key : IMigrationMetadata
+    public sealed partial class edit_subtask : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(userarticle_Key));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(edit_subtask));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003091000275_user-article_Key"; }
+            get { return "202003110953247_edit_subtask"; }
         }
         
         string IMigrationMetadata.Source

@@ -16,12 +16,14 @@ namespace PMS.Model
         [ForeignKey("SubtaskStatus")]
         public int SubtaskStatusID { get; set; }
         [ForeignKey("MainTask")]
-        public int MainTaskID { get; set; }
+        public int? MainTaskID { get; set; }
         [ForeignKey("User")]
         public int UserID { get; set; }
 
+        public int WhoCreated { get; set; } //id uzytkownika, który tworzy zadanie
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Priority { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 

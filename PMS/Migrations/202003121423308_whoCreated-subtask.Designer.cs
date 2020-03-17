@@ -7,13 +7,13 @@ namespace PMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class database : IMigrationMetadata
+    public sealed partial class whoCreatedsubtask : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(database));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(whoCreatedsubtask));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003052101272_database"; }
+            get { return "202003121423308_whoCreated-subtask"; }
         }
         
         string IMigrationMetadata.Source

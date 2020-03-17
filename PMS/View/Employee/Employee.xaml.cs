@@ -28,7 +28,7 @@ namespace PMS
                     StackPanelMain.Children.Add(usc);
                     break;
                 case "Task":
-                    usc = new UserControlWikiEmployee();
+                    usc = new UserControlTaskEmployee();
                     StackPanelMain.Children.Add(usc);
                     break;
                 case "Project":

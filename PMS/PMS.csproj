@@ -88,13 +88,13 @@
     </ApplicationDefinition>
     <Compile Include="DAL\PMSContext.cs" />
     <Compile Include="DAL\PMSInitializer.cs" />
-    <Compile Include="Migrations\202003052101272_database.cs" />
-    <Compile Include="Migrations\202003052101272_database.Designer.cs">
-      <DependentUpon>202003052101272_database.cs</DependentUpon>
+    <Compile Include="Migrations\202003110953247_edit_subtask.cs" />
+    <Compile Include="Migrations\202003110953247_edit_subtask.Designer.cs">
+      <DependentUpon>202003110953247_edit_subtask.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003091000275_user-article_Key.cs" />
-    <Compile Include="Migrations\202003091000275_user-article_Key.Designer.cs">
-      <DependentUpon>202003091000275_user-article_Key.cs</DependentUpon>
+    <Compile Include="Migrations\202003121423308_whoCreated-subtask.cs" />
+    <Compile Include="Migrations\202003121423308_whoCreated-subtask.Designer.cs">
+      <DependentUpon>202003121423308_whoCreated-subtask.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
@@ -117,6 +117,7 @@
     <Compile Include="ViewModel\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\UsersListViewModel.cs" />
     <Compile Include="ViewModel\Admin\WikiAdminViewModel.cs" />
+    <Compile Include="ViewModel\Employee\TaskEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Employee\WikiEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="View\Admin\UserControlWikiAdmin.xaml.cs">
       <DependentUpon>UserControlWikiAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employee\UserControlTaskEmployee.xaml.cs">
+      <DependentUpon>UserControlTaskEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Employee\UserControlWikiEmployee.xaml.cs">
       <DependentUpon>UserControlWikiEmployee.xaml</DependentUpon>
@@ -175,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Employee\Employee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employee\UserControlTaskEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,11 +239,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202003052101272_database.resx">
-      <DependentUpon>202003052101272_database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003110953247_edit_subtask.resx">
+      <DependentUpon>202003110953247_edit_subtask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003091000275_user-article_Key.resx">
-      <DependentUpon>202003091000275_user-article_Key.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003121423308_whoCreated-subtask.resx">
+      <DependentUpon>202003121423308_whoCreated-subtask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
