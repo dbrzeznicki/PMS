@@ -44,6 +44,8 @@ namespace PMS
 
         private ObservableCollection<SubtaskStatus> _SubtaskStatus;
         private SubtaskStatus _SelectedSubtaskStatus;
+
+        private string _SelectedName { get; set; }
         //zlecone przeze mnie
         private ObservableCollection<string> _StatusWhichICreated;
         private string _SelectedStatusWhichICreated;
@@ -71,6 +73,20 @@ namespace PMS
         #endregion
 
         #region properties
+
+        public string SelectedName
+        {
+            get
+            {
+                return _SelectedName;
+            }
+            set
+            {
+                _SelectedName = value;
+                RaisePropertyChanged("SelectedName");
+                FilterSubtask();
+            }
+        }
 
         public string Name
         {
@@ -374,8 +390,25 @@ namespace PMS
                 WhoCreated = Global.user.UserID
             };
 
+
+
+            RecentActivity ra = new RecentActivity
+            {
+                DateAdded = DateTime.Now,
+                TeamID = (int)Global.user.TeamID,
+                Description = $"Użytkownik {Global.user.FullName} stworzył nowe zadanie " +
+                              $"dla {SelectedUser.FullName} o nazwie: {_Name}"
+            };
+
+
             dbContext.Subtask.Add(subtask);
+            dbContext.RecentActivity.Add(ra);
             dbContext.SaveChanges();
+
+
+
+
+
 
             ErrorMessage er = new ErrorMessage("User created successfully!");
             er.ShowDialog();
@@ -389,7 +422,17 @@ namespace PMS
             
 
             SelectedSubtask.SubtaskStatusID = SelectedSubtaskStatus.SubtaskStatusID;
-            
+
+
+            RecentActivity ra = new RecentActivity
+            {
+                DateAdded = DateTime.Now,
+                TeamID = (int)Global.user.TeamID,
+                Description = $"Użytkownik {Global.user.FullName} zmienił status zadania '{SelectedSubtask.Name}' na '{SelectedSubtaskStatus.Name}'"
+            };
+
+
+            dbContext.RecentActivity.Add(ra);
             dbContext.SaveChanges();
 
 
@@ -417,12 +460,16 @@ namespace PMS
         public void FilterSubtask()
         {
 
+
+            if (SelectedName == null)
+                SelectedName = "";
+
             //PMSContext dbContext = new PMSContext();
 
             if (SelectedProject == "All")
-                Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (SelectedStatus == "All" ? true : x.SubtaskStatus.Name == SelectedStatus)));
+                Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (SelectedStatus == "All" ? true : x.SubtaskStatus.Name == SelectedStatus) && (x.Name.Contains(SelectedName))));
             else if (SelectedProject == "Other")
-                Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (x.MainTaskID == null) && (SelectedStatus == "All" ? true : x.SubtaskStatus.Name == SelectedStatus)));
+                Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (x.MainTaskID == null) && (SelectedStatus == "All" ? true : x.SubtaskStatus.Name == SelectedStatus) && (x.Name.Contains(SelectedName))));
             else
             {
                 Project project = dbContext.Project.Where(x => x.Name == SelectedProject).SingleOrDefault();
@@ -435,7 +482,7 @@ namespace PMS
                 {
                     SubtasksTMP = SubtasksTMP.Concat(mt.Subtasks).ToList();
                 }
-                Subtasks = new ObservableCollection<Subtask>(SubtasksTMP.Where(x => (x.UserID == Global.user.UserID) && (SelectedStatus == "All" ? true : x.SubtaskStatus.Name == SelectedStatus)));
+                Subtasks = new ObservableCollection<Subtask>(SubtasksTMP.Where(x => (x.UserID == Global.user.UserID) && (SelectedStatus == "All" ? true : x.SubtaskStatus.Name == SelectedStatus) && (x.Name.Contains(SelectedName))));
             }
 
         }

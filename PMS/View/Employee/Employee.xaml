@@ -65,7 +65,7 @@
 
 
                         <ListView x:Name="ListViewMenu" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged">
-                            <ListViewItem x:Name="Jme" Height="60">
+                            <ListViewItem x:Name="Home" Height="60">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>

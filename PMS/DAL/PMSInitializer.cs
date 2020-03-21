@@ -395,7 +395,20 @@ namespace PMS.DAL
             article.ForEach(a => context.Article.AddOrUpdate(a));
             context.SaveChanges();
 
-    
+            var recentActivities = new List<RecentActivity>
+            {
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer 1", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer 23324423243", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer das ads  dasda s", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer asdsad dw df ewf f fwe ff we", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer ewfe wf wef wef fwe fewf efwfewf wef ewf wef ewf ewfewf wef ", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer wefew", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer we2yerw", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer qwertyuioplkjhgfdsazxcvbnm", TeamID=1},
+            };
+
+            recentActivities.ForEach(a => context.RecentActivity.AddOrUpdate(a));
+            context.SaveChanges();
         }
     }
 }

@@ -17,6 +17,10 @@ namespace PMS.Model
         public int NumberOfProjects { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
+
+        public virtual ICollection<RecentActivity> RecentActivities { get; set; }
+
+
         public virtual ICollection<Project> Projects { get; set; }
     }
 }

@@ -40,6 +40,18 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="DlhSoft.HierarchicalData.LightWPF.Controls, Version=4.0.10.1, Culture=neutral, PublicKeyToken=6071b28da0134838, processorArchitecture=MSIL">
+      <HintPath>..\packages\DlhSoft.HierarchicalDataLightLibrary.4.0.10.2\lib\net45\DlhSoft.HierarchicalData.LightWPF.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="DlhSoft.OrganizationalChartLibrary.Controls, Version=4.0.8.5, Culture=neutral, PublicKeyToken=6071b28da0134838, processorArchitecture=MSIL">
+      <HintPath>..\packages\DlhSoft.HierarchicalDataLightLibrary.4.0.10.2\lib\net45\DlhSoft.OrganizationalChartLibrary.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="DlhSoft.ProjectData.GanttChart.LightWPF.Controls, Version=4.3.43.7, Culture=neutral, PublicKeyToken=6071b28da0134838, processorArchitecture=MSIL">
+      <HintPath>..\packages\DlhSoft.GanttChartLightLibrary.4.3.43.11\lib\net45\DlhSoft.ProjectData.GanttChart.LightWPF.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="DlhSoft.ProjectData.PertChart.LightWPF.Controls, Version=4.3.43.6, Culture=neutral, PublicKeyToken=6071b28da0134838, processorArchitecture=MSIL">
+      <HintPath>..\packages\DlhSoft.GanttChartLightLibrary.4.3.43.11\lib\net45\DlhSoft.ProjectData.PertChart.LightWPF.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -96,6 +108,10 @@
     <Compile Include="Migrations\202003121423308_whoCreated-subtask.Designer.cs">
       <DependentUpon>202003121423308_whoCreated-subtask.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003191432157_recentActivity.cs" />
+    <Compile Include="Migrations\202003191432157_recentActivity.Designer.cs">
+      <DependentUpon>202003191432157_recentActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
     <Compile Include="Model\Client.cs" />
@@ -117,6 +133,7 @@
     <Compile Include="ViewModel\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\UsersListViewModel.cs" />
     <Compile Include="ViewModel\Admin\WikiAdminViewModel.cs" />
+    <Compile Include="ViewModel\Employee\HomeEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Employee\TaskEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Employee\WikiEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
@@ -141,6 +158,9 @@
     </Compile>
     <Compile Include="View\Admin\UserControlWikiAdmin.xaml.cs">
       <DependentUpon>UserControlWikiAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employee\UserControlHomeEmployee.xaml.cs">
+      <DependentUpon>UserControlHomeEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Employee\UserControlTaskEmployee.xaml.cs">
       <DependentUpon>UserControlTaskEmployee.xaml</DependentUpon>
@@ -179,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Employee\Employee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employee\UserControlHomeEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003121423308_whoCreated-subtask.resx">
       <DependentUpon>202003121423308_whoCreated-subtask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191432157_recentActivity.resx">
+      <DependentUpon>202003191432157_recentActivity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

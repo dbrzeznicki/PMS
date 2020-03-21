@@ -29,6 +29,8 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                     <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -38,7 +40,8 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                 <ComboBox Margin="10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedProject}" SelectedIndex="0" ItemsSource="{Binding Path=Projects}" />
                                 <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" Text="Select status:" />
                                 <ComboBox Margin="10" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=SelectedStatus}" SelectedIndex="0" ItemsSource="{Binding Path=Statuss}"/>
-
+                                <TextBlock Margin="10" Grid.Row="2" Grid.Column="0" Text="Write subtask name: " />
+                                <TextBox Margin="10" Grid.Row="3" Grid.Column="0" Text="{Binding Path = SelectedName, UpdateSourceTrigger=PropertyChanged}"/>
                                 <!--<Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
