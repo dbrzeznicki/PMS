@@ -293,23 +293,23 @@ namespace PMS.DAL
             var subtask = new List<Subtask>
                 {
                 //PROJEKT 1, 4 main taski, zespol 1 (id user 2,4,5)
-                    new Subtask() { SubtaskID=1, MainTaskID=1, SubtaskStatusID=2,UserID=4, Description="subtask 1 do wykonania", 
-                    Name="subtask 1", StartTime=new DateTime(2011, 04, 10), EndTime=new DateTime(2011, 06, 01), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=1, MainTaskID=1, SubtaskStatusID=1,UserID=4, Description="subtask 1 do wykonania", 
+                    Name="subtask 1", StartTime=new DateTime(2020, 03, 20), EndTime=new DateTime(2020, 03, 21), Priority = "Wysokie",
                     WhoCreated=2},
                     new Subtask() { SubtaskID=2, MainTaskID=2, SubtaskStatusID=2,UserID=5, Description="subtask 2 do wykonania",
                     Name="subtask 2", StartTime=new DateTime(2011, 06, 01), EndTime=new DateTime(2011, 08, 01), Priority = "Wysokie",
                     WhoCreated=2
                     },
                     new Subtask() { SubtaskID=3, MainTaskID=3, SubtaskStatusID=2,UserID=4, Description="subtask 3 do wykonania",
-                    Name="subtask 3", StartTime=new DateTime(2011, 08, 01), EndTime=new DateTime(2011, 09, 01), Priority = "Wysokie",
+                    Name="subtask 3", StartTime=new DateTime(2020, 03, 22), EndTime=new DateTime(2020, 03, 25), Priority = "Wysokie",
                     WhoCreated=2
                     },
                     new Subtask() { SubtaskID=4, MainTaskID=3, SubtaskStatusID=2,UserID=5, Description="subtask 4 do wykonania",
                     Name="subtask 4", StartTime=new DateTime(2011, 08, 01), EndTime=new DateTime(2011, 10, 01), Priority = "Wysokie",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=5, MainTaskID=4, SubtaskStatusID=2,UserID=4, Description="subtask 5 do wykonania",
-                    Name="subtask 5", StartTime=new DateTime(2011, 10, 01), EndTime=new DateTime(2012, 01, 01), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=5, MainTaskID=4, SubtaskStatusID=3,UserID=4, Description="subtask 5 do wykonania",
+                    Name="subtask 5", StartTime=new DateTime(2020, 03, 24), EndTime=new DateTime(2020, 04, 10), Priority = "Wysokie",
                     WhoCreated=2
                     },
 

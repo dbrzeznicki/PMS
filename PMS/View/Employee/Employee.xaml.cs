@@ -32,7 +32,7 @@ namespace PMS
                     StackPanelMain.Children.Add(usc);
                     break;
                 case "Project":
-                    usc = new UserControlWikiEmployee();
+                    usc = new UserControlProjectEmployee();
                     StackPanelMain.Children.Add(usc);
                     break;
                 case "Calendar":
