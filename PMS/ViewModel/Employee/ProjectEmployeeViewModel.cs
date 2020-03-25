@@ -229,7 +229,7 @@ namespace PMS
 
             foreach(var a in subtasks)
             {
-                _Items.Add(new GanttChartItem { Content = a.Name, Start = a.StartTime, Finish = a.EndTime });
+                _Items.Add(new GanttChartItem { Content = a.Name, Start = a.StartTime, Finish = a.EndTime, IsBarReadOnly=true });
             }
 
 

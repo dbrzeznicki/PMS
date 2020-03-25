@@ -35,10 +35,6 @@ namespace PMS
                     usc = new UserControlProjectEmployee();
                     StackPanelMain.Children.Add(usc);
                     break;
-                case "Calendar":
-                    usc = new UserControlWikiEmployee();
-                    StackPanelMain.Children.Add(usc);
-                    break;
                 case "Wiki":
                     usc = new UserControlWikiEmployee();
                     StackPanelMain.Children.Add(usc);

@@ -44,8 +44,8 @@
 
                 <Grid Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
                     <pdgcc:GanttChartView x:Name="GanttChartDataGrid" Items="{Binding Items}">
-                  
-                       
+
+
                     </pdgcc:GanttChartView>
                 </Grid>
             </Grid>
