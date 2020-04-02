@@ -134,8 +134,8 @@ namespace PMS
             List<Subtask> subtasks;
             subtasks = new List<Subtask>(SubtasksTMP.Where(x => (x.UserID == Global.user.UserID)));
 
-            int newTask = subtasks.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "Nowe")).Count();
-            int inProgressTask = subtasks.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "W trakcie")).Count();
+            int newTask = subtasks.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "New")).Count();
+            int inProgressTask = subtasks.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "In progress")).Count();
 
             _MyTaskPieChart = new PlotModel { Title = "My task", PlotMargins = new OxyThickness(20, 20, 20, 20) };
 

@@ -10,13 +10,18 @@
     <UserControl.Resources>
         <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+
+
         </Style>
     </UserControl.Resources>
 
 
-    <Grid>
+    <Grid Margin="10">
         <DockPanel>
-                <Expander Grid.Row="0" Header="Filters" Margin="10" Background="White" DockPanel.Dock="Top">
+            <Expander Grid.Row="0" Header="Filters" Margin="10" Background="WhiteSmoke" DockPanel.Dock="Top" >
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -26,21 +31,21 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Margin="5" Grid.Row="0" Grid.Column="0" Text="Select User Role: " />
-                        <ComboBox Margin="5" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedUserRole}" SelectedIndex="0" ItemsSource="{Binding Path=FilteredUsersRole}" />
-                        <TextBlock Margin="5" Grid.Row="0" Grid.Column="1" Text="Write Name: " />
-                        <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding Path = SelectedName, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Margin="25,10,10,10" Grid.Row="0" Grid.Column="0" Text="Select User Role: " />
+                        <ComboBox Margin="25,10,10,10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedUserRole}" SelectedIndex="0" ItemsSource="{Binding Path=FilteredUsersRole}" />
+                        <TextBlock Margin="10,10,25,10" Grid.Row="0" Grid.Column="1" Text="Write Name: " />
+                        <TextBox Margin="10,10,25,10" Grid.Row="1" Grid.Column="1" Text="{Binding Path = SelectedName, UpdateSourceTrigger=PropertyChanged}"/>
 
                     </Grid>
                 </Expander>
 
 
-            <ListView Margin="10" ItemsSource="{Binding FilteredUsers}" HorizontalContentAlignment="Stretch">
+            <ListView Margin="10" ItemsSource="{Binding FilteredUsers}" Background="Black">
                 <ListView.View>
-                    <GridView >
+                    <GridView>
 
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="First name" DisplayMemberBinding="{Binding FirstName}" Width="Auto"/>
-                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Last name"  DisplayMemberBinding="{Binding LastName}" Width="Auto"/>
+                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Last name"   DisplayMemberBinding="{Binding LastName}" Width="Auto"/>
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Login"  DisplayMemberBinding="{Binding Login}" Width="Auto"/>
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Password"  DisplayMemberBinding="{Binding Password}" Width="Auto"/>
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Salary"  DisplayMemberBinding="{Binding Salary}" Width="Auto"/>
@@ -51,15 +56,6 @@
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Correspondence adress"  DisplayMemberBinding="{Binding FullCorrespondenceAdress}" Width="Auto"/>
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Residence adress"  DisplayMemberBinding="{Binding FullResidenceAdress}" Width="Auto"/>
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Team"  DisplayMemberBinding="{Binding Team.Name}" Width="Auto"/>
-
-                        <!--<GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Remove" Width="Auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate >
-                                    <Button Content="Remove" CommandParameter="{Binding UserID}" Command="{Binding Path=DataContext.RemoveUserButton, 
-                                                    RelativeSource={RelativeSource AncestorType=ListView, Mode=FindAncestor}}"></Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>-->
                     </GridView>
                 </ListView.View>
             </ListView>

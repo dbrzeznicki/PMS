@@ -37,9 +37,9 @@ namespace PMS.DAL
 
             var projectStatus = new List<ProjectStatus>
                 {
-                    new ProjectStatus() { ProjectStatusID=1, Name="Nierozpoczęty"},
-                    new ProjectStatus() { ProjectStatusID=2, Name="W trakcie"},
-                    new ProjectStatus() { ProjectStatusID=3, Name="Zakończony"}
+                    new ProjectStatus() { ProjectStatusID=1, Name="New"},
+                    new ProjectStatus() { ProjectStatusID=2, Name="In progress"},
+                    new ProjectStatus() { ProjectStatusID=3, Name="Completed"}
                 };
 
             projectStatus.ForEach(ps => context.ProjectStatus.AddOrUpdate(ps));
@@ -47,9 +47,9 @@ namespace PMS.DAL
 
             var subtaskStatus = new List<SubtaskStatus>
                 {
-                    new SubtaskStatus() { SubtaskStatusID=1, Name="W trakcie"},
-                    new SubtaskStatus() { SubtaskStatusID=2, Name="Zakończone"},
-                    new SubtaskStatus() { SubtaskStatusID=3, Name="Nowe"}
+                    new SubtaskStatus() { SubtaskStatusID=1, Name="New"},
+                    new SubtaskStatus() { SubtaskStatusID=2, Name="In progress"},
+                    new SubtaskStatus() { SubtaskStatusID=3, Name="Completed"}
                 };
 
             subtaskStatus.ForEach(ss => context.SubtaskStatus.AddOrUpdate(ss));
@@ -57,14 +57,11 @@ namespace PMS.DAL
 
             var vacationType = new List<VacationType>
                 {
-                    new VacationType() { VacationTypeID=1, Name="Wypoczynkowy"},
-                    new VacationType() { VacationTypeID=2, Name="Macierzyński"},
-                    new VacationType() { VacationTypeID=3, Name="Rodzicielski"},
-                    new VacationType() { VacationTypeID=4, Name="Urlop na żądanie"},
-                    new VacationType() { VacationTypeID=5, Name="Okolicznościowy"},
-                    new VacationType() { VacationTypeID=6, Name="Wychowawczy"},
-                    new VacationType() { VacationTypeID=7, Name="Bezpłatny"},
-                    new VacationType() { VacationTypeID=8, Name="Ojcowski"}
+                    new VacationType() { VacationTypeID=1, Name="Holiday leave"},
+                    new VacationType() { VacationTypeID=2, Name="Maternity leave"},
+                    new VacationType() { VacationTypeID=3, Name="Parental leave"},
+                    new VacationType() { VacationTypeID=4, Name="Unpaid leave"},
+                    new VacationType() { VacationTypeID=5, Name="L4"}
                 };
 
             vacationType.ForEach(vt => context.VacationType.AddOrUpdate(vt));
@@ -73,8 +70,8 @@ namespace PMS.DAL
 
             var team = new List<Team>
                 {
-                    new Team() { TeamID = 1, Name="Scrum", NumberOfPeople=3, NumberOfProjects=2},
-                    new Team() { TeamID = 2, Name="Agile", NumberOfPeople=5, NumberOfProjects=1}
+                    new Team() { TeamID = 1, Name="Team 1", NumberOfPeople=3, NumberOfProjects=2},
+                    new Team() { TeamID = 2, Name="Team 2", NumberOfPeople=5, NumberOfProjects=1}
                 };
 
             team.ForEach(t => context.Team.AddOrUpdate(t));
@@ -151,7 +148,7 @@ namespace PMS.DAL
                     new Vacation() { VacationID=4, UserID=5 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 12, 30), EndVacation=new DateTime(2018, 01, 10), NumberOfDays=9},
                     new Vacation() { VacationID=5, UserID=5 ,VacationTypeID=4,  StartVacation=new DateTime(2012, 03, 24), EndVacation=new DateTime(2012, 04, 24), NumberOfDays=28},
                     new Vacation() { VacationID=6, UserID=6 ,VacationTypeID=1,  StartVacation=new DateTime(2013, 07, 11), EndVacation=new DateTime(2013, 07, 23), NumberOfDays=11},
-                    new Vacation() { VacationID=7, UserID=6 ,VacationTypeID=7,  StartVacation=new DateTime(2016, 06, 02), EndVacation=new DateTime(2016, 06, 07), NumberOfDays=4},
+                    new Vacation() { VacationID=7, UserID=6 ,VacationTypeID=3,  StartVacation=new DateTime(2016, 06, 02), EndVacation=new DateTime(2016, 06, 07), NumberOfDays=4},
                     new Vacation() { VacationID=8, UserID=9 ,VacationTypeID=2,  StartVacation=new DateTime(2012, 03, 25), EndVacation=new DateTime(2012, 04, 10), NumberOfDays=14}
                 };
 
@@ -176,37 +173,37 @@ namespace PMS.DAL
 
             var project = new List<Project>
                 {
-                    new Project() { ProjectID=1, ClientID=1, ProjectStatusID=2, TeamID=1, Name="Sklep internetowy Mix",
+                    new Project() { ProjectID=1, ClientID=1, ProjectStatusID=2, TeamID=1, Name="Online Shop Mix",
                     StartTime=new DateTime(2011, 04, 01), EndTime=new DateTime(2012, 01, 01),
                     Cost=83500.00, Resources=new Dictionary<string, double> {
-                        {"Oprogramowanie", 5000.00},
-                        {"Prototyp" , 4000.00},
-                        {"Testowanie", 4000.00},
-                        {"Utrzymanie", 10000.00},
-                        {"Implementacja", 6000.00},
-                        {"Inne", 3000.00} }
+                        {"Software", 5000.00},
+                        {"Prototype" , 4000.00},
+                        {"Testing", 4000.00},
+                        {"Maintenance", 10000.00},
+                        {"Implementation", 6000.00},
+                        {"Other", 3000.00} }
                 },
 
                 new Project() { ProjectID=2, ClientID=1, ProjectStatusID=1, TeamID=1, Name="System zarządzania firmą",
                     StartTime=new DateTime(2012, 01, 10), EndTime=new DateTime(2012, 07, 20),
                     Cost=12000.00, Resources=new Dictionary<string, double> {
-                        {"Oprogramowanie", 10000.00},
-                        {"Prototyp" , 10000.00},
-                        {"Testowanie", 15000.00},
-                        {"Utrzymanie", 25000.00},
-                        {"Implementacja", 15000.00},
-                        {"Inne", 30000.00} }
+                        {"Software", 10000.00},
+                        {"Prototype" , 10000.00},
+                        {"Testing", 15000.00},
+                        {"Maintenance", 25000.00},
+                        {"Implementation", 15000.00},
+                        {"Other", 30000.00} }
                 },
 
                     new Project() { ProjectID=3, ClientID=2, ProjectStatusID=1, TeamID=2, Name="System premiowy",
                     StartTime=new DateTime(2011, 08, 02), EndTime=new DateTime(2012, 07, 21),
                     Cost=40000.00, Resources=new Dictionary<string, double> {
-                        {"Oprogramowanie", 3000.00},
-                        {"Prototyp" , 3000.00},
-                        {"Testowanie", 6000.00},
-                        {"Utrzymanie", 6000.00},
-                        {"Implementacja", 4000.00},
-                        {"Inne", 3000.00} }
+                        {"Software", 3000.00},
+                        {"Prototype" , 3000.00},
+                        {"Testing", 6000.00},
+                        {"Maintenance", 6000.00},
+                        {"Implementation", 4000.00},
+                        {"Other", 3000.00} }
                 },
                 };
 
@@ -217,55 +214,55 @@ namespace PMS.DAL
             var mainTask = new List<MainTask>
                 {
                 //PROJECT 1
-                    new MainTask() { MainTaskID=1, ProjectID=1, Name="Prototyp", Priority=1,
+                    new MainTask() { MainTaskID=1, ProjectID=1, Name="Prototype", Priority=1,
                         StartTime=new DateTime(2011, 04, 10), EndTime=new DateTime(2011, 06, 01), Status=true,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=2, ProjectID=1, Name="Baza danych", Priority=1,
+                    new MainTask() { MainTaskID=2, ProjectID=1, Name="Database", Priority=1,
                         StartTime=new DateTime(2011, 06, 01), EndTime=new DateTime(2011, 08, 01), Status=true,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=3, ProjectID=1, Name="Implementacja logiki", Priority=2,
+                    new MainTask() { MainTaskID=3, ProjectID=1, Name="Implementation", Priority=2,
                         StartTime=new DateTime(2011, 08, 01), EndTime=new DateTime(2011, 10, 01), Status=true,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=4, ProjectID=1, Name="Testowanie", Priority=3,
+                    new MainTask() { MainTaskID=4, ProjectID=1, Name="Testing", Priority=3,
                         StartTime=new DateTime(2011, 10, 01), EndTime=new DateTime(2012, 01, 01), Status=true,
                         PrecedingMainTasks=null
                     },
 
                     //PROJECT 2
-                    new MainTask() { MainTaskID=5, ProjectID=2, Name="Prototyp", Priority=1,
+                    new MainTask() { MainTaskID=5, ProjectID=2, Name="Prototype", Priority=1,
                         StartTime=new DateTime(2012, 01, 11), EndTime=new DateTime(2012, 01, 20), Status=true,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=6, ProjectID=2, Name="Baza danych", Priority=1,
+                    new MainTask() { MainTaskID=6, ProjectID=2, Name="Database", Priority=1,
                         StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 02, 10), Status=true,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=7, ProjectID=2, Name="Baza danych 2", Priority=2,
+                    new MainTask() { MainTaskID=7, ProjectID=2, Name="Database 2", Priority=2,
                         StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 04, 15), Status=false,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=8, ProjectID=2, Name="Implementacja", Priority=3,
+                    new MainTask() { MainTaskID=8, ProjectID=2, Name="Implementation", Priority=3,
                         StartTime=new DateTime(2012, 02, 12), EndTime=new DateTime(2012, 05, 22), Status=false,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=9, ProjectID=2, Name="Testowanie", Priority=3,
+                    new MainTask() { MainTaskID=9, ProjectID=2, Name="Testing", Priority=3,
                         StartTime=new DateTime(2012, 05, 25), EndTime=new DateTime(2012, 07, 20), Status=false,
                         PrecedingMainTasks=null
                     },
 
                     //PROJECT 3
-                    new MainTask() { MainTaskID=10, ProjectID=3, Name="Prototyp", Priority=1,
+                    new MainTask() { MainTaskID=10, ProjectID=3, Name="Prototype", Priority=1,
                         StartTime=new DateTime(2011, 08, 04), EndTime=new DateTime(2011, 12, 21), Status=true,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=11, ProjectID=3, Name="Implementacja", Priority=1,
+                    new MainTask() { MainTaskID=11, ProjectID=3, Name="Implementation", Priority=1,
                         StartTime=new DateTime(2011, 12, 25), EndTime=new DateTime(2012, 03, 21), Status=false,
                         PrecedingMainTasks=null
                     },
-                    new MainTask() { MainTaskID=12, ProjectID=3, Name="Testowanie", Priority=3,
+                    new MainTask() { MainTaskID=12, ProjectID=3, Name="Testing", Priority=3,
                         StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Status=false,
                         PrecedingMainTasks=null
                     }
@@ -293,85 +290,85 @@ namespace PMS.DAL
             var subtask = new List<Subtask>
                 {
                 //PROJEKT 1, 4 main taski, zespol 1 (id user 2,4,5)
-                    new Subtask() { SubtaskID=1, MainTaskID=1, SubtaskStatusID=1,UserID=4, Description="subtask 1 do wykonania", 
-                    Name="subtask 1", StartTime=new DateTime(2020, 03, 20), EndTime=new DateTime(2020, 03, 21), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=1, MainTaskID=1, SubtaskStatusID=2,UserID=4, Description="subtask 1 do wykonania", 
+                    Name="subtask 1", StartTime=new DateTime(2020, 03, 20), EndTime=new DateTime(2020, 03, 21), Priority = "High",
                     WhoCreated=2},
-                    new Subtask() { SubtaskID=2, MainTaskID=2, SubtaskStatusID=2,UserID=5, Description="subtask 2 do wykonania",
-                    Name="subtask 2", StartTime=new DateTime(2011, 06, 01), EndTime=new DateTime(2011, 08, 01), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=2, MainTaskID=2, SubtaskStatusID=3,UserID=5, Description="subtask 2 do wykonania",
+                    Name="subtask 2", StartTime=new DateTime(2011, 06, 01), EndTime=new DateTime(2011, 08, 01), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=3, MainTaskID=3, SubtaskStatusID=2,UserID=4, Description="subtask 3 do wykonania",
-                    Name="subtask 3", StartTime=new DateTime(2020, 03, 22), EndTime=new DateTime(2020, 03, 25), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=3, MainTaskID=3, SubtaskStatusID=3,UserID=4, Description="subtask 3 do wykonania",
+                    Name="subtask 3", StartTime=new DateTime(2020, 03, 22), EndTime=new DateTime(2020, 03, 25), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=4, MainTaskID=3, SubtaskStatusID=2,UserID=5, Description="subtask 4 do wykonania",
-                    Name="subtask 4", StartTime=new DateTime(2011, 08, 01), EndTime=new DateTime(2011, 10, 01), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=4, MainTaskID=3, SubtaskStatusID=3,UserID=5, Description="subtask 4 do wykonania",
+                    Name="subtask 4", StartTime=new DateTime(2011, 08, 01), EndTime=new DateTime(2011, 10, 01), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=5, MainTaskID=4, SubtaskStatusID=3,UserID=4, Description="subtask 5 do wykonania",
-                    Name="subtask 5", StartTime=new DateTime(2020, 03, 24), EndTime=new DateTime(2020, 04, 10), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=5, MainTaskID=4, SubtaskStatusID=2,UserID=4, Description="subtask 5 do wykonania",
+                    Name="subtask 5", StartTime=new DateTime(2020, 03, 24), EndTime=new DateTime(2020, 04, 10), Priority = "High",
                     WhoCreated=2
                     },
 
                     //PROJEKT 2, 5 main taski, zespol 1 (id user 2,4,5)
-                    new Subtask() { SubtaskID=6, MainTaskID=5, SubtaskStatusID=2,UserID=4, Description="subtask 6 do wykonania",
-                    Name="subtask 6",  StartTime=new DateTime(2012, 01, 11), EndTime=new DateTime(2012, 01, 20), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=6, MainTaskID=5, SubtaskStatusID=3,UserID=4, Description="subtask 6 do wykonania",
+                    Name="subtask 6",  StartTime=new DateTime(2012, 01, 11), EndTime=new DateTime(2012, 01, 20), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=7, MainTaskID=6, SubtaskStatusID=2,UserID=5, Description="subtask 7 do wykonania",
-                    Name="subtask 7", StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 01, 30), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=7, MainTaskID=6, SubtaskStatusID=3,UserID=5, Description="subtask 7 do wykonania",
+                    Name="subtask 7", StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 01, 30), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=8, MainTaskID=6, SubtaskStatusID=2,UserID=4, Description="subtask 8 do wykonania",
-                    Name="subtask 8", StartTime=new DateTime(2012, 01, 31), EndTime=new DateTime(2012, 02, 10), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=8, MainTaskID=6, SubtaskStatusID=3,UserID=4, Description="subtask 8 do wykonania",
+                    Name="subtask 8", StartTime=new DateTime(2012, 01, 31), EndTime=new DateTime(2012, 02, 10), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=9, MainTaskID=7, SubtaskStatusID=1,UserID=5, Description="subtask 9 do wykonania",
-                    Name="subtask 9", StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 04, 15), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=9, MainTaskID=7, SubtaskStatusID=2,UserID=5, Description="subtask 9 do wykonania",
+                    Name="subtask 9", StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 04, 15), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=10, MainTaskID=8, SubtaskStatusID=1,UserID=4, Description="subtask 10 do wykonania",
-                    Name="subtask 10", StartTime=new DateTime(2012, 02, 12), EndTime=new DateTime(2012, 03, 01), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=10, MainTaskID=8, SubtaskStatusID=2,UserID=4, Description="subtask 10 do wykonania",
+                    Name="subtask 10", StartTime=new DateTime(2012, 02, 12), EndTime=new DateTime(2012, 03, 01), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=11, MainTaskID=8, SubtaskStatusID=1,UserID=4, Description="subtask 11 do wykonania",
-                    Name="subtask 11", StartTime=new DateTime(2012, 03, 01), EndTime=new DateTime(2012, 04, 20), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=11, MainTaskID=8, SubtaskStatusID=2,UserID=4, Description="subtask 11 do wykonania",
+                    Name="subtask 11", StartTime=new DateTime(2012, 03, 01), EndTime=new DateTime(2012, 04, 20), Priority = "High",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=12, MainTaskID=8, SubtaskStatusID=1,UserID=5, Description="subtask 12 do wykonania",
-                    Name="subtask 12", StartTime=new DateTime(2012, 04, 20), EndTime=new DateTime(2012, 05, 22), Priority = "Bardzo niskie",
+                    new Subtask() { SubtaskID=12, MainTaskID=8, SubtaskStatusID=2,UserID=5, Description="subtask 12 do wykonania",
+                    Name="subtask 12", StartTime=new DateTime(2012, 04, 20), EndTime=new DateTime(2012, 05, 22), Priority = "Very low",
                     WhoCreated=2
                     },
-                    new Subtask() { SubtaskID=13, MainTaskID=9, SubtaskStatusID=1,UserID=4, Description="subtask 13 do wykonania",
-                    Name="subtask 13", StartTime=new DateTime(2012, 05, 25), EndTime=new DateTime(2012, 07, 20), Priority = "Bardzo wysokie",
+                    new Subtask() { SubtaskID=13, MainTaskID=9, SubtaskStatusID=2,UserID=4, Description="subtask 13 do wykonania",
+                    Name="subtask 13", StartTime=new DateTime(2012, 05, 25), EndTime=new DateTime(2012, 07, 20), Priority = "Very high",
                     WhoCreated=2
                     },
 
                     //PROJEKT 3, 3 main taski, zespol 2 (id user 3,6,7,8,9)
-                    new Subtask() { SubtaskID=14, MainTaskID=10, SubtaskStatusID=1,UserID=6, Description="subtask 14 do wykonania",
-                    Name="subtask 14", StartTime=new DateTime(2011, 08, 04), EndTime=new DateTime(2011, 12, 21), Priority = "Wysokie",
+                    new Subtask() { SubtaskID=14, MainTaskID=10, SubtaskStatusID=2,UserID=6, Description="subtask 14 do wykonania",
+                    Name="subtask 14", StartTime=new DateTime(2011, 08, 04), EndTime=new DateTime(2011, 12, 21), Priority = "High",
                     WhoCreated=3
                     },
-                    new Subtask() { SubtaskID=15, MainTaskID=11, SubtaskStatusID=1,UserID=7, Description="subtask 15 do wykonania",
-                    Name="subtask 15", StartTime=new DateTime(2011, 12, 25), EndTime=new DateTime(2012, 03, 21), Priority = "Średnie",
+                    new Subtask() { SubtaskID=15, MainTaskID=11, SubtaskStatusID=2,UserID=7, Description="subtask 15 do wykonania",
+                    Name="subtask 15", StartTime=new DateTime(2011, 12, 25), EndTime=new DateTime(2012, 03, 21), Priority = "Medium",
                     WhoCreated=3
                     },
-                    new Subtask() { SubtaskID=16, MainTaskID=12, SubtaskStatusID=1,UserID=8, Description="subtask 16 do wykonania",
-                    Name="subtask 16", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Niskie",
+                    new Subtask() { SubtaskID=16, MainTaskID=12, SubtaskStatusID=2,UserID=8, Description="subtask 16 do wykonania",
+                    Name="subtask 16", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=3
                     },
 
                     //zlecone przez pracownikow
-                    new Subtask() { SubtaskID=17, MainTaskID=null, SubtaskStatusID=3,UserID=4, Description="subtask 17 do wykonania",
-                    Name="subtask 17", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Niskie",
+                    new Subtask() { SubtaskID=17, MainTaskID=null, SubtaskStatusID=1,UserID=4, Description="subtask 17 do wykonania",
+                    Name="subtask 17", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=4
                     },
-                    new Subtask() { SubtaskID=18, MainTaskID=null, SubtaskStatusID=2,UserID=4, Description="subtask 18 do wykonania",
-                    Name="subtask 18", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Niskie",
+                    new Subtask() { SubtaskID=18, MainTaskID=null, SubtaskStatusID=3,UserID=4, Description="subtask 18 do wykonania",
+                    Name="subtask 18", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=4
                     },
-                    new Subtask() { SubtaskID=19, MainTaskID=null, SubtaskStatusID=1,UserID=4, Description="subtask 19 do wykonania",
-                    Name="subtask 19", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Niskie",
+                    new Subtask() { SubtaskID=19, MainTaskID=null, SubtaskStatusID=2,UserID=4, Description="subtask 19 do wykonania",
+                    Name="subtask 19", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=4
                     },
 
@@ -384,11 +381,11 @@ namespace PMS.DAL
 
             var article = new List<Article>
                 {
-                    new Article() { ArticleID=1, Description="Artykuł dotyczący EF6 code first", Url="https://www.plukasiewicz.net/Artykuly/EntityFramework_Code_First", 
+                    new Article() { ArticleID=1, Description="Entity Framework 6", Url="https://www.plukasiewicz.net/Artykuly/EntityFramework_Code_First", 
                         DateAdded=new DateTime(2012, 07, 21), UserID = 4},
-                    new Article() { ArticleID=2, Description="Artykuł dotyczący SQL" , Url="https://www.w3schools.com/sql/",
+                    new Article() { ArticleID=2, Description="SQL" , Url="https://www.w3schools.com/sql/",
                         DateAdded=new DateTime(2013, 07, 21), UserID = 7},
-                    new Article() { ArticleID=3, Description="Artykuł dotyczący C#", Url="https://docs.microsoft.com/pl-pl/dotnet/csharp/",
+                    new Article() { ArticleID=3, Description="C# and WPF", Url="https://docs.microsoft.com/pl-pl/dotnet/csharp/",
                         DateAdded=new DateTime(2014, 07, 21), UserID = 8}
                 };
 
@@ -397,14 +394,14 @@ namespace PMS.DAL
 
             var recentActivities = new List<RecentActivity>
             {
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer 1", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer 23324423243", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer das ads  dasda s", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer asdsad dw df ewf f fwe ff we", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer ewfe wf wef wef fwe fewf efwfewf wef ewf wef ewf ewfewf wef ", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer wefew", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer we2yerw", TeamID=1},
-                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "initializer qwertyuioplkjhgfdsazxcvbnm", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 1", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 2", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 3", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 4", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 5", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 6", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 7", TeamID=1},
+                new RecentActivity() {RecentActivityID=1, DateAdded = DateTime.Now, Description = "Activity 8", TeamID=1},
             };
 
             recentActivities.ForEach(a => context.RecentActivity.AddOrUpdate(a));

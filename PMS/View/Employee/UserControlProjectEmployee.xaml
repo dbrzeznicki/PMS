@@ -12,11 +12,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
 
-    <Grid>
+    <Grid Margin="10">
         <DockPanel>
             <Grid Margin="10" DockPanel.Dock="Top" Height="Auto">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="10" Grid.Row="0" Grid.Column="0" Text="Select project:" />
+                    <TextBlock Margin="10,20,20,10" Grid.Row="0" Grid.Column="0" Text="Select project:" />
                     <ComboBox Margin="10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedProject}" SelectedIndex="0" ItemsSource="{Binding Path=Projects}" DisplayMemberPath="Name"/>
                 </StackPanel>
             </Grid>

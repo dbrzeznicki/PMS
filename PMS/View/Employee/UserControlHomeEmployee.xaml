@@ -11,8 +11,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="mySubtaskTemplate">
 
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-             Padding="5" Margin="5">
+            <Border Name="border" BorderBrush="Gray" BorderThickness="3" Padding="5" Margin="5" Background="LightGray">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -51,8 +50,7 @@
 
         <DataTemplate x:Key="myProjectTemplate">
 
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-             Padding="5" Margin="5">
+            <Border Name="border" BorderBrush="Gray" BorderThickness="3" Padding="5" Margin="5" Background="LightGray">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -84,8 +82,7 @@
 
         <DataTemplate x:Key="recentActivityTemplate">
 
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-             Padding="5" Margin="5">
+            <Border Name="border" BorderBrush="Gray" BorderThickness="3" Padding="5" Margin="5" Background="LightGray">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -115,7 +112,7 @@
 
         <DockPanel>
 
-            <Grid Margin="20" DockPanel.Dock="Top">
+            <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -123,24 +120,24 @@
                 </Grid.ColumnDefinitions>
 
                 <!--po lewo mozna dac jakas ikone w kazdym przypadku-->
-                <Grid Grid.Column="0">
+                <Grid Margin="10" Grid.Column="0" Background="WhiteSmoke">
                     <StackPanel>
-                        <TextBlock FontSize="15" Text="All task:"/>
-                        <TextBlock FontSize="15" Text="{Binding Path=AllTask}" />
+                        <TextBlock Padding="15" FontSize="15" Text="All task:"/>
+                        <TextBlock Padding="15,5,10,15" FontSize="15" Text="{Binding Path=AllTask}" />
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Column="1">
+                <Grid Margin="10" Grid.Column="1" Background="WhiteSmoke">
                     <StackPanel>
-                        <TextBlock FontSize="15" Text="New task:"/>
-                        <TextBlock FontSize="15" Text="{Binding Path=NewTask}" />
+                        <TextBlock Padding="15" FontSize="15" Text="New task:"/>
+                        <TextBlock Padding="15,5,10,15" FontSize="15" Text="{Binding Path=NewTask}" />
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Column="2">
-                    <StackPanel>
-                        <TextBlock FontSize="15" Text="In progress task:"/>
-                        <TextBlock FontSize="15" Text="{Binding Path=InProgressTask}" />
+                <Grid Margin="10" Grid.Column="2" Background="WhiteSmoke" >
+                    <StackPanel >
+                        <TextBlock Padding="15" FontSize="15" Text="In progress task:"/>
+                        <TextBlock Padding="15,5,10,15" FontSize="15" Text="{Binding Path=InProgressTask}" />
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -156,8 +153,8 @@
 
                 <Grid Grid.Column="0">
                     <ScrollViewer>
-                        <StackPanel Margin="10">
-                            <TextBlock Margin="10" FontSize="15" Text="My sybtask list:"/>
+                        <StackPanel Margin="10" Background="WhiteSmoke">
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="My sybtask list:"/>
                             <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=NewAndInProgressSubtasks}" ItemTemplate="{StaticResource mySubtaskTemplate}">
 
                             </ListBox>
@@ -171,8 +168,8 @@
 
                 <Grid Grid.Column="1">
                     <ScrollViewer>
-                        <StackPanel Margin="10">
-                            <TextBlock Margin="10" FontSize="15" Text="Active project:"/>
+                        <StackPanel Margin="10" Background="WhiteSmoke">
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="Active project:"/>
                             <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=ActiveProjects}" ItemTemplate="{StaticResource myProjectTemplate}">
 
                             </ListBox>
@@ -184,8 +181,8 @@
 
                 <Grid Grid.Column="2">
                     <ScrollViewer>
-                        <StackPanel Margin="10">
-                            <TextBlock Margin="10" FontSize="15" Text="Recent activity:"/>
+                        <StackPanel Margin="10" Background="WhiteSmoke">
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="Recent activity:"/>
                             <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=RecentActivities}" ItemTemplate="{StaticResource recentActivityTemplate}">
 
                             </ListBox>

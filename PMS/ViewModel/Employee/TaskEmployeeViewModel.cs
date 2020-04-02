@@ -28,7 +28,7 @@ namespace PMS
         public DateTime _EndTime = DateTime.Now;
 
         private ObservableCollection<string> _Priority;
-        private string _SelectedPriority = "Średni";
+        private string _SelectedPriority = "Very low";
 
         private bool _IsEnabledAddButton = false;
 
@@ -144,12 +144,12 @@ namespace PMS
             {
                 PMSContext dbContext = new PMSContext();
                 _Priority = new ObservableCollection<string>();
-                _Priority.Insert(0, "Bardzo niski");
-                _Priority.Insert(1, "Niski");
-                _Priority.Insert(2, "Średni");
-                _Priority.Insert(3, "Wysoki");
-                _Priority.Insert(4, "Bardzo wysoki");
-                _SelectedPriority = "Średni";
+                _Priority.Insert(0, "Very low");
+                _Priority.Insert(1, "Low");
+                _Priority.Insert(2, "Medium");
+                _Priority.Insert(3, "High");
+                _Priority.Insert(4, "Very high");
+                _SelectedPriority = "Very low";
                 return _Priority;
             }
         }
@@ -396,8 +396,8 @@ namespace PMS
             {
                 DateAdded = DateTime.Now,
                 TeamID = (int)Global.user.TeamID,
-                Description = $"Użytkownik {Global.user.FullName} stworzył nowe zadanie " +
-                              $"dla {SelectedUser.FullName} o nazwie: {_Name}"
+                Description = $"User {Global.user.FullName} has created a new task " +
+                              $"for {SelectedUser.FullName} called: {_Name}"
             };
 
 
@@ -428,7 +428,7 @@ namespace PMS
             {
                 DateAdded = DateTime.Now,
                 TeamID = (int)Global.user.TeamID,
-                Description = $"Użytkownik {Global.user.FullName} zmienił status zadania '{SelectedSubtask.Name}' na '{SelectedSubtaskStatus.Name}'"
+                Description = $"User {Global.user.FullName} has changed the status of a task from '{SelectedSubtask.Name}' to '{SelectedSubtaskStatus.Name}'"
             };
 
 

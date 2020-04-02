@@ -65,41 +65,58 @@
                     <Grid>
 
 
-
                         <ListView x:Name="ListViewMenu" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged">
-                            <ListViewItem x:Name="UsersList" Height="60">
+                            <ListViewItem x:Name="Home" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Users list" VerticalAlignment="Center" Margin="20 10"/>
+                                    <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="AddUser" Height="60">
+                            <ListViewItem x:Name="Project" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Add user" VerticalAlignment="Center" Margin="20 10"/>
+                                    <materialDesign:PackIcon Kind="ImportantDevices" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Project" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="EditUser" Height="60">
+                            <ListViewItem x:Name="Team" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Edit user" VerticalAlignment="Center"  Margin="20 10"/>
+                                    <materialDesign:PackIcon Kind="PeopleGroup" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Team" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem Height="60">
+                            <ListViewItem x:Name="Task" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Client list" VerticalAlignment="Center"  Margin="20 10"/>
+                                    <materialDesign:PackIcon Kind="Subtasks" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Task" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem Height="60">
+                            <ListViewItem x:Name="Reports" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Add client" VerticalAlignment="Center"  Margin="20 10"/>
+                                    <materialDesign:PackIcon Kind="ChartGantt" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Reports" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem Height="60">
+                            <ListViewItem x:Name="PERT" Height="60">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <materialDesign:PackIcon Kind="Graph" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="PERT" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="Clients" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="PeopleGroupOutline" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Clients" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="Contracts" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Contract" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Contracts" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="Wiki" Height="60">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Wikipedia" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Wiki" VerticalAlignment="Center"  Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>

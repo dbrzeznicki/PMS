@@ -41,63 +41,62 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label>First name:</Label>
+            <Label Margin="10">First name:</Label>
             <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = FirstName}"/>
-            <Label Grid.Row="1">Last name:</Label>
+            <Label Margin="10" Grid.Row="1">Last name:</Label>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = LastName}"/>
-            <Label Grid.Row="2">Login:</Label>
+            <Label Margin="10" Grid.Row="2">Login:</Label>
             <TextBox Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Path = Login}"/>
-            <Label Grid.Row="3">Password:</Label>
+            <Label Margin="10" Grid.Row="3">Password:</Label>
             <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Text="{Binding Path = Password}"/>
-            <Label Grid.Row="4">User role:</Label>
+            <Label Margin="10" Grid.Row="4">User role:</Label>
             <ComboBox Grid.Row="4" Grid.Column="1" Margin="10" ItemsSource="{Binding UsersRole}" DisplayMemberPath="Name"
                                   SelectedValuePath="Name" SelectedValue="{Binding UserRole}" SelectedIndex="1"/>
 
-            <Label Grid.Row="5">Salary:</Label>
+            <Label Margin="10" Grid.Row="5">Salary:</Label>
             <TextBox Grid.Row="5" Grid.Column="1" Margin="10" Text="{Binding Path = Salary}"/>
-            <Label Grid.Row="6">Phone number:</Label>
+            <Label Margin="10" Grid.Row="6">Phone number:</Label>
             <TextBox Grid.Row="6" Grid.Column="1" Margin="10" Text="{Binding Path = PhoneNumber}"/>
-            <Label Grid.Row="7">Email:</Label>
+            <Label Margin="10" Grid.Row="7">Email:</Label>
             <TextBox Grid.Row="7" Grid.Column="1" Margin="10" Text="{Binding Path = Email}"/>
-            <Label Grid.Row="8" Visibility="{Binding VisibilityTeam}">Team:</Label>
+            <Label Margin="10" Grid.Row="8" Visibility="{Binding VisibilityTeam}">Team:</Label>
             <ComboBox Grid.Row="8" Visibility="{Binding VisibilityTeam}"  Grid.Column="1" Margin="10" ItemsSource="{Binding Teams}" DisplayMemberPath="Name"
                                   SelectedValuePath="Name" SelectedValue="{Binding Team}"/>
 
-            <Label Grid.Row="9">Hired date:</Label>
+            <Label Margin="10" Grid.Row="9">Hired date:</Label>
             <DatePicker Grid.Row="9" Grid.Column="1" SelectedDate="{Binding HiredDate}" Margin="10"/>
 
-            <Label Grid.Row="10">Residence street:</Label>
+            <Label Margin="10" Grid.Row="10">Residence street:</Label>
             <TextBox Grid.Row="10" Grid.Column="1" Margin="10" Text="{Binding Path = ResidenceStreet}"/>
-            <Label Grid.Row="11">Residence house number:</Label>
+            <Label Margin="10" Grid.Row="11">Residence house number:</Label>
             <TextBox Grid.Row="11" Grid.Column="1" Margin="10" Text="{Binding Path = ResidenceHouseNumber}"/>
-            <Label Grid.Row="12">Residence apartment number:</Label>
+            <Label Margin="10" Grid.Row="12">Residence apartment number:</Label>
             <TextBox Grid.Row="12" Grid.Column="1" Margin="10" Text="{Binding Path = ResidenceApartmentNumber}"/>
-            <Label Grid.Row="13">Residence postcode:</Label>
+            <Label Margin="10" Grid.Row="13">Residence postcode:</Label>
             <TextBox Grid.Row="13" Grid.Column="1" Margin="10" Text="{Binding Path = ResidencePostcode}"/>
-            <Label Grid.Row="14">Residence city:</Label>
+            <Label Margin="10" Grid.Row="14">Residence city:</Label>
             <TextBox Grid.Row="14" Grid.Column="1" Margin="10" Text="{Binding Path = ResidenceCity}"/>
 
-            <CheckBox Name="Check" Grid.Row="15" Grid.Column="1"
-            Content="Adres korespondencyjny jest inny niż adres zameldowania"
-            HorizontalAlignment="Left"
-            Margin="10" />
+            <CheckBox Name="Check" Grid.Row="15" Grid.Column="1" HorizontalAlignment="Left" Margin="10" >
+                <TextBlock TextWrapping="Wrap" Text="Adres korespondencyjny jest inny niż adres zameldowania"/>
+            </CheckBox>
 
 
-            <Label Grid.Row="16" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence street:</Label>
+            <Label Margin="10" Grid.Row="16" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence street:</Label>
             <TextBox Grid.Row="16" Grid.Column="1" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" Text="{Binding Path = CorrespondenceStreet}"/>
-            <Label Grid.Row="17" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence house number:</Label>
+            <Label Margin="10" Grid.Row="17" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence house number:</Label>
             <TextBox Grid.Row="17" Grid.Column="1" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" Text="{Binding Path = CorrespondenceHouseNumber}"/>
-            <Label Grid.Row="18" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence apartment number:</Label>
+            <Label Margin="10" Grid.Row="18" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence apartment number:</Label>
             <TextBox Grid.Row="18" Grid.Column="1" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" Text="{Binding Path = CorrespondenceApartmentNumber}"/>
-            <Label Grid.Row="19" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence postcode:</Label>
+            <Label Margin="10" Grid.Row="19" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence postcode:</Label>
             <TextBox Grid.Row="19" Grid.Column="1" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" Text="{Binding Path = CorrespondencePostcode}"/>
-            <Label Grid.Row="20" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence city:</Label>
+            <Label Margin="10" Grid.Row="20" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">Correspondence city:</Label>
             <TextBox  Grid.Row="20" Grid.Column="1" Visibility="{Binding ElementName=Check, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" Text="{Binding Path = CorrespondenceCity}"/>
 
-            <Button Name="ButtonAddUser" Grid.Row="21" Grid.Column="1" Command="{Binding AddUserButton}">Add user</Button>
+            <Button Name="ButtonAddUser" Grid.Row="21" Grid.Column="1" Margin="10" Command="{Binding AddUserButton}" >Add user</Button>
             
             
         </Grid>

@@ -13,7 +13,6 @@ namespace PMS
         {
             InitializeComponent();
             StackPanelMain.Children.Add(new UserControlUsersList());
-
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -23,16 +22,40 @@ namespace PMS
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "UsersList":
-                    usc = new UserControlUsersList();
+                case "Home":
+                    usc = new UserControlHomeManager();
                     StackPanelMain.Children.Add(usc);
                     break;
-                case "AddUser":
-                    usc = new UserControlAddUser();
+                case "Project":
+                    usc = new UserControlProjectManager();
                     StackPanelMain.Children.Add(usc);
                     break;
-                case "EditUser":
-                    usc = new UserControlEditUser();
+                case "Team":
+                    usc = new UserControlTeamManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Task":
+                    usc = new UserControlTaskManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Reports":
+                    usc = new UserControlReportsManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "PERT":
+                    usc = new UserControlPERTManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Clients":
+                    usc = new UserControlClientsManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Contracts":
+                    usc = new UserControlContractsManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
+                case "Wiki":
+                    usc = new UserControlWikiManager();
                     StackPanelMain.Children.Add(usc);
                     break;
                 default:

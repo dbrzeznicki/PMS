@@ -40,7 +40,7 @@ namespace PMS
 
                 if (_NewAndInProgressSubtasks == null)
                 {
-                    _NewAndInProgressSubtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && ((x.SubtaskStatus.Name == "Nowe") || (x.SubtaskStatus.Name == "W trakcie"))));
+                    _NewAndInProgressSubtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && ((x.SubtaskStatus.Name == "New") || (x.SubtaskStatus.Name == "In progress"))));
                 }
                 return _NewAndInProgressSubtasks;
             }
@@ -58,7 +58,7 @@ namespace PMS
 
                 if (_ActiveProjects == null)
                 {
-                    _ActiveProjects = new ObservableCollection<Project>(dbContext.Project.Where(c => (c.TeamID == Global.user.TeamID) && (c.ProjectStatus.Name == "W trakcie")));
+                    _ActiveProjects = new ObservableCollection<Project>(dbContext.Project.Where(c => (c.TeamID == Global.user.TeamID) && (c.ProjectStatus.Name == "In progress")));
                 }
                 return _ActiveProjects;
             }
@@ -92,7 +92,7 @@ namespace PMS
         {
             get
             {
-                _AllTask = dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && ((x.SubtaskStatus.Name == "Nowe") || (x.SubtaskStatus.Name == "W trakcie"))).Count();
+                _AllTask = dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && ((x.SubtaskStatus.Name == "New") || (x.SubtaskStatus.Name == "In progress"))).Count();
                 return _AllTask;
             }
         }
@@ -102,7 +102,7 @@ namespace PMS
         {
             get
             {
-                _NewTask = dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "Nowe")).Count();
+                _NewTask = dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "New")).Count();
                 return _NewTask;
             }
         }
@@ -112,7 +112,7 @@ namespace PMS
         {
             get
             {
-                _InProgressTask = dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "W trakcie")).Count();
+                _InProgressTask = dbContext.Subtask.Where(x => (x.UserID == Global.user.UserID) && (x.SubtaskStatus.Name == "In progress")).Count();
                 return _InProgressTask;
             }
         }

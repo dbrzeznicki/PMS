@@ -11,6 +11,11 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     <UserControl.Resources>
         <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+
+
         </Style>
     </UserControl.Resources>
 
@@ -20,11 +25,11 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 
             <StackPanel>
 
-                <Expander Header="Moje zadania" Margin="10" Background="White">
+                <Expander Header="My tasks" Margin="10" Background="WhiteSmoke">
 
                     <DockPanel>
 
-                        <Expander Header="Filter" Margin="10" Background="White" DockPanel.Dock="Top">
+                        <Expander Header="Filter" Margin="10" Background="LightGray" DockPanel.Dock="Top">
                             <Grid Margin="10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
@@ -42,12 +47,6 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                 <ComboBox Margin="10" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=SelectedStatus}" SelectedIndex="0" ItemsSource="{Binding Path=Statuss}"/>
                                 <TextBlock Margin="10" Grid.Row="2" Grid.Column="0" Text="Write subtask name: " />
                                 <TextBox Margin="10" Grid.Row="3" Grid.Column="0" Text="{Binding Path = SelectedName, UpdateSourceTrigger=PropertyChanged}"/>
-                                <!--<Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>-->
-
                             </Grid>
                         </Expander>
 
@@ -89,7 +88,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 </Expander>
 
 
-                <Expander Header="Zlecone przeze mnie" Margin="10" Background="White">
+                <Expander Header="Tasks commissioned by me" Margin="10" Background="WhiteSmoke">
                     <Grid Margin="10">
 
 
@@ -99,10 +98,11 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Margin="10" Grid.Row="0" Grid.Column="0" Text="Select status:" />
-                        <ComboBox Margin="10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedStatusWhichICreated}" 
+                        <StackPanel Background="LightGray">
+                            <TextBlock Margin="15" Grid.Row="0" Grid.Column="0" Text="Select status:" />
+                            <ComboBox Margin="15" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedStatusWhichICreated}" 
                                   ItemsSource="{Binding Path=StatusWhichICreated}" SelectedIndex="0"/>
-
+                        </StackPanel>
                         <ListView Grid.Row="2" Margin="10" ItemsSource="{Binding SubtasksWhichICreated}" 
                               HorizontalContentAlignment="Stretch">
                             <ListView.View>
@@ -120,7 +120,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 </Expander>
 
 
-                <Expander Header="Add task" Margin="10" Background="White">
+                <Expander Header="Add task" Margin="10" Background="WhiteSmoke">
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -135,24 +135,24 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label>Name:</Label>
+                        <Label Margin="10">Name:</Label>
                         <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = Name}"/>
-                        <Label Grid.Row="1">Description:</Label>
+                        <Label Margin="10" Grid.Row="1">Description:</Label>
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Description}"/>
 
-                        <Label Grid.Row="2">Select user:</Label>
+                        <Label Margin="10" Grid.Row="2">Select user:</Label>
                         <ComboBox Grid.Row="2" Grid.Column="1" Margin="10" ItemsSource="{Binding Users}" DisplayMemberPath="FullName"
                                   SelectedItem="{Binding SelectedUser}"/>
 
-                        <Label Grid.Row="3">Select priority:</Label>
+                        <Label Margin="10" Grid.Row="3">Select priority:</Label>
                         <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" ItemsSource="{Binding Priority}" 
                                   SelectedItem="{Binding SelectedPriority}"/>
 
-                        <Label Grid.Row="4">Hired date:</Label>
+                        <Label Margin="10" Grid.Row="4">Hired date:</Label>
                         <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding EndTime}" Margin="10"/>
 
 
-                        <Button Name="AddTaskButton" Grid.Row="6" Grid.Column="1" Command="{Binding AddTaskButton}" IsEnabled="{Binding IsEnabledAddButton}">Add task</Button>
+                        <Button Margin="10" Name="AddTaskButton" Grid.Row="6" Grid.Column="1" Command="{Binding AddTaskButton}" IsEnabled="{Binding IsEnabledAddButton}">Add task</Button>
 
                     </Grid>
                 </Expander>
