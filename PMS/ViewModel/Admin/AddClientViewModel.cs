@@ -27,7 +27,6 @@ namespace PMS
         private string _Postcode;
         private string _City;
 
-        //Projects?????????;
         #endregion
 
         #region command

@@ -15,10 +15,10 @@ namespace PMS
     public class EditClientViewModel : BindableBase
     {
 
-        public readonly PMSContext dbContext = new PMSContext();
-        
-        
         #region variables
+
+        public readonly PMSContext dbContext = new PMSContext();
+
 
         private ObservableCollection<Client> _Clients { get; set; }
         private Client _mySelectedClient;
