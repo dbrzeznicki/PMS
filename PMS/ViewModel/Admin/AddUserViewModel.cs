@@ -18,15 +18,15 @@ namespace PMS
 
         //Add user
         public string _VisibilityTeam = "Visible"; //"Collapsed";
-        private string _FirstName;
-        private string _LastName;
-        private string _Login;
-        private string _Password;
+        private string _FirstName = "";
+        private string _LastName = "";
+        private string _Login = "";
+        private string _Password = "";
         private string _UserRole = "Employee";
         private double _Salary;
-        private string _PhoneNumber;
-        private string _Email;
-        private string _Team = "Scrum";
+        private string _PhoneNumber = "";
+        private string _Email = "";
+        private string _Team;
         private string _ResidenceStreet;
         private string _ResidenceHouseNumber;
         private string _ResidenceApartmentNumber;
@@ -37,7 +37,7 @@ namespace PMS
         private string _CorrespondenceApartmentNumber;
         private string _CorrespondencePostcode;
         private string _CorrespondenceCity;
-        public DateTime _HiredDate = new DateTime(2020, 03, 02);
+        public DateTime _HiredDate = DateTime.Now;
         public DateTime _FiredDate;
 
         #endregion
@@ -121,7 +121,10 @@ namespace PMS
             {
                 _UserRole = value;
                 if(_UserRole.Equals("Admin"))
+                {
                     VisibilityTeam = "Collapsed";
+                    Team = null;
+                }
                 else
                     VisibilityTeam = "Visible";
                 RaisePropertyChanged("UserRole");
@@ -339,9 +342,11 @@ namespace PMS
         {
             PMSContext dbContext = new PMSContext();
             User user;
-            bool correctLogin = CheckLogin();
+            
+            AdminValidation AV = new AdminValidation();
+            bool correctForm = AV.AddUserValidation(FirstName, LastName, Login, Password, Salary, PhoneNumber, Email, Team, UserRole);
 
-            if (correctLogin == true)
+            if (correctForm == true)
             {
                 if (CorrespondenceCity == null)
                 {
@@ -350,8 +355,6 @@ namespace PMS
                     dbContext.User.Add(user);
                     dbContext.SaveChanges();
 
-                    //UsersListViewModel._Users.Add(user);
-                    //UsersListViewModel._FilteredUsers.Add(user);
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
@@ -362,20 +365,12 @@ namespace PMS
                     dbContext.User.Add(user);
                     dbContext.SaveChanges();
 
-                    //UsersListViewModel._Users.Add(user);
-                    //UsersListViewModel._FilteredUsers.Add(user);
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
 
             } 
-            else if (correctLogin == false)
-            {
-                ErrorMessage er = new ErrorMessage("Incorrect login!");
-                er.ShowDialog();
-            }
         }
-
 
         private User AddUserWithCorrespondenceAdress ()
         {
@@ -514,21 +509,6 @@ namespace PMS
             }
 
             return user;
-        }
-
-        private bool CheckLogin()
-        {
-            PMSContext dbContext = new PMSContext();
-            List<User> users = dbContext.User.ToList();
-            var check = users.Where(x => x.Login == _Login).SingleOrDefault();
-
-            if (check != null || _Login == null || _Login == "")
-            {
-                return false;
-            } else
-            {
-                return true;
-            }
         }
 
         public List<UserRole> UsersRole

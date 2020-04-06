@@ -24,12 +24,12 @@ namespace PMS
         private string _VisibilityTeam = "Visible";
         private bool _CheckBoxAdress = false;
         private bool _IsEnabledEditButton = false;
-        private string _FirstName;
-        private string _LastName;
-        private string _Password;
+        private string _FirstName = "";
+        private string _LastName = "";
+        private string _Password = "";
         private double _Salary;
-        private string _PhoneNumber;
-        private string _Email;
+        private string _PhoneNumber = "";
+        private string _Email = "";
         private string _Team;
         private string _ResidenceStreet;
         private string _ResidenceHouseNumber;
@@ -41,8 +41,8 @@ namespace PMS
         private string _CorrespondenceApartmentNumber;
         private string _CorrespondencePostcode;
         private string _CorrespondenceCity;
-        private DateTime _HiredDate = new DateTime(2020, 03, 02);
-        private DateTime _FiredDate;
+        private DateTime _HiredDate = DateTime.Now;
+        private DateTime _FiredDate = DateTime.Now;
         #endregion
 
         #region command
@@ -308,11 +308,29 @@ namespace PMS
             get
             {
                 return _CheckBoxAdress;
+
+                
             }
             set
             {
                 _CheckBoxAdress = value;
                 RaisePropertyChanged("CheckBoxAdress");
+                if (CheckBoxAdress == false)
+                {
+                    CorrespondenceStreet = ResidenceStreet;
+                    CorrespondenceHouseNumber = ResidenceHouseNumber;
+                    CorrespondenceApartmentNumber = ResidenceApartmentNumber;
+                    CorrespondencePostcode = ResidencePostcode;
+                    CorrespondenceCity = ResidenceCity;
+                } 
+                else
+                {
+                    CorrespondenceStreet = _CorrespondenceStreet;
+                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber;
+                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber;
+                    CorrespondencePostcode = _CorrespondencePostcode;
+                    CorrespondenceCity = _CorrespondenceCity;
+                }
             }
         }
         public bool IsEnabledEditButton
@@ -350,14 +368,14 @@ namespace PMS
                 if (_mySelectedUser.Team != null)
                 {
                     VisibilityTeam = "Visible";
-                    Team = _mySelectedUser.Team.Name;        
+                    Team = _mySelectedUser.Team.Name;
                 }
                 else
                 {
                     VisibilityTeam = "Collapsed";
                     Team = null;
                 }
-                    
+
                 ResidenceStreet = _mySelectedUser.ResidenceStreet;
                 ResidenceHouseNumber = _mySelectedUser.ResidenceHouseNumber;
                 ResidenceApartmentNumber = _mySelectedUser.ResidenceApartmentNumber;
@@ -381,7 +399,7 @@ namespace PMS
                 HiredDate = _mySelectedUser.HiredDate;
                 FiredDate = _mySelectedUser.FiredDate;
 
-                
+
             }
         }
 
@@ -412,51 +430,54 @@ namespace PMS
 
         private void EditUser()
         {
-            
-            //db context local
-            if (MySelectedUser.UserRole.Name != "Admin")
+            AdminValidation AV = new AdminValidation();
+            bool corretForm = AV.EditUserValidation(FirstName, LastName, Password, Salary, PhoneNumber, Email, Team,
+                MySelectedUser, FiredDate, HiredDate);
+
+            if (corretForm)
             {
-                var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-                int teamID = team.TeamID;
-                MySelectedUser.TeamID = teamID;
-            } 
+                if (MySelectedUser.UserRole.Name != "Admin")
+                {
+                    var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
+                    int teamID = team.TeamID;
+                    MySelectedUser.TeamID = teamID;
+                }
 
-            MySelectedUser.FirstName = FirstName;
-            MySelectedUser.LastName = LastName;
+                MySelectedUser.FirstName = FirstName;
+                MySelectedUser.LastName = LastName;
 
-            MySelectedUser.Password = Password;
+                MySelectedUser.Password = Password;
 
-            MySelectedUser.Salary = Salary;
-            MySelectedUser.PhoneNumber = PhoneNumber;
-            MySelectedUser.Email = Email;
-            MySelectedUser.ResidenceStreet = ResidenceStreet;
-            MySelectedUser.ResidenceHouseNumber = ResidenceHouseNumber;
-            MySelectedUser.ResidenceApartmentNumber = ResidenceApartmentNumber;
-            MySelectedUser.ResidencePostcode = ResidencePostcode;
-            MySelectedUser.ResidenceCity = ResidenceCity;
-            MySelectedUser.CorrespondenceStreet = CorrespondenceStreet;
-            MySelectedUser.CorrespondenceHouseNumber = CorrespondenceHouseNumber;
-            MySelectedUser.CorrespondenceApartmentNumber = CorrespondenceApartmentNumber;
-            MySelectedUser.CorrespondencePostcode = CorrespondencePostcode;
-            MySelectedUser.CorrespondenceCity = CorrespondenceCity;
-            MySelectedUser.HiredDate = HiredDate;
-            MySelectedUser.FiredDate = FiredDate;
+                MySelectedUser.Salary = Salary;
+                MySelectedUser.PhoneNumber = PhoneNumber;
+                MySelectedUser.Email = Email;
+                MySelectedUser.ResidenceStreet = ResidenceStreet;
+                MySelectedUser.ResidenceHouseNumber = ResidenceHouseNumber;
+                MySelectedUser.ResidenceApartmentNumber = ResidenceApartmentNumber;
+                MySelectedUser.ResidencePostcode = ResidencePostcode;
+                MySelectedUser.ResidenceCity = ResidenceCity;
+                MySelectedUser.CorrespondenceStreet = CorrespondenceStreet;
+                MySelectedUser.CorrespondenceHouseNumber = CorrespondenceHouseNumber;
+                MySelectedUser.CorrespondenceApartmentNumber = CorrespondenceApartmentNumber;
+                MySelectedUser.CorrespondencePostcode = CorrespondencePostcode;
+                MySelectedUser.CorrespondenceCity = CorrespondenceCity;
+                MySelectedUser.HiredDate = HiredDate;
+                MySelectedUser.FiredDate = FiredDate;
 
-            dbContext.SaveChanges();
+                dbContext.SaveChanges();
 
 
-            Users = new ObservableCollection<User>(dbContext.User);
-            
-            ErrorMessage er = new ErrorMessage("User edit successfully!");
-            er.ShowDialog();
+                Users = new ObservableCollection<User>(dbContext.User);
 
+                ErrorMessage er = new ErrorMessage("User edit successfully!");
+                er.ShowDialog();
+            }
         }
 
         public List<UserRole> UsersRole
         {
             get
             {
-                //PMSContext dbContext = new PMSContext();
                 return dbContext.UserRole.ToList();
             }
         }
@@ -465,7 +486,6 @@ namespace PMS
         {
             get
             {
-                //PMSContext dbContext = new PMSContext();
                 return dbContext.Team.ToList();
             }
         }

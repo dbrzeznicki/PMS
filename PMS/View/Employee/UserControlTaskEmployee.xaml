@@ -148,7 +148,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         <ComboBox Grid.Row="3" Grid.Column="1" Margin="10" ItemsSource="{Binding Priority}" 
                                   SelectedItem="{Binding SelectedPriority}"/>
 
-                        <Label Margin="10" Grid.Row="4">Hired date:</Label>
+                        <Label Margin="10" Grid.Row="4">Finish date:</Label>
                         <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding EndTime}" Margin="10"/>
 
 

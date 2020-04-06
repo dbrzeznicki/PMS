@@ -24,16 +24,16 @@ namespace PMS
 
 
         //Dodanie
-        private string _Url;
-        private string _Description;
+        private string _Url = "";
+        private string _Description = "";
         public ICommand AddArticleButton { get; set; }
 
         //Edycja
         //kolekcaj artykółów z listy
         private Article _mySelectedArticle;
         private bool _IsEnabledEditButton = false;
-        private string _UrlEdit;
-        private string _DescriptionEdit;
+        private string _UrlEdit = "";
+        private string _DescriptionEdit = "";
         public ICommand EditArticleButton { get; set; }
 
 
@@ -149,21 +149,28 @@ namespace PMS
         private void AddArticle()
         {
 
-            Article article = new Article()
+            AdminValidation VM = new AdminValidation();
+            bool correctForm = VM.WikiValidation(Url, Description);
+
+            if (correctForm)
             {
-                Url = _Url,
-                Description = _Description,
-                DateAdded = DateTime.Now,
-                UserID = Global.user.UserID
-            };
+                Article article = new Article()
+                {
+                    Url = _Url,
+                    Description = _Description,
+                    DateAdded = DateTime.Now,
+                    UserID = Global.user.UserID
+                };
 
-            dbContext.Article.Add(article);
-            dbContext.SaveChanges();
+                dbContext.Article.Add(article);
+                dbContext.SaveChanges();
 
-            Articles = new ObservableCollection<Article>(dbContext.Article);
+                Articles = new ObservableCollection<Article>(dbContext.Article);
 
-            ErrorMessage er = new ErrorMessage("Add article!");
-            er.ShowDialog();
+                ErrorMessage er = new ErrorMessage("Add article!");
+                er.ShowDialog();
+            }
+
 
         }
 
@@ -171,16 +178,21 @@ namespace PMS
         private void EditArticle()
         {
 
-            MySelectedArticle.Url = UrlEdit;
-            MySelectedArticle.Description = DescriptionEdit;
+            AdminValidation VM = new AdminValidation();
+            bool correctForm = VM.WikiValidation(UrlEdit, DescriptionEdit);
 
-            dbContext.SaveChanges();
+            if (correctForm)
+            {
+                MySelectedArticle.Url = UrlEdit;
+                MySelectedArticle.Description = DescriptionEdit;
 
-            Articles = new ObservableCollection<Article>(dbContext.Article);
+                dbContext.SaveChanges();
 
-            ErrorMessage er = new ErrorMessage("Edit article!");
-            er.ShowDialog();
+                Articles = new ObservableCollection<Article>(dbContext.Article);
 
+                ErrorMessage er = new ErrorMessage("Edit article!");
+                er.ShowDialog();
+            }
         }
 
         private void RemoveArticle(object ID)

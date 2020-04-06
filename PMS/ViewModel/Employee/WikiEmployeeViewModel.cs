@@ -18,8 +18,8 @@ namespace PMS
         private ObservableCollection<Article> _Articles { get; set; }
 
         //Dodanie
-        private string _Url;
-        private string _Description;
+        private string _Url = "";
+        private string _Description = "";
         public ICommand AddArticleButton { get; set; }
 
         public WikiEmployeeViewModel()
@@ -72,22 +72,27 @@ namespace PMS
         private void AddArticle()
         {
 
-            Article article = new Article()
+            EmployeeValidation VM = new EmployeeValidation();
+            bool correctForm = VM.WikiValidation(Url, Description);
+
+            if (correctForm)
             {
-                Url = _Url,
-                Description = _Description,
-                DateAdded = DateTime.Now,
-                UserID = Global.user.UserID
-            };
+                Article article = new Article()
+                {
+                    Url = _Url,
+                    Description = _Description,
+                    DateAdded = DateTime.Now,
+                    UserID = Global.user.UserID
+                };
 
-            dbContext.Article.Add(article);
-            dbContext.SaveChanges();
+                dbContext.Article.Add(article);
+                dbContext.SaveChanges();
 
-            Articles = new ObservableCollection<Article>(dbContext.Article);
+                Articles = new ObservableCollection<Article>(dbContext.Article);
 
-            ErrorMessage er = new ErrorMessage("Add article!");
-            er.ShowDialog();
-
+                ErrorMessage er = new ErrorMessage("Add article!");
+                er.ShowDialog();
+            }
         }
     }
 }

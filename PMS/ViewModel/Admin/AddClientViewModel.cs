@@ -16,11 +16,11 @@ namespace PMS
 
         #region variable
 
-        private string _FirstName;
-        private string _LastName;
-        private string _CompanyName;
-        private string _NIP;
-        private string _REGON;
+        private string _FirstName = "";
+        private string _LastName = "";
+        private string _CompanyName = "";
+        private string _NIP = "";
+        private string _REGON = "";
         private string _Street;
         private string _HouseNumber;
         private string _ApartmentNumber;
@@ -175,16 +175,23 @@ namespace PMS
 
         private void AddClient()
         {
-            PMSContext dbContext = new PMSContext();
-            Client client;
+            AdminValidation VM = new AdminValidation();
+            bool correctForm = VM.ClientValidation(FirstName, LastName, CompanyName, NIP, REGON);
 
-            client = AddClientObject();
+            if (correctForm)
+            {
+                PMSContext dbContext = new PMSContext();
+                Client client;
 
-            dbContext.Client.Add(client);
-            dbContext.SaveChanges();
+                client = AddClientObject();
 
-            ErrorMessage er = new ErrorMessage("Client created successfully!");
-            er.ShowDialog();
+                dbContext.Client.Add(client);
+                dbContext.SaveChanges();
+
+                ErrorMessage er = new ErrorMessage("Client created successfully!");
+                er.ShowDialog();
+            }
+
         }
 
         private Client AddClientObject()

@@ -24,11 +24,11 @@ namespace PMS
         private Client _mySelectedClient;
 
         private bool _IsEnabledEditButton = false;
-        private string _FirstName;
-        private string _LastName;
-        private string _CompanyName;
-        private string _NIP;
-        private string _REGON;
+        private string _FirstName = "";
+        private string _LastName = "";
+        private string _CompanyName = "";
+        private string _NIP = "";
+        private string _REGON = "";
         private string _Street;
         private string _HouseNumber;
         private string _ApartmentNumber;
@@ -237,25 +237,31 @@ namespace PMS
         private void EditClient()
         {
 
-            MySelectedClient.FirstName = FirstName;
-            MySelectedClient.LastName = LastName;
+            AdminValidation VM = new AdminValidation();
+            bool correctForm = VM.ClientValidation(FirstName, LastName, CompanyName, NIP, REGON);
 
-            MySelectedClient.CompanyName = CompanyName;
+            if (correctForm)
+            {
+                MySelectedClient.FirstName = FirstName;
+                MySelectedClient.LastName = LastName;
 
-            MySelectedClient.NIP = NIP;
-            MySelectedClient.REGON = REGON;
-            MySelectedClient.Street = Street;
-            MySelectedClient.HouseNumber = HouseNumber;
-            MySelectedClient.ApartmentNumber = ApartmentNumber;
-            MySelectedClient.Postcode = Postcode;
-            MySelectedClient.City = City;
+                MySelectedClient.CompanyName = CompanyName;
 
-            dbContext.SaveChanges();
+                MySelectedClient.NIP = NIP;
+                MySelectedClient.REGON = REGON;
+                MySelectedClient.Street = Street;
+                MySelectedClient.HouseNumber = HouseNumber;
+                MySelectedClient.ApartmentNumber = ApartmentNumber;
+                MySelectedClient.Postcode = Postcode;
+                MySelectedClient.City = City;
 
-            Clients = new ObservableCollection<Client>(dbContext.Client);
+                dbContext.SaveChanges();
 
-            ErrorMessage er = new ErrorMessage("Client edit successfully!");
-            er.ShowDialog();
+                Clients = new ObservableCollection<Client>(dbContext.Client);
+
+                ErrorMessage er = new ErrorMessage("Client edit successfully!");
+                er.ShowDialog();
+            }
         }
     }
 }

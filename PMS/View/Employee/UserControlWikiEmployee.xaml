@@ -27,10 +27,22 @@
                     <Grid Margin="10">
                         <ListView Margin="10" ItemsSource="{Binding Articles}" HorizontalContentAlignment="Stretch">
                             <ListView.View>
-                                <GridView >
+                                <GridView>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Url">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock MaxWidth="350" TextWrapping="Wrap" Text="{Binding Url}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Url" DisplayMemberBinding="{Binding Url}" Width="Auto"/>
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description"  DisplayMemberBinding="{Binding Description}" Width="Auto"/>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock MaxWidth="450" TextWrapping="Wrap" Text="{Binding Description}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Date added"  DisplayMemberBinding="{Binding DateAdded}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Who added"  DisplayMemberBinding="{Binding User.FullName}" Width="Auto"/>
 

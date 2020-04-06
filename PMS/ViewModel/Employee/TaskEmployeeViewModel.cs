@@ -22,8 +22,8 @@ namespace PMS
 
 
         //Add task
-        private string _Name;
-        private string _Description;
+        private string _Name = "";
+        private string _Description = "";
         private User _SelectedUser;
         public DateTime _EndTime = DateTime.Now;
 
@@ -374,44 +374,43 @@ namespace PMS
 
         private void AddTask()
         {
-            PMSContext dbContext = new PMSContext();
-
-            //usera id moze byc zle przekazane
-            Subtask subtask = new Subtask
+            EmployeeValidation EV = new EmployeeValidation();
+            bool correctForm = EV.AddTaskValidation(Name, Description);
+            
+            if(correctForm)
             {
-                Name = _Name,
-                Description = _Description,
-                StartTime = DateTime.Now,
-                EndTime = _EndTime,
-                MainTaskID = null,
-                SubtaskStatusID = 3,
-                Priority = _SelectedPriority,
-                UserID = SelectedUser.UserID,
-                WhoCreated = Global.user.UserID
-            };
+                PMSContext dbContext = new PMSContext();
+
+                Subtask subtask = new Subtask
+                {
+                    Name = _Name,
+                    Description = _Description,
+                    StartTime = DateTime.Now,
+                    EndTime = _EndTime,
+                    MainTaskID = null,
+                    SubtaskStatusID = 3,
+                    Priority = _SelectedPriority,
+                    UserID = SelectedUser.UserID,
+                    WhoCreated = Global.user.UserID
+                };
 
 
-
-            RecentActivity ra = new RecentActivity
-            {
-                DateAdded = DateTime.Now,
-                TeamID = (int)Global.user.TeamID,
-                Description = $"User {Global.user.FullName} has created a new task " +
-                              $"for {SelectedUser.FullName} called: {_Name}"
-            };
-
-
-            dbContext.Subtask.Add(subtask);
-            dbContext.RecentActivity.Add(ra);
-            dbContext.SaveChanges();
+                RecentActivity ra = new RecentActivity
+                {
+                    DateAdded = DateTime.Now,
+                    TeamID = (int)Global.user.TeamID,
+                    Description = $"User {Global.user.FullName} has created a new task " +
+                                  $"for {SelectedUser.FullName} called: {_Name}"
+                };
 
 
+                dbContext.Subtask.Add(subtask);
+                dbContext.RecentActivity.Add(ra);
+                dbContext.SaveChanges();
 
-
-
-
-            ErrorMessage er = new ErrorMessage("User created successfully!");
-            er.ShowDialog();
+                ErrorMessage er = new ErrorMessage("Task created successfully!");
+                er.ShowDialog();
+            }
         }
 
 
