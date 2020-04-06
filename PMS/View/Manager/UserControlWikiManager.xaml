@@ -6,7 +6,118 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    
+    
+    
+    <UserControl.Resources>
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+
+        </Style>
+    </UserControl.Resources>
+
+
+    <ScrollViewer>
+        <Grid  Margin="10" >
+            <StackPanel>
+                <Expander Header="Articles list" Margin="10"  Background="WhiteSmoke">
+                    <Grid Margin="10">
+                        <ListView Margin="10" ItemsSource="{Binding Articles}" HorizontalContentAlignment="Stretch">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Url">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock MaxWidth="350" TextWrapping="Wrap" Text="{Binding Url}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock MaxWidth="450" TextWrapping="Wrap" Text="{Binding Description}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Date added"  DisplayMemberBinding="{Binding DateAdded}" Width="Auto"/>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Who added"  DisplayMemberBinding="{Binding User.FullName}" Width="Auto"/>
+
+
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Remove" Width="Auto">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate >
+                                                <Button Content="Remove" CommandParameter="{Binding ArticleID}" Command="{Binding Path=DataContext.RemoveArticleButton, 
+                                                    RelativeSource={RelativeSource AncestorType=ListView, Mode=FindAncestor}}"></Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="Add article" Margin="10"  Background="WhiteSmoke">
+                    <Grid Margin="10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label  Margin="10" >Url:</Label>
+                        <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = Url}"/>
+                        <Label  Margin="10" Grid.Row="1">Description:</Label>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Description}"/>
+
+                        <Button Margin="10" Name="AddArticleButton" Grid.Row="3" Grid.Column="1" Command="{Binding AddArticleButton}">Add article</Button>
+
+                    </Grid>
+                </Expander>
+
+                <Expander Header="Edit article" Margin="10"  Background="WhiteSmoke">
+                    <DockPanel>
+                        <Grid Margin="10" Background="WhiteSmoke" DockPanel.Dock="Top">
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock Margin="10" Text="Select article: " VerticalAlignment="Center"/>
+                                <ComboBox Margin="10" ItemsSource="{Binding Articles}" DisplayMemberPath="Url"
+                                  SelectedItem="{Binding MySelectedArticle}"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Margin="10" >Url:</Label>
+                            <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = UrlEdit}"/>
+                            <Label  Margin="10" Grid.Row="1">Description:</Label>
+                            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = DescriptionEdit}"/>
+
+                            <Button Margin="10" Name="EditArticleButton" Grid.Row="3" Grid.Column="1" Command="{Binding EditArticleButton}" IsEnabled="{Binding IsEnabledEditButton}">Edit article</Button>
+                        </Grid>
+                    </DockPanel>
+                </Expander>
+
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

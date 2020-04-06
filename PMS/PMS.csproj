@@ -136,6 +136,7 @@
     <Compile Include="Model\VacationType.cs" />
     <Compile Include="Validation\AdminValidation.cs" />
     <Compile Include="Validation\EmployeeValidation.cs" />
+    <Compile Include="Validation\ManagerValidation.cs" />
     <Compile Include="ViewModel\Admin\AddClientViewModel.cs" />
     <Compile Include="ViewModel\Admin\AddUserViewModel.cs" />
     <Compile Include="ViewModel\Admin\ClientsListViewModel.cs" />
