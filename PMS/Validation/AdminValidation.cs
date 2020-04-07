@@ -132,7 +132,12 @@ namespace PMS
             }
         }
 
-
+        /// <summary>
+        /// sprawdzam czy user ma jeszce jakies subtaski
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="teamParam"></param>
+        /// <returns></returns>
         bool EditUserTeamValidation(User user, string teamParam)
         {
             PMSContext dbContext = new PMSContext();
@@ -183,11 +188,11 @@ namespace PMS
 
 
         public bool AddUserValidation(string firstName, string lastName, string login, string password, double salary,
-            string phoneNumber, string email, string team, string userRole)
+            string phoneNumber, string email, string userRole)
         {
             if (FirstNameValidation(firstName) && LastNameValidation(lastName) && LoginValidation(login) &&
                 PasswordValidation(password) && SalaryValidation(salary) && PhoneNumberValidation(phoneNumber) &&
-                EmailValidation(email) && AddUserTeamValidation(team, userRole))
+                EmailValidation(email))
                 return true;
             else
                 return false;
@@ -200,11 +205,11 @@ namespace PMS
 
 
         public bool EditUserValidation(string firstName, string lastName, string password, double salary,
-            string phoneNumber, string email, string team, User user, DateTime firedDate, DateTime hiredDate)
+            string phoneNumber, string email, User user, DateTime firedDate, DateTime hiredDate)
         {
             if (FirstNameValidation(firstName) && LastNameValidation(lastName) &&
                 PasswordValidation(password) && SalaryValidation(salary) && PhoneNumberValidation(phoneNumber) &&
-                EmailValidation(email) && EditUserTeamValidation(user, team) && FiredDateValidation(firedDate, hiredDate))
+                EmailValidation(email) && FiredDateValidation(firedDate, hiredDate))
                 return true;
             else
                 return false;

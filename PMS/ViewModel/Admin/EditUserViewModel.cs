@@ -21,7 +21,7 @@ namespace PMS
         private ObservableCollection<User> _Users { get; set; }
         private User _mySelectedUser;
 
-        private string _VisibilityTeam = "Visible";
+        //private string _VisibilityTeam = "Visible";
         private bool _CheckBoxAdress = false;
         private bool _IsEnabledEditButton = false;
         private string _FirstName = "";
@@ -30,7 +30,7 @@ namespace PMS
         private double _Salary;
         private string _PhoneNumber = "";
         private string _Email = "";
-        private string _Team;
+        //private string _Team;
         private string _ResidenceStreet;
         private string _ResidenceHouseNumber;
         private string _ResidenceApartmentNumber;
@@ -135,18 +135,18 @@ namespace PMS
                 RaisePropertyChanged("Email");
             }
         }
-        public string Team
-        {
-            get
-            {
-                return _Team;
-            }
-            set
-            {
-                _Team = value;
-                RaisePropertyChanged("Team");
-            }
-        }
+        //public string Team
+        //{
+        //    get
+        //    {
+        //        return _Team;
+        //    }
+        //    set
+        //    {
+        //        _Team = value;
+        //        RaisePropertyChanged("Team");
+        //    }
+        //}
         public string ResidenceStreet
         {
             get
@@ -291,18 +291,18 @@ namespace PMS
                 RaisePropertyChanged("FiredDate");
             }
         }
-        public string VisibilityTeam
-        {
-            get
-            {
-                return _VisibilityTeam;
-            }
-            set
-            {
-                _VisibilityTeam = value;
-                RaisePropertyChanged("VisibilityTeam");
-            }
-        }
+        //public string VisibilityTeam
+        //{
+        //    get
+        //    {
+        //        return _VisibilityTeam;
+        //    }
+        //    set
+        //    {
+        //        _VisibilityTeam = value;
+        //        RaisePropertyChanged("VisibilityTeam");
+        //    }
+        //}
         public bool CheckBoxAdress
         {
             get
@@ -365,16 +365,16 @@ namespace PMS
                 Salary = _mySelectedUser.Salary;
                 PhoneNumber = _mySelectedUser.PhoneNumber;
                 Email = _mySelectedUser.Email;
-                if (_mySelectedUser.Team != null)
-                {
-                    VisibilityTeam = "Visible";
-                    Team = _mySelectedUser.Team.Name;
-                }
-                else
-                {
-                    VisibilityTeam = "Collapsed";
-                    Team = null;
-                }
+                //if (_mySelectedUser.Team != null)
+                //{
+                //    VisibilityTeam = "Visible";
+                //    Team = _mySelectedUser.Team.Name;
+                //}
+                //else
+                //{
+                //    VisibilityTeam = "Collapsed";
+                //    Team = null;
+                //}
 
                 ResidenceStreet = _mySelectedUser.ResidenceStreet;
                 ResidenceHouseNumber = _mySelectedUser.ResidenceHouseNumber;
@@ -431,18 +431,13 @@ namespace PMS
         private void EditUser()
         {
             AdminValidation AV = new AdminValidation();
-            bool corretForm = AV.EditUserValidation(FirstName, LastName, Password, Salary, PhoneNumber, Email, Team,
+            bool corretForm = AV.EditUserValidation(FirstName, LastName, Password, Salary, PhoneNumber, Email,
                 MySelectedUser, FiredDate, HiredDate);
 
             if (corretForm)
             {
-                if (MySelectedUser.UserRole.Name != "Admin")
-                {
-                    var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-                    int teamID = team.TeamID;
-                    MySelectedUser.TeamID = teamID;
-                }
 
+                //team == null
                 MySelectedUser.FirstName = FirstName;
                 MySelectedUser.LastName = LastName;
 
@@ -482,12 +477,12 @@ namespace PMS
             }
         }
 
-        public List<Team> Teams
-        {
-            get
-            {
-                return dbContext.Team.ToList();
-            }
-        }
+        //public List<Team> Teams
+        //{
+        //    get
+        //    {
+        //        return dbContext.Team.ToList();
+        //    }
+        //}
     }
 }

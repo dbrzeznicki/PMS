@@ -17,7 +17,7 @@ namespace PMS
         #region variable
 
         //Add user
-        public string _VisibilityTeam = "Visible"; //"Collapsed";
+        //public string _VisibilityTeam = "Visible"; //"Collapsed";
         private string _FirstName = "";
         private string _LastName = "";
         private string _Login = "";
@@ -26,7 +26,7 @@ namespace PMS
         private double _Salary;
         private string _PhoneNumber = "";
         private string _Email = "";
-        private string _Team;
+        //private string _Team;
         private string _ResidenceStreet;
         private string _ResidenceHouseNumber;
         private string _ResidenceApartmentNumber;
@@ -120,13 +120,13 @@ namespace PMS
             set
             {
                 _UserRole = value;
-                if(_UserRole.Equals("Admin"))
-                {
-                    VisibilityTeam = "Collapsed";
-                    Team = null;
-                }
-                else
-                    VisibilityTeam = "Visible";
+                //if(_UserRole.Equals("Admin"))
+                //{
+                //    VisibilityTeam = "Collapsed";
+                //    Team = null;
+                //}
+                //else
+                //    VisibilityTeam = "Visible";
                 RaisePropertyChanged("UserRole");
             }
         }
@@ -166,7 +166,7 @@ namespace PMS
                 RaisePropertyChanged("Email");
             }
         }
-        public string Team
+        /*public string Team
         {
             get
             {
@@ -177,7 +177,8 @@ namespace PMS
                 _Team = value;
                 RaisePropertyChanged("Team");
             }
-        }
+        }*/
+
         public string ResidenceStreet
         {
             get
@@ -322,7 +323,7 @@ namespace PMS
                 RaisePropertyChanged("FiredDate");
             }
         }
-        public string VisibilityTeam
+        /*public string VisibilityTeam
         {
             get
             {
@@ -333,7 +334,7 @@ namespace PMS
                 _VisibilityTeam = value;
                 RaisePropertyChanged("VisibilityTeam");
             }
-        }
+        }*/
 
         #endregion
 
@@ -342,9 +343,9 @@ namespace PMS
         {
             PMSContext dbContext = new PMSContext();
             User user;
-            
+
             AdminValidation AV = new AdminValidation();
-            bool correctForm = AV.AddUserValidation(FirstName, LastName, Login, Password, Salary, PhoneNumber, Email, Team, UserRole);
+            bool correctForm = AV.AddUserValidation(FirstName, LastName, Login, Password, Salary, PhoneNumber, Email, UserRole);
 
             if (correctForm == true)
             {
@@ -369,75 +370,44 @@ namespace PMS
                     er.ShowDialog();
                 }
 
-            } 
+            }
         }
 
-        private User AddUserWithCorrespondenceAdress ()
+        private User AddUserWithCorrespondenceAdress()
         {
             PMSContext dbContext = new PMSContext();
             var userRole = dbContext.UserRole.Where(n => n.Name.Equals(_UserRole)).SingleOrDefault();
             int userRoleID = userRole.UserRoleID;
             User user;
-            if (_UserRole.Equals("Admin"))
-            {
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = null,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = _HiredDate.AddYears(5),
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _CorrespondenceStreet,
-                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
-                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
-                    CorrespondencePostcode = _CorrespondencePostcode,
-                    CorrespondenceCity = _CorrespondenceCity
-                };
-            } 
-            else
-            {
-                var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-                int teamID = team.TeamID;
 
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = teamID,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = _HiredDate.AddYears(5),
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _CorrespondenceStreet,
-                    CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
-                    CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
-                    CorrespondencePostcode = _CorrespondencePostcode,
-                    CorrespondenceCity = _CorrespondenceCity
-                };
-            }
-            
+
+            user = new User()
+            {
+                UserRoleID = userRoleID,
+                TeamID = null,
+                FirstName = _FirstName,
+                LastName = _LastName,
+                Login = _Login,
+                Password = _Password,
+                Salary = _Salary,
+                PhoneNumber = _PhoneNumber,
+                Email = _Email,
+                AccountCreationDate = DateTime.Now,
+                HiredDate = _HiredDate,
+                FiredDate = _HiredDate.AddYears(5),
+                ResidenceStreet = _ResidenceStreet,
+                ResidenceHouseNumber = _ResidenceHouseNumber,
+                ResidenceApartmentNumber = _ResidenceApartmentNumber,
+                ResidenceCity = _ResidenceCity,
+                ResidencePostcode = _ResidencePostcode,
+                CorrespondenceStreet = _CorrespondenceStreet,
+                CorrespondenceHouseNumber = _CorrespondenceHouseNumber,
+                CorrespondenceApartmentNumber = _CorrespondenceApartmentNumber,
+                CorrespondencePostcode = _CorrespondencePostcode,
+                CorrespondenceCity = _CorrespondenceCity
+            };
+
+
             return user;
         }
 
@@ -448,65 +418,31 @@ namespace PMS
             int userRoleID = userRole.UserRoleID;
             User user;
 
-            if (_UserRole.Equals("Admin"))
+            user = new User()
             {
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = null,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = _HiredDate.AddYears(5),
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _ResidenceStreet,
-                    CorrespondenceHouseNumber = _ResidenceHouseNumber,
-                    CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
-                    CorrespondencePostcode = _ResidencePostcode,
-                    CorrespondenceCity = _ResidenceCity
-                };
-            }
-            else
-            {
-                var team = dbContext.Team.Where(n => n.Name.Equals(_Team)).SingleOrDefault();
-                int teamID = team.TeamID;
-
-                user = new User()
-                {
-                    UserRoleID = userRoleID,
-                    TeamID = teamID,
-                    FirstName = _FirstName,
-                    LastName = _LastName,
-                    Login = _Login,
-                    Password = _Password,
-                    Salary = _Salary,
-                    PhoneNumber = _PhoneNumber,
-                    Email = _Email,
-                    AccountCreationDate = DateTime.Now,
-                    HiredDate = _HiredDate,
-                    FiredDate = _HiredDate.AddYears(5),
-                    ResidenceStreet = _ResidenceStreet,
-                    ResidenceHouseNumber = _ResidenceHouseNumber,
-                    ResidenceApartmentNumber = _ResidenceApartmentNumber,
-                    ResidenceCity = _ResidenceCity,
-                    ResidencePostcode = _ResidencePostcode,
-                    CorrespondenceStreet = _ResidenceStreet,
-                    CorrespondenceHouseNumber = _ResidenceHouseNumber,
-                    CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
-                    CorrespondencePostcode = _ResidencePostcode,
-                    CorrespondenceCity = _ResidenceCity
-                };
-            }
+                UserRoleID = userRoleID,
+                TeamID = null,
+                FirstName = _FirstName,
+                LastName = _LastName,
+                Login = _Login,
+                Password = _Password,
+                Salary = _Salary,
+                PhoneNumber = _PhoneNumber,
+                Email = _Email,
+                AccountCreationDate = DateTime.Now,
+                HiredDate = _HiredDate,
+                FiredDate = _HiredDate.AddYears(5),
+                ResidenceStreet = _ResidenceStreet,
+                ResidenceHouseNumber = _ResidenceHouseNumber,
+                ResidenceApartmentNumber = _ResidenceApartmentNumber,
+                ResidenceCity = _ResidenceCity,
+                ResidencePostcode = _ResidencePostcode,
+                CorrespondenceStreet = _ResidenceStreet,
+                CorrespondenceHouseNumber = _ResidenceHouseNumber,
+                CorrespondenceApartmentNumber = _ResidenceApartmentNumber,
+                CorrespondencePostcode = _ResidencePostcode,
+                CorrespondenceCity = _ResidenceCity
+            };
 
             return user;
         }
@@ -520,13 +456,13 @@ namespace PMS
             }
         }
 
-        public List<Team> Teams
+        /*public List<Team> Teams
         {
             get
             {
                 PMSContext dbContext = new PMSContext();
                 return dbContext.Team.ToList();
             }
-        }
+        }*/
     }
 }
