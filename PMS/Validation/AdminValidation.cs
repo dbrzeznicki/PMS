@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -109,7 +110,8 @@ namespace PMS
                     er.ShowDialog();
                     return false;
                 }
-            } else
+            }
+            else
             {
                 ErrorMessage er = new ErrorMessage("Incorrect email!");
                 er.ShowDialog();
@@ -121,7 +123,7 @@ namespace PMS
 
         bool AddUserTeamValidation(string team, string userRole)
         {
-           
+
             if ((team != null && userRole != "Admin") || (team == null && userRole == "Admin"))
                 return true;
             else
@@ -142,7 +144,7 @@ namespace PMS
         {
             PMSContext dbContext = new PMSContext();
 
-            if(user.UserRole.Name != "Admin")
+            if (user.UserRole.Name != "Admin")
             {
                 if (user.Team.Name == teamParam)
                     return true;
@@ -160,7 +162,8 @@ namespace PMS
                         return false;
                     }
                 }
-            } else
+            }
+            else
             {
                 return true;
             }
@@ -282,7 +285,7 @@ namespace PMS
 
         bool CompanyNameValidation(string companyName)
         {
-            if (companyName != null && companyName!="")
+            if (companyName != null && companyName != "")
                 return true;
             else
             {
@@ -300,5 +303,51 @@ namespace PMS
             else
                 return false;
         }
+
+
+        bool TeamNameValidation(string teamName)
+        {
+
+            PMSContext dbContext = new PMSContext();
+            List<Team> teams = dbContext.Team.ToList();
+            var check = teams.Where(x => x.Name == teamName).SingleOrDefault();
+
+            if (teamName.Length >= 5 && check == null)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect team name! Team name has less than 5 characters.");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        bool UserListAddTeamValidation(ObservableCollection<User> userList)
+        {
+
+            foreach (var user in userList)
+            {
+                if (user.UserRole.Name == "Manager" && userList.Count() >= 2)
+                {
+                    return true;
+                }
+            }
+
+            ErrorMessage er = new ErrorMessage("The team must consist of at least 2 people and have a manager.");
+            er.ShowDialog();
+            return false;
+        }
+
+
+
+        public bool AddTeamValidation(string TeamName, ObservableCollection<User> userList)
+        {
+            if (TeamNameValidation(TeamName) && UserListAddTeamValidation(userList))
+                return true;
+            else
+                return false;
+        }
+
+
     }
 }

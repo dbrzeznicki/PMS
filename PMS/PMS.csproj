@@ -142,6 +142,7 @@
     <Compile Include="ViewModel\Admin\ClientsListViewModel.cs" />
     <Compile Include="ViewModel\Admin\EditClientViewModel.cs" />
     <Compile Include="ViewModel\Admin\EditUserViewModel.cs" />
+    <Compile Include="ViewModel\Admin\TeamAdminViewModel.cs" />
     <Compile Include="ViewModel\Admin\UsersListViewModel.cs" />
     <Compile Include="ViewModel\Admin\WikiAdminViewModel.cs" />
     <Compile Include="ViewModel\Employee\HomeEmployeeViewModel.cs" />
@@ -173,6 +174,9 @@
     </Compile>
     <Compile Include="View\Admin\UserControlEditUser.xaml.cs">
       <DependentUpon>UserControlEditUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UserControlTeamAdmin.xaml.cs">
+      <DependentUpon>UserControlTeamAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\UserControlUsersList.xaml.cs">
       <DependentUpon>UserControlUsersList.xaml</DependentUpon>
@@ -242,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\UserControlEditUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\UserControlTeamAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

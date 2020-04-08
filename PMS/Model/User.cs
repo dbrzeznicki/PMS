@@ -90,6 +90,14 @@ namespace PMS.Model
                 return $"{FirstName} {LastName}";
             }
         }
+        
 
+        public string FullNameAndNameUserRole
+        {
+            get
+            {
+                return $"{FirstName} {LastName} - {UserRole.Name}";
+            }
+        }
     }
 }
