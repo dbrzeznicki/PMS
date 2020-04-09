@@ -142,14 +142,14 @@ namespace PMS.DAL
 
             var vacation = new List<Vacation>
                 {
-                    new Vacation() { VacationID=1, UserID=1 ,VacationTypeID=1,  StartVacation=new DateTime(2010, 11, 24), EndVacation=new DateTime(2010, 11, 30), NumberOfDays=5},
-                    new Vacation() { VacationID=2, UserID=2 ,VacationTypeID=1,  StartVacation=new DateTime(2011, 11, 11), EndVacation=new DateTime(2011, 11, 18), NumberOfDays=7},
-                    new Vacation() { VacationID=3, UserID=3 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 08, 05), EndVacation=new DateTime(2017, 08, 20), NumberOfDays=12},
-                    new Vacation() { VacationID=4, UserID=5 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 12, 30), EndVacation=new DateTime(2018, 01, 10), NumberOfDays=9},
-                    new Vacation() { VacationID=5, UserID=5 ,VacationTypeID=4,  StartVacation=new DateTime(2012, 03, 24), EndVacation=new DateTime(2012, 04, 24), NumberOfDays=28},
-                    new Vacation() { VacationID=6, UserID=6 ,VacationTypeID=1,  StartVacation=new DateTime(2013, 07, 11), EndVacation=new DateTime(2013, 07, 23), NumberOfDays=11},
-                    new Vacation() { VacationID=7, UserID=6 ,VacationTypeID=3,  StartVacation=new DateTime(2016, 06, 02), EndVacation=new DateTime(2016, 06, 07), NumberOfDays=4},
-                    new Vacation() { VacationID=8, UserID=9 ,VacationTypeID=2,  StartVacation=new DateTime(2012, 03, 25), EndVacation=new DateTime(2012, 04, 10), NumberOfDays=14}
+                    new Vacation() { VacationID=1, UserID=1 ,VacationTypeID=1,  StartVacation=new DateTime(2010, 11, 24), EndVacation=new DateTime(2010, 11, 30)},
+                    new Vacation() { VacationID=2, UserID=2 ,VacationTypeID=1,  StartVacation=new DateTime(2011, 11, 11), EndVacation=new DateTime(2011, 11, 18)},
+                    new Vacation() { VacationID=3, UserID=3 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 08, 05), EndVacation=new DateTime(2017, 08, 20)},
+                    new Vacation() { VacationID=4, UserID=5 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 12, 30), EndVacation=new DateTime(2018, 01, 10)},
+                    new Vacation() { VacationID=5, UserID=5 ,VacationTypeID=4,  StartVacation=new DateTime(2012, 03, 24), EndVacation=new DateTime(2012, 04, 24)},
+                    new Vacation() { VacationID=6, UserID=6 ,VacationTypeID=1,  StartVacation=new DateTime(2013, 07, 11), EndVacation=new DateTime(2013, 07, 23)},
+                    new Vacation() { VacationID=7, UserID=6 ,VacationTypeID=3,  StartVacation=new DateTime(2016, 06, 02), EndVacation=new DateTime(2016, 06, 07)},
+                    new Vacation() { VacationID=8, UserID=9 ,VacationTypeID=2,  StartVacation=new DateTime(2012, 03, 25), EndVacation=new DateTime(2012, 04, 10)}
                 };
 
             vacation.ForEach(v => context.Vacation.AddOrUpdate(v));

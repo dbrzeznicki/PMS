@@ -20,7 +20,6 @@ namespace PMS.Model
 
         public DateTime StartVacation { get; set; }
         public DateTime EndVacation { get; set; }
-        public int NumberOfDays { get; set; }
 
         public virtual User User { get; set; }
         public virtual VacationType VacationType { get; set; }
