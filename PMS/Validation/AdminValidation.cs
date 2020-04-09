@@ -322,6 +322,9 @@ namespace PMS
             }
         }
 
+
+
+
         bool UserListAddTeamValidation(ObservableCollection<User> userList)
         {
 
@@ -349,5 +352,58 @@ namespace PMS
         }
 
 
+        bool TeamNameEditValidation(string teamName)
+        {
+
+            if (teamName.Length >= 5)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect team name! Team name has less than 5 characters.");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        public bool EditTeamValidation(string TeamName, ObservableCollection<User> userList)
+        {
+            if (TeamNameEditValidation(TeamName) && UserListAddTeamValidation(userList))
+                return true;
+            else
+                return false;
+        }
+
+
+
+
+
+        bool TeamEditRemoveUserCheckSUbtaskValidation(User user)
+        {
+
+            PMSContext dbContext = new PMSContext();
+
+
+            int _allTask = dbContext.Subtask.Where(x => (x.UserID == user.UserID) && ((x.SubtaskStatus.Name == "New") || (x.SubtaskStatus.Name == "In progress"))).Count();
+            if (_allTask == 0)
+            {
+                return true;
+            }
+            else
+            {
+                ErrorMessage er = new ErrorMessage("User has new or in progress task!");
+                er.ShowDialog();
+                return false;
+            }
+
+
+        }
+
+        public bool EditTeamRemoveUserValidation(User user)
+        {
+            if (TeamEditRemoveUserCheckSUbtaskValidation(user))
+                return true;
+            else
+                return false;
+        }
     }
 }
