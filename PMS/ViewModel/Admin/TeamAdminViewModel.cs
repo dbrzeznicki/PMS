@@ -43,6 +43,11 @@ namespace PMS
 
         private ObservableCollection<Team> _EditTeamsList;
         private Team _EditSelectedTeam = null;
+
+        //Usuniecie
+        //private ObservableCollection<Team> _TeamsListRemove;
+        //private Team _SelectedTeamRemve = null;
+
         #endregion
 
 
@@ -59,6 +64,8 @@ namespace PMS
         public ICommand EditRemoveUserWithTeamButton { get; set; }
         public ICommand EditCreateTeamButton { get; set; }
 
+        //Usuniecie
+        //public ICommand RemoveTeamButton { get; set; }
         #endregion
 
 
@@ -73,6 +80,8 @@ namespace PMS
             EditCreateTeamButton = new DelegateCommand(EditCreateTeam);
             EditAddUserToTeamButton = new DelegateCommand(EditAddUserToTeam);
             EditRemoveUserWithTeamButton = new DelegateCommand<object>(EditRemoveUserWithTeam);
+
+            //RemoveTeamButton = new DelegateCommand<object>(RemoveTeam);
         }
 
         #endregion
@@ -323,6 +332,39 @@ namespace PMS
                 RaisePropertyChanged("EditIsEnabledAddUserToTeamButton");
             }
         }
+
+
+        //public ObservableCollection<Team> TeamsListRemove
+        //{
+        //    get
+        //    {
+        //        if (_TeamsListRemove == null)
+        //            _TeamsListRemove = new ObservableCollection<Team>(dbContext.Team.ToList());
+
+        //        return _TeamsListRemove;
+        //    }
+        //    set
+        //    {
+        //        _TeamsListRemove = value;
+        //        RaisePropertyChanged("TeamsListRemove");
+        //    }
+        //}
+
+        //public Team SelectedTeamRemve
+        //{
+        //    get
+        //    {
+        //        return _SelectedTeamRemve;
+        //    }
+        //    set
+        //    {
+        //        _SelectedTeamRemve = value;
+
+        //        RaisePropertyChanged("SelectedTeamRemve");
+        //    }
+        //}
+
+
         #endregion
 
 
@@ -373,12 +415,6 @@ namespace PMS
             }
         }
 
-
-
-
-
-
-
         private void EditCreateTeam()
         {
 
@@ -414,6 +450,22 @@ namespace PMS
                 er.ShowDialog();
             }
         }
+
+
+        /*private void RemoveTeam(object ID)
+        {
+
+
+            int val = Convert.ToInt32(ID);
+            Team team = dbContext.Team.Find(val);
+            AdminValidation AV = new AdminValidation();
+            bool correctForm = AV.RemoveTeamValidation(team);
+            if (correctForm)
+            {
+                dbContext.Team.Remove(team);
+                dbContext.SaveChanges();
+            }
+        }*/
 
         #endregion
 

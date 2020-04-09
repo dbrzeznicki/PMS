@@ -382,7 +382,6 @@ namespace PMS
 
             PMSContext dbContext = new PMSContext();
 
-
             int _allTask = dbContext.Subtask.Where(x => (x.UserID == user.UserID) && ((x.SubtaskStatus.Name == "New") || (x.SubtaskStatus.Name == "In progress"))).Count();
             if (_allTask == 0)
             {
@@ -394,13 +393,42 @@ namespace PMS
                 er.ShowDialog();
                 return false;
             }
-
-
         }
 
         public bool EditTeamRemoveUserValidation(User user)
         {
             if (TeamEditRemoveUserCheckSUbtaskValidation(user))
+                return true;
+            else
+                return false;
+        }
+
+
+        //Usuniecie teamu
+
+        bool RemoveTeamCheckSUbtaskValidation(Team team)
+        {
+
+            PMSContext dbContext = new PMSContext();
+
+            foreach(var user in team.Users)
+            {
+                int _allTask = dbContext.Subtask.Where(x => (x.UserID == user.UserID) && ((x.SubtaskStatus.Name == "New") || (x.SubtaskStatus.Name == "In progress"))).Count();
+                
+                if (_allTask > 0)
+                {        
+                    ErrorMessage er = new ErrorMessage("Users have new or in progress task!");
+                    er.ShowDialog();
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool RemoveTeamValidation(Team team)
+        {
+            if (RemoveTeamCheckSUbtaskValidation(team))
                 return true;
             else
                 return false;
