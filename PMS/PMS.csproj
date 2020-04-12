@@ -163,6 +163,7 @@
     <Compile Include="ViewModel\Manager\ReportsManagerViewModel.cs" />
     <Compile Include="ViewModel\Manager\TaskManagerViewModel.cs" />
     <Compile Include="ViewModel\Manager\TeamManagerViewModel.cs" />
+    <Compile Include="ViewModel\Manager\VacationsManagerViewModel.cs" />
     <Compile Include="ViewModel\Manager\WikiManagerViewModel.cs" />
     <Compile Include="View\Admin\UserControlAddClient.xaml.cs">
       <DependentUpon>UserControlAddClient.xaml</DependentUpon>
@@ -229,6 +230,9 @@
     </Compile>
     <Compile Include="View\Manager\UserControlTeamManager.xaml.cs">
       <DependentUpon>UserControlTeamManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\UserControlVacationsManager.xaml.cs">
+      <DependentUpon>UserControlVacationsManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\UserControlWikiManager.xaml.cs">
       <DependentUpon>UserControlWikiManager.xaml</DependentUpon>
@@ -344,6 +348,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Manager\UserControlTeamManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Manager\UserControlVacationsManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

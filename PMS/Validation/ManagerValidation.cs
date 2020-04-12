@@ -297,5 +297,28 @@ namespace PMS
             else
                 return false;
         }
+
+        bool StartAndEndVacationDateValidation(DateTime startDate, DateTime endDate)
+        {
+
+            if (endDate.CompareTo(startDate) > 0)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("endDate > startDate!");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+
+
+        public bool AddVacationValidation(DateTime startDate, DateTime endDate)
+        {
+            if (StartAndEndVacationDateValidation(startDate, endDate))
+                return true;
+            else
+                return false;
+        }
     }
 }

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="PMS.UserControlVacationsManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PMS"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.ColumnSpan="2" Text="Create new vacation:" FontSize="18"/>
+
+        <Label Margin="10" Grid.Row="1">Select user:</Label>
+        <ComboBox Margin="10" Grid.Column="1" Grid.Row="1" SelectedValue="{Binding Path=SelectedUserInTeam}" 
+                                  ItemsSource="{Binding Path=UserInTeam}" DisplayMemberPath="FullNameAndNameUserRole"/>
+
+        <Label Margin="10" Grid.Row="2">Start vacation date:</Label>
+        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding StartVacation}" Margin="10"/>
+
+        <Label Margin="10" Grid.Row="3">End vacation date:</Label>
+        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding EndVacation}" Margin="10"/>
+
+        <Label Margin="10" Grid.Row="4">Select vacation type:</Label>
+        <ComboBox Margin="10" Grid.Column="1" Grid.Row="4" SelectedValue="{Binding Path=SelectedVacationType}" 
+                                  ItemsSource="{Binding Path=ListOfVacationTypes}" DisplayMemberPath="Name"/>
+        
+        <Button Margin="10" Grid.Row="5" Grid.Column="1" 
+                Command="{Binding CreateVacationButton}" IsEnabled="{Binding IsEnabledAddButton}">Add vacation</Button>
+        
+    </Grid>
+</UserControl>

@@ -54,6 +54,10 @@ namespace PMS
                     usc = new UserControlContractsManager();
                     StackPanelMain.Children.Add(usc);
                     break;
+                case "Vacations":
+                    usc = new UserControlVacationsManager();
+                    StackPanelMain.Children.Add(usc);
+                    break;
                 case "Wiki":
                     usc = new UserControlWikiManager();
                     StackPanelMain.Children.Add(usc);
