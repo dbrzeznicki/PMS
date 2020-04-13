@@ -50,7 +50,7 @@ namespace PMS
 
         #endregion
 
-        #region
+        #region properties
 
         public ObservableCollection<User> UserInTeam
         {

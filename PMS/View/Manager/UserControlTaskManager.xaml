@@ -6,7 +6,142 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+
+    <UserControl.Resources>
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+
+
+        </Style>
+    </UserControl.Resources>
+
+
+    <ScrollViewer>
+        <Grid Margin="10">
+
+            <StackPanel>
+
+                <Expander Header="My tasks" Margin="10" Background="WhiteSmoke">
+
+                    <DockPanel>
+
+                        <Expander Header="Filter" Margin="10" Background="LightGray" DockPanel.Dock="Top">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="10" Grid.Row="0" Grid.Column="0" Text="Select project:" />
+                                <ComboBox Margin="10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedProject}" SelectedIndex="0" ItemsSource="{Binding Path=Projects}" />
+                                <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" Text="Select status:" />
+                                <ComboBox Margin="10" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=SelectedStatus}" SelectedIndex="0" ItemsSource="{Binding Path=Statuss}"/>
+                                <TextBlock Margin="10" Grid.Row="2" Grid.Column="0" Text="Write subtask name: " />
+                                <TextBox Margin="10" Grid.Row="3" Grid.Column="0" Text="{Binding Path = SelectedName, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </Expander>
+
+                        <StackPanel>
+                            <Grid Margin="10">
+                                <ListView Margin="10" ItemsSource="{Binding Subtasks}" HorizontalContentAlignment="Stretch">
+                                    <ListView.View>
+                                        <GridView >
+
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description"  DisplayMemberBinding="{Binding Description}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Start time"  DisplayMemberBinding="{Binding StartTime}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="End time"  DisplayMemberBinding="{Binding EndTime}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Priority"  DisplayMemberBinding="{Binding Priority}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Status"  DisplayMemberBinding="{Binding SubtaskStatus.Name}" Width="Auto"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+
+                            <Grid>
+                                <StackPanel Margin="10" Orientation="Horizontal">
+
+                                    <TextBlock Margin="0,20,10,20" Text="Select subtask: " VerticalAlignment="Center"/>
+                                    <ComboBox Margin="10" ItemsSource="{Binding Subtasks}" DisplayMemberPath="Name"
+                                    SelectedItem="{Binding SelectedSubtask}"/>
+
+                                    <TextBlock Margin="0,20,10,20" Text="Select status: " VerticalAlignment="Center"/>
+                                    <ComboBox Margin="10" ItemsSource="{Binding SubtaskStatus}" DisplayMemberPath="Name"
+                                    SelectedItem="{Binding SelectedSubtaskStatus}"/>
+
+                                    <Button Name="ChangeStatus"  Margin="0,20,10,20" Command="{Binding ChangeStatusButton}" IsEnabled="{Binding IsEnabledChangeStatusButton}">Change status</Button>
+                                </StackPanel>
+                            </Grid>
+
+                        </StackPanel>
+
+                    </DockPanel>
+                </Expander>
+
+
+                <Expander Header="Add task" Margin="10" Background="WhiteSmoke">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+
+                        <Label Grid.Row="0" Margin="10">Select project:</Label>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Margin="10" ItemsSource="{Binding ListOfProjects}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedListOfProjects}"/>
+
+                        <Label Margin="10" Grid.Row="1">Select main task:</Label>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding ListOfMainTasks}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedListOfMainTasks}"/>
+
+
+                        <Label Margin="10" Grid.Row="2">Select user:</Label>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="10" ItemsSource="{Binding ListOfUsers}" DisplayMemberPath="FullName"
+                                  SelectedItem="{Binding SelectedUser}"/>
+
+                        <Label Grid.Row="3" Margin="10">Name:</Label>
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Text="{Binding Path = Name}"/>
+                        
+                        <Label Margin="10" Grid.Row="4">Description:</Label>
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="10" Text="{Binding Path = Description}"/>
+
+
+
+                        <Label Margin="10" Grid.Row="5">Finish date:</Label>
+                        <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding EndTime}" Margin="10"/>
+                        
+                        <Label Margin="10" Grid.Row="6">Select priority:</Label>
+                        <ComboBox Grid.Row="6" Grid.Column="1" Margin="10" ItemsSource="{Binding Priority}" 
+                                  SelectedItem="{Binding SelectedPriority}"/>
+
+
+
+                        <Button Margin="10" Name="AddTaskButton" Grid.Row="7" Grid.Column="1" Command="{Binding AddTaskButton}" IsEnabled="{Binding IsEnabledAddButton}">Add task</Button>
+
+                    </Grid>
+                </Expander>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

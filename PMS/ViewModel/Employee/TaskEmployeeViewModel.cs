@@ -388,7 +388,7 @@ namespace PMS
                     StartTime = DateTime.Now,
                     EndTime = _EndTime,
                     MainTaskID = null,
-                    SubtaskStatusID = 3,
+                    SubtaskStatusID = 1,
                     Priority = _SelectedPriority,
                     UserID = SelectedUser.UserID,
                     WhoCreated = Global.user.UserID

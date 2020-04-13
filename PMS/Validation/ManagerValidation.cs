@@ -320,5 +320,40 @@ namespace PMS
             else
                 return false;
         }
+
+
+
+        bool NameTaskValidation(string nameTask)
+        {
+            if (nameTask.Length >= 6)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect name task! Description has less than 6 characters.");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        bool DescriptionTaskValidation(string description)
+        {
+            if (description.Length >= 20)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect description! Description has less than 20 characters.");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+
+        public bool AddTaskValidation(string nameTask, string descriptionTask)
+        {
+            if (NameTaskValidation(nameTask) && DescriptionTaskValidation(descriptionTask))
+                return true;
+            else
+                return false;
+        }
     }
 }
