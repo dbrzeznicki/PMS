@@ -6,40 +6,104 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="10">
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
 
 
-        <TextBlock Grid.ColumnSpan="2" Text="Create new vacation:" FontSize="18"/>
+    <UserControl.Resources>
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
 
-        <Label Margin="10" Grid.Row="1">Select user:</Label>
-        <ComboBox Margin="10" Grid.Column="1" Grid.Row="1" SelectedValue="{Binding Path=SelectedUserInTeam}" 
+
+        </Style>
+    </UserControl.Resources>
+
+
+    <ScrollViewer>
+        <Grid Margin="10">
+            <StackPanel>
+
+                <Expander Header="Add vacation" Margin="10" Background="WhiteSmoke">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Margin="10" >Select user:</Label>
+                        <ComboBox Margin="10" Grid.Column="1" SelectedValue="{Binding Path=SelectedUserInTeam}" 
                                   ItemsSource="{Binding Path=UserInTeam}" DisplayMemberPath="FullNameAndNameUserRole"/>
 
-        <Label Margin="10" Grid.Row="2">Start vacation date:</Label>
-        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding StartVacation}" Margin="10"/>
+                        <Label Margin="10" Grid.Row="1">Start vacation date:</Label>
+                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding StartVacation}" Margin="10"/>
 
-        <Label Margin="10" Grid.Row="3">End vacation date:</Label>
-        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding EndVacation}" Margin="10"/>
+                        <Label Margin="10" Grid.Row="2">End vacation date:</Label>
+                        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding EndVacation}" Margin="10"/>
 
-        <Label Margin="10" Grid.Row="4">Select vacation type:</Label>
-        <ComboBox Margin="10" Grid.Column="1" Grid.Row="4" SelectedValue="{Binding Path=SelectedVacationType}" 
+                        <Label Margin="10" Grid.Row="3">Select vacation type:</Label>
+                        <ComboBox Margin="10" Grid.Column="1" Grid.Row="3" SelectedValue="{Binding Path=SelectedVacationType}" 
                                   ItemsSource="{Binding Path=ListOfVacationTypes}" DisplayMemberPath="Name"/>
-        
-        <Button Margin="10" Grid.Row="5" Grid.Column="1" 
+
+                        <Button Margin="10" Grid.Row="4" Grid.Column="1" 
                 Command="{Binding CreateVacationButton}" IsEnabled="{Binding IsEnabledAddButton}">Add vacation</Button>
-        
-    </Grid>
+
+                    </Grid>
+                </Expander>
+
+
+                <Expander Header="List of vacations" Margin="10" Background="WhiteSmoke">
+
+                    <DockPanel>
+
+                        <Expander Header="Filter" Margin="10" Background="LightGray" DockPanel.Dock="Top">
+                            <Grid Margin="10">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10" Grid.Row="0" Grid.Column="0" Text="Select user:" />
+                                <ComboBox Margin="10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedUsersFilter}" SelectedIndex="0" ItemsSource="{Binding Path=UsersFilter}" />
+                                <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" Text="Select type:" />
+                                <ComboBox Margin="10" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=SelectedTypesFilter}" SelectedIndex="0" ItemsSource="{Binding Path=TypesFilter}"/>
+
+                            </Grid>
+                        </Expander>
+
+                        <StackPanel>
+                            <Grid Margin="10">
+                                <ListView Margin="10" ItemsSource="{Binding ListOfVacations}" HorizontalContentAlignment="Stretch">
+                                    <ListView.View>
+                                        <GridView >
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="User" DisplayMemberBinding="{Binding User.FullName}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Start date"  DisplayMemberBinding="{Binding StartVacation}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="End date"  DisplayMemberBinding="{Binding EndVacation}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Type"  DisplayMemberBinding="{Binding VacationType.Name}" Width="Auto"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+
+                        </StackPanel>
+
+                    </DockPanel>
+                </Expander>
+
+            </StackPanel>
+        </Grid>
+
+    </ScrollViewer>
 </UserControl>

@@ -19,6 +19,7 @@ namespace PMS
 
         PMSContext dbContext = new PMSContext();
 
+        //Add vacation
         private ObservableCollection<User> _UserInTeam;
         private User _SelectedUserInTeam = null;
 
@@ -29,6 +30,14 @@ namespace PMS
         private VacationType _SelectedVacationType = null;
 
         private bool _IsEnabledAddButton = false;
+
+        //List Vacation
+
+        private ObservableCollection<Vacation> _ListOfVacations;
+        private ObservableCollection<string> _UsersFilter;
+        private string _SelectedUsersFilter = "All";
+        private ObservableCollection<string> _TypesFilter;
+        private string _SelectedTypesFilter = "All";
 
         #endregion
 
@@ -143,7 +152,6 @@ namespace PMS
             }
         }
 
-
         public bool IsEnabledAddButton
         {
             get
@@ -159,6 +167,76 @@ namespace PMS
             {
                 _IsEnabledAddButton = value;
                 RaisePropertyChanged("IsEnabledAddButton");
+            }
+        }
+
+        public ObservableCollection<string> TypesFilter
+        {
+            get
+            {
+                PMSContext dbContext = new PMSContext();
+                _TypesFilter = new ObservableCollection<string>(dbContext.VacationType.Select(x => x.Name));
+                _TypesFilter.Insert(0, "All");
+                _SelectedTypesFilter = "All";
+                return _TypesFilter;
+            }
+        }
+
+        public string SelectedTypesFilter
+        {
+            get
+            {
+                return _SelectedTypesFilter;
+            }
+            set
+            {
+                _SelectedTypesFilter = value;
+                RaisePropertyChanged("SelectedTypesFilter");
+                FilterVacations();
+            }
+        }
+
+        public ObservableCollection<string> UsersFilter
+        {
+            get
+            {
+                PMSContext dbContext = new PMSContext();
+                _UsersFilter = new ObservableCollection<string>(dbContext.User.Where(c => c.TeamID == Global.user.TeamID).Select(c => c.LastName));
+                _UsersFilter.Insert(0, "All");
+                _SelectedUsersFilter = "All";
+                return _UsersFilter;
+            }
+        }
+
+        public string SelectedUsersFilter
+        {
+            get
+            {
+                return _SelectedUsersFilter;
+            }
+            set
+            {
+                _SelectedUsersFilter = value;
+                RaisePropertyChanged("SelectedUsersFilter");
+                FilterVacations();
+            }
+        }
+
+        public ObservableCollection<Vacation> ListOfVacations
+        {
+            get
+            {
+
+                if (_ListOfVacations == null)
+                {
+                    _ListOfVacations = new ObservableCollection<Vacation>(dbContext.Vacation.Where(x => (x.User.TeamID == Global.user.TeamID)).OrderByDescending(x => x.StartVacation));
+                }
+                return _ListOfVacations;
+            }
+            set
+            {
+                _ListOfVacations = value;
+                RaisePropertyChanged("ListOfVacations");
             }
         }
         #endregion
@@ -204,5 +282,22 @@ namespace PMS
             EndVacation = EndVacation.AddDays(1);
             RaisePropertyChanged("IsEnabledAddButton");
         }
+
+
+        public void FilterVacations()
+        {
+
+            if (SelectedUsersFilter == "All")
+                ListOfVacations = new ObservableCollection<Vacation>(dbContext.Vacation.Where(x => (x.User.TeamID == Global.user.TeamID) && (SelectedTypesFilter == "All" ? true : x.VacationType.Name == SelectedTypesFilter)).OrderByDescending(x => x.StartVacation));
+            else
+            {
+                User user = dbContext.User.Where(x => x.LastName == SelectedUsersFilter).SingleOrDefault();
+
+
+                ListOfVacations = new ObservableCollection<Vacation>(dbContext.Vacation.Where(x => (x.UserID == user.UserID) && (SelectedTypesFilter == "All" ? true : x.VacationType.Name == SelectedTypesFilter)).OrderByDescending(x => x.StartVacation));
+            }
+        }
+
+
     }
 }
