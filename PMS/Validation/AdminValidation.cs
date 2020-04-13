@@ -191,11 +191,11 @@ namespace PMS
 
 
         public bool AddUserValidation(string firstName, string lastName, string login, string password, double salary,
-            string phoneNumber, string email, string userRole)
+            string phoneNumber, string email, string userRole, DateTime firedDate, DateTime hiredDate)
         {
             if (FirstNameValidation(firstName) && LastNameValidation(lastName) && LoginValidation(login) &&
                 PasswordValidation(password) && SalaryValidation(salary) && PhoneNumberValidation(phoneNumber) &&
-                EmailValidation(email))
+                EmailValidation(email) && FiredDateValidation(firedDate, hiredDate))
                 return true;
             else
                 return false;

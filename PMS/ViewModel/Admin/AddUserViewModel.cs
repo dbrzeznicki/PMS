@@ -38,7 +38,7 @@ namespace PMS
         private string _CorrespondencePostcode;
         private string _CorrespondenceCity;
         public DateTime _HiredDate = DateTime.Now;
-        public DateTime _FiredDate;
+        public DateTime _FiredDate = DateTime.Now;
 
         #endregion
 
@@ -345,7 +345,7 @@ namespace PMS
             User user;
 
             AdminValidation AV = new AdminValidation();
-            bool correctForm = AV.AddUserValidation(FirstName, LastName, Login, Password, Salary, PhoneNumber, Email, UserRole);
+            bool correctForm = AV.AddUserValidation(FirstName, LastName, Login, Password, Salary, PhoneNumber, Email, UserRole, FiredDate, HiredDate);
 
             if (correctForm == true)
             {
@@ -394,7 +394,7 @@ namespace PMS
                 Email = _Email,
                 AccountCreationDate = DateTime.Now,
                 HiredDate = _HiredDate,
-                FiredDate = _HiredDate.AddYears(5),
+                FiredDate = _FiredDate,
                 ResidenceStreet = _ResidenceStreet,
                 ResidenceHouseNumber = _ResidenceHouseNumber,
                 ResidenceApartmentNumber = _ResidenceApartmentNumber,
@@ -431,7 +431,7 @@ namespace PMS
                 Email = _Email,
                 AccountCreationDate = DateTime.Now,
                 HiredDate = _HiredDate,
-                FiredDate = _HiredDate.AddYears(5),
+                FiredDate = _FiredDate,
                 ResidenceStreet = _ResidenceStreet,
                 ResidenceHouseNumber = _ResidenceHouseNumber,
                 ResidenceApartmentNumber = _ResidenceApartmentNumber,
