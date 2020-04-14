@@ -6,7 +6,71 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+
+
+    <UserControl.Resources>
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+
+
+        </Style>
+    </UserControl.Resources>
+
+
+    <ScrollViewer>
+        <Grid Margin="10">
+            <StackPanel>
+
+                <Expander Header="List of users" Margin="10" Background="WhiteSmoke">
+
+                    <Grid Margin="10">
+                        <ListView Margin="10" ItemsSource="{Binding ListOfUsers}" HorizontalContentAlignment="Stretch">
+                            <ListView.View>
+                                <GridView >
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Full name" DisplayMemberBinding="{Binding FullName}" Width="Auto"/>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Email"  DisplayMemberBinding="{Binding Email}" Width="Auto"/>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="User role name"  DisplayMemberBinding="{Binding UserRole.Name}" Width="Auto"/>
+                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Fired date"  DisplayMemberBinding="{Binding FiredDate}" Width="Auto"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+
+                </Expander>
+
+
+                <Expander Header="Generate new contract" Margin="10" Background="WhiteSmoke">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Margin="10" >Select user:</Label>
+                        <ComboBox Margin="10" Grid.Column="1" SelectedValue="{Binding Path=SelectedUserInTeam}" 
+                                  ItemsSource="{Binding Path=UserInTeam}" DisplayMemberPath="FullNameAndNameUserRole"/>
+
+                        <Label Margin="10" Grid.Row="1">Fired date:</Label>
+                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FiredDate}" Margin="10"/>
+
+                        <Button Margin="10" Grid.Row="4" Grid.Column="1" 
+                                Command="{Binding GenerateContractButton}" IsEnabled="{Binding IsEnabledGenerateContractButton}">Generate contract</Button>
+
+                    </Grid>
+
+                </Expander>
+                
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+
 </UserControl>
