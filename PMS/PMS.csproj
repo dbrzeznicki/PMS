@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -58,11 +61,26 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.2.920, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.0.1.920, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.0.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
@@ -108,26 +126,15 @@
     </ApplicationDefinition>
     <Compile Include="DAL\PMSContext.cs" />
     <Compile Include="DAL\PMSInitializer.cs" />
-    <Compile Include="Migrations\202003110953247_edit_subtask.cs" />
-    <Compile Include="Migrations\202003110953247_edit_subtask.Designer.cs">
-      <DependentUpon>202003110953247_edit_subtask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121423308_whoCreated-subtask.cs" />
-    <Compile Include="Migrations\202003121423308_whoCreated-subtask.Designer.cs">
-      <DependentUpon>202003121423308_whoCreated-subtask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003191432157_recentActivity.cs" />
-    <Compile Include="Migrations\202003191432157_recentActivity.Designer.cs">
-      <DependentUpon>202003191432157_recentActivity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004091140179_liczbaDniZUrlopuUsunieta.cs" />
-    <Compile Include="Migrations\202004091140179_liczbaDniZUrlopuUsunieta.Designer.cs">
-      <DependentUpon>202004091140179_liczbaDniZUrlopuUsunieta.cs</DependentUpon>
+    <Compile Include="Migrations\202004151410266_payoutBonus.cs" />
+    <Compile Include="Migrations\202004151410266_payoutBonus.Designer.cs">
+      <DependentUpon>202004151410266_payoutBonus.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\MainTask.cs" />
+    <Compile Include="Model\PayoutBonus.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\ProjectStatus.cs" />
     <Compile Include="Model\RecentActivity.cs" />
@@ -374,17 +381,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202003110953247_edit_subtask.resx">
-      <DependentUpon>202003110953247_edit_subtask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121423308_whoCreated-subtask.resx">
-      <DependentUpon>202003121423308_whoCreated-subtask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003191432157_recentActivity.resx">
-      <DependentUpon>202003191432157_recentActivity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004091140179_liczbaDniZUrlopuUsunieta.resx">
-      <DependentUpon>202004091140179_liczbaDniZUrlopuUsunieta.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004151410266_payoutBonus.resx">
+      <DependentUpon>202004151410266_payoutBonus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

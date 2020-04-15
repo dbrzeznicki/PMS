@@ -51,7 +51,8 @@ namespace PMS.Model
         public virtual Team Team { get; set; }
         public virtual ICollection<Vacation> Vacations { get; set; }
         public virtual ICollection<Subtask> Subtasks { get; set; }
-        public virtual ICollection<Subtask> Articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<PayoutBonus> PayoutBonus { get; set; }
 
         public string FullResidenceAdress
         {

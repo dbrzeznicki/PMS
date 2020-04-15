@@ -1,4 +1,5 @@
-﻿using PMS.DAL;
+﻿using NPOI.XWPF.UserModel;
+using PMS.DAL;
 using PMS.Model;
 using PMS.ViewModel;
 using Prism.Commands;
@@ -6,6 +7,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -150,9 +152,55 @@ namespace PMS
             SelectedUserInTeam = null;
             FiredDate = DateTime.Now;
             //tutaj obsługe worda - tworzenie nowej umowy
+            CreateWordContract();
+
 
             ErrorMessage er = new ErrorMessage("Generate contract successfully!");
             er.ShowDialog();
+        }
+
+
+        private void CreateWordContract ()
+        {
+
+            /*XWPFDocument doc = new XWPFDocument();
+
+            XWPFParagraph para1 = doc.CreateParagraph();
+
+            para1.Alignment = ParagraphAlignment.LEFT;
+            XWPFRun run1 = para1.CreateRun();
+            run1.FontSize = 11;
+            run1.SetText(".................... \n (pieczątka firmy)");
+
+            XWPFParagraph para2 = doc.CreateParagraph();
+            para2.Alignment = ParagraphAlignment.RIGHT;
+            XWPFRun run2 = para2.CreateRun();
+            run2.FontSize = 11;
+            run2.SetText(".................... \n (miejscowość i data)");
+
+            XWPFParagraph para3 = doc.CreateParagraph();
+            para3.Alignment = ParagraphAlignment.CENTER;
+            XWPFRun run3 = para3.CreateRun();
+            run3.FontSize = 14;
+            run3.SetText("UMOWA O PRACĘ");
+
+            XWPFParagraph para4 = doc.CreateParagraph();
+            para4.Alignment = ParagraphAlignment.LEFT;
+            XWPFRun run4 = para4.CreateRun();
+            run4.FontSize = 11;
+            run4.SetText("zawarta w dniu ................ pomiędzy: \n" +
+                ".................................................. \n" +
+                "reprezentowanym przez ............................ \n" +
+                "a ................................................ \n" +
+                "zamieszkała/ym ................................... \n" +
+                "na okres od .................. do ................ \n");*/
+
+
+
+
+            //FileStream file = File.OpenWrite("TextStyle.docx");
+
+            System.Diagnostics.Process.Start("UMOWA_WZOR.docx");
         }
     }
 }

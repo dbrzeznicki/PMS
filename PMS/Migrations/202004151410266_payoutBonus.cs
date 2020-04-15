@@ -3,7 +3,7 @@ namespace PMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class edit_subtask : DbMigration
+    public partial class payoutBonus : DbMigration
     {
         public override void Up()
         {
@@ -56,6 +56,19 @@ namespace PMS.Migrations
                 .Index(t => t.UserRoleID);
             
             CreateTable(
+                "dbo.PayoutBonus",
+                c => new
+                    {
+                        PayoutBonusID = c.Int(nullable: false, identity: true),
+                        UserID = c.Int(nullable: false),
+                        Month = c.String(),
+                        Value = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.PayoutBonusID)
+                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .Index(t => t.UserID);
+            
+            CreateTable(
                 "dbo.Subtasks",
                 c => new
                     {
@@ -63,25 +76,20 @@ namespace PMS.Migrations
                         SubtaskStatusID = c.Int(nullable: false),
                         MainTaskID = c.Int(),
                         UserID = c.Int(nullable: false),
+                        WhoCreated = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
                         Priority = c.String(),
                         StartTime = c.DateTime(nullable: false),
                         EndTime = c.DateTime(nullable: false),
-                        User_UserID = c.Int(),
-                        User_UserID1 = c.Int(),
                     })
                 .PrimaryKey(t => t.SubtaskID)
                 .ForeignKey("dbo.MainTasks", t => t.MainTaskID)
                 .ForeignKey("dbo.SubtaskStatus", t => t.SubtaskStatusID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.User_UserID)
-                .ForeignKey("dbo.Users", t => t.User_UserID1)
                 .Index(t => t.MainTaskID)
                 .Index(t => t.SubtaskStatusID)
-                .Index(t => t.UserID)
-                .Index(t => t.User_UserID)
-                .Index(t => t.User_UserID1);
+                .Index(t => t.UserID);
             
             CreateTable(
                 "dbo.MainTasks",
@@ -162,6 +170,19 @@ namespace PMS.Migrations
                 .PrimaryKey(t => t.TeamID);
             
             CreateTable(
+                "dbo.RecentActivities",
+                c => new
+                    {
+                        RecentActivityID = c.Int(nullable: false, identity: true),
+                        Description = c.String(),
+                        DateAdded = c.DateTime(nullable: false),
+                        TeamID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.RecentActivityID)
+                .ForeignKey("dbo.Teams", t => t.TeamID, cascadeDelete: true)
+                .Index(t => t.TeamID);
+            
+            CreateTable(
                 "dbo.SubtaskStatus",
                 c => new
                     {
@@ -188,7 +209,6 @@ namespace PMS.Migrations
                         VacationTypeID = c.Int(nullable: false),
                         StartVacation = c.DateTime(nullable: false),
                         EndVacation = c.DateTime(nullable: false),
-                        NumberOfDays = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.VacationID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
@@ -205,68 +225,52 @@ namespace PMS.Migrations
                     })
                 .PrimaryKey(t => t.VacationTypeID);
             
-            CreateTable(
-                "dbo.RecentActivities",
-                c => new
-                    {
-                        RecentActivityID = c.Int(nullable: false, identity: true),
-                        Description = c.String(),
-                        DateAdded = c.DateTime(nullable: false),
-                        ProjectName = c.String(),
-                        SubtaskName = c.String(),
-                        WhoAdded_UserID = c.Int(),
-                    })
-                .PrimaryKey(t => t.RecentActivityID)
-                .ForeignKey("dbo.Users", t => t.WhoAdded_UserID)
-                .Index(t => t.WhoAdded_UserID);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.RecentActivities", "WhoAdded_UserID", "dbo.Users");
             DropForeignKey("dbo.Articles", "UserID", "dbo.Users");
             DropForeignKey("dbo.Vacations", "VacationTypeID", "dbo.VacationTypes");
             DropForeignKey("dbo.Vacations", "UserID", "dbo.Users");
             DropForeignKey("dbo.Users", "UserRoleID", "dbo.UserRoles");
             DropForeignKey("dbo.Users", "TeamID", "dbo.Teams");
-            DropForeignKey("dbo.Subtasks", "User_UserID1", "dbo.Users");
-            DropForeignKey("dbo.Subtasks", "User_UserID", "dbo.Users");
             DropForeignKey("dbo.Subtasks", "UserID", "dbo.Users");
             DropForeignKey("dbo.Subtasks", "SubtaskStatusID", "dbo.SubtaskStatus");
             DropForeignKey("dbo.Subtasks", "MainTaskID", "dbo.MainTasks");
             DropForeignKey("dbo.MainTasks", "ProjectID", "dbo.Projects");
             DropForeignKey("dbo.Projects", "TeamID", "dbo.Teams");
+            DropForeignKey("dbo.RecentActivities", "TeamID", "dbo.Teams");
             DropForeignKey("dbo.Projects", "ProjectStatusID", "dbo.ProjectStatus");
             DropForeignKey("dbo.Projects", "ClientID", "dbo.Clients");
             DropForeignKey("dbo.MainTasks", "MainTask_MainTaskID", "dbo.MainTasks");
-            DropIndex("dbo.RecentActivities", new[] { "WhoAdded_UserID" });
+            DropForeignKey("dbo.PayoutBonus", "UserID", "dbo.Users");
             DropIndex("dbo.Articles", new[] { "UserID" });
             DropIndex("dbo.Vacations", new[] { "VacationTypeID" });
             DropIndex("dbo.Vacations", new[] { "UserID" });
             DropIndex("dbo.Users", new[] { "UserRoleID" });
             DropIndex("dbo.Users", new[] { "TeamID" });
-            DropIndex("dbo.Subtasks", new[] { "User_UserID1" });
-            DropIndex("dbo.Subtasks", new[] { "User_UserID" });
             DropIndex("dbo.Subtasks", new[] { "UserID" });
             DropIndex("dbo.Subtasks", new[] { "SubtaskStatusID" });
             DropIndex("dbo.Subtasks", new[] { "MainTaskID" });
             DropIndex("dbo.MainTasks", new[] { "ProjectID" });
             DropIndex("dbo.Projects", new[] { "TeamID" });
+            DropIndex("dbo.RecentActivities", new[] { "TeamID" });
             DropIndex("dbo.Projects", new[] { "ProjectStatusID" });
             DropIndex("dbo.Projects", new[] { "ClientID" });
             DropIndex("dbo.MainTasks", new[] { "MainTask_MainTaskID" });
-            DropTable("dbo.RecentActivities");
+            DropIndex("dbo.PayoutBonus", new[] { "UserID" });
             DropTable("dbo.VacationTypes");
             DropTable("dbo.Vacations");
             DropTable("dbo.UserRoles");
             DropTable("dbo.SubtaskStatus");
+            DropTable("dbo.RecentActivities");
             DropTable("dbo.Teams");
             DropTable("dbo.ProjectStatus");
             DropTable("dbo.Clients");
             DropTable("dbo.Projects");
             DropTable("dbo.MainTasks");
             DropTable("dbo.Subtasks");
+            DropTable("dbo.PayoutBonus");
             DropTable("dbo.Users");
             DropTable("dbo.Articles");
         }
