@@ -4,6 +4,7 @@ using PMS.Model;
 using PMS.ViewModel;
 using Prism.Commands;
 using Prism.Mvvm;
+using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,12 +30,22 @@ namespace PMS
         private DateTime _FiredDate = DateTime.Now;
         private bool _IsEnabledGenerateContractButton = false;
 
+        private ObservableCollection<User> _UserInTeamPayout;
+        private User _SelectedUserInTeamPayout = null;
+        private List<string> _Months;
+        private string _SelectedMonth = "January";
+        private DateTime _GrantedBonus = DateTime.Now;
+        private double _BonusAmount = 0;
+        private bool _IsEnabledAddBonusButton = false;
+
         #endregion
 
 
         #region command
 
         public ICommand GenerateContractButton { get; set; }
+        public ICommand AddBonusButton { get; set; }
+        public ICommand GeneratePayoutsListButton { get; set; }
 
         #endregion
 
@@ -44,6 +55,8 @@ namespace PMS
         public ContractsManagerViewModel()
         {
             GenerateContractButton = new DelegateCommand(GenerateContract);
+            AddBonusButton = new DelegateCommand(AddBonus);
+            GeneratePayoutsListButton = new DelegateCommand(GeneratePayoutsList);
         }
 
         #endregion
@@ -137,6 +150,109 @@ namespace PMS
         }
 
 
+        public ObservableCollection<User> UserInTeamPayout
+        {
+            get
+            {
+                if (_UserInTeamPayout == null)
+                {
+                    _UserInTeamPayout = new ObservableCollection<User>(dbContext.User.Where(x => x.TeamID == Global.user.TeamID));
+                }
+                return _UserInTeamPayout;
+            }
+            set
+            {
+                _UserInTeamPayout = value;
+                RaisePropertyChanged("UserInTeamPayout");
+            }
+        }
+
+        public User SelectedUserInTeamPayout
+        {
+            get
+            {
+                return _SelectedUserInTeamPayout;
+            }
+            set
+            {
+                _SelectedUserInTeamPayout = value;
+
+                RaisePropertyChanged("SelectedUserInTeamPayout");
+                RaisePropertyChanged("IsEnabledAddBonusButton");
+            }
+        }
+
+        public List<string> Months
+        {
+            get
+            {
+                _Months = new List<string>() { "January", "February", "March", "April", "May", "June", "July", "August", "Semptember", "October", "November", "December" };
+                _SelectedMonth = "January";
+                return _Months;
+            }
+            set
+            {
+                _Months = value;
+                RaisePropertyChanged("Months");
+            }
+        }
+
+        public string SelectedMonth
+        {
+            get
+            {
+                return _SelectedMonth;
+            }
+            set
+            {
+                _SelectedMonth = value;
+                RaisePropertyChanged("SelectedMonth");
+            }
+        }
+
+        public double BonusAmount
+        {
+            get
+            {
+                return _BonusAmount;
+            }
+            set
+            {
+                _BonusAmount = value;
+                RaisePropertyChanged("BonusAmount");
+            }
+        }
+
+        public DateTime GrantedBonus
+        {
+            get
+            {
+                return _GrantedBonus;
+            }
+            set
+            {
+                _GrantedBonus = value;
+                RaisePropertyChanged("GrantedBonus");
+            }
+        }
+
+        public bool IsEnabledAddBonusButton
+        {
+            get
+            {
+                if (SelectedUserInTeamPayout != null )
+                    _IsEnabledAddBonusButton = true;
+                else
+                    _IsEnabledAddBonusButton = false;
+
+                return _IsEnabledAddBonusButton;
+            }
+            set
+            {
+                _IsEnabledAddBonusButton = value;
+                RaisePropertyChanged("IsEnabledAddBonusButton");
+            }
+        }
         #endregion
 
 
@@ -160,47 +276,101 @@ namespace PMS
         }
 
 
-        private void CreateWordContract ()
+        private void CreateWordContract()
         {
-
-            /*XWPFDocument doc = new XWPFDocument();
-
-            XWPFParagraph para1 = doc.CreateParagraph();
-
-            para1.Alignment = ParagraphAlignment.LEFT;
-            XWPFRun run1 = para1.CreateRun();
-            run1.FontSize = 11;
-            run1.SetText(".................... \n (pieczątka firmy)");
-
-            XWPFParagraph para2 = doc.CreateParagraph();
-            para2.Alignment = ParagraphAlignment.RIGHT;
-            XWPFRun run2 = para2.CreateRun();
-            run2.FontSize = 11;
-            run2.SetText(".................... \n (miejscowość i data)");
-
-            XWPFParagraph para3 = doc.CreateParagraph();
-            para3.Alignment = ParagraphAlignment.CENTER;
-            XWPFRun run3 = para3.CreateRun();
-            run3.FontSize = 14;
-            run3.SetText("UMOWA O PRACĘ");
-
-            XWPFParagraph para4 = doc.CreateParagraph();
-            para4.Alignment = ParagraphAlignment.LEFT;
-            XWPFRun run4 = para4.CreateRun();
-            run4.FontSize = 11;
-            run4.SetText("zawarta w dniu ................ pomiędzy: \n" +
-                ".................................................. \n" +
-                "reprezentowanym przez ............................ \n" +
-                "a ................................................ \n" +
-                "zamieszkała/ym ................................... \n" +
-                "na okres od .................. do ................ \n");*/
-
-
-
-
-            //FileStream file = File.OpenWrite("TextStyle.docx");
-
             System.Diagnostics.Process.Start("UMOWA_WZOR.docx");
+        }
+
+        private void GeneratePayoutsList()
+        {
+            
+            Workbook workbook = new Workbook();
+            Worksheet sheet = workbook.Worksheets[0];
+            
+            sheet.Name = "Payout bonus";
+
+            sheet.Range["A1"].Text = "User";
+            sheet.Range["B1"].Text = "Salary";
+            sheet.Range["C1"].Text = "Payout bonus";
+            sheet.Range["D1"].Text = "Salary + Payout bonus";
+
+            for (int i = 0; i < UserInTeamPayout.Count; i++)
+            {
+                double bonus = 0;
+                int cell = 2 + i;
+
+                sheet.Range["A" + cell].Text = UserInTeamPayout[i].FullName;
+                sheet.Range["B" + cell].Text = UserInTeamPayout[i].Salary.ToString();
+
+
+                User user = dbContext.User.Find(UserInTeamPayout[i].UserID);
+
+                List<PayoutBonus> pbtmp = new List<PayoutBonus>(dbContext.PayoutBonus.Where(x => x.UserID == user.UserID));
+
+                List<PayoutBonus> pb = new List<PayoutBonus>();
+                
+                if (pbtmp.Count > 0)
+                    foreach(var tmp in pbtmp)
+                    {
+                        string monthString = tmp.DateOfGrantiedBonuses.ToString("MMMM");
+                        if (monthString == SelectedMonth && tmp.DateOfGrantiedBonuses.Year == DateTime.Now.Year)
+                        {
+                            pb.Add(tmp);
+                        }
+                    }
+
+
+                if (pb.Count == 0)
+                    sheet.Range["C" + cell].Text = "0";
+                else
+                {
+                    bonus = 0;
+                    foreach (var tmp in pb)
+                    {
+                        bonus += tmp.Value;
+                    }
+                    sheet.Range["C" + cell].Text = bonus.ToString();
+                }
+
+                double BandD = UserInTeamPayout[i].Salary + bonus;
+                sheet.Range["D" + cell].Text = BandD.ToString();
+            }
+
+
+            //sheet.Range["A7"].NumberValue = 3.1415926;
+
+
+
+            string title = DateTime.Now.ToString("MMMMddHHmmss") + ".xlsx";
+            workbook.SaveToFile(title, ExcelVersion.Version2013);
+            System.Diagnostics.Process.Start(title);
+
+        }
+
+        private void AddBonus()
+        {
+            ManagerValidation MV = new ManagerValidation();
+            bool correctForm = MV.BonusAmountValidation(BonusAmount);
+
+            if (correctForm)
+            {
+                PayoutBonus payoutBonus = new PayoutBonus()
+                {
+                    DateOfGrantiedBonuses = GrantedBonus,
+                    Value = BonusAmount,
+                    User = SelectedUserInTeamPayout
+                };
+
+                dbContext.PayoutBonus.Add(payoutBonus);
+                dbContext.SaveChanges();
+
+                GrantedBonus = DateTime.Now;
+                BonusAmount = 0;
+
+                ErrorMessage er = new ErrorMessage("Add payout bonus!");
+                er.ShowDialog();
+            }
+
         }
     }
 }

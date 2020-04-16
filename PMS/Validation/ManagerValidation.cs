@@ -355,5 +355,28 @@ namespace PMS
             else
                 return false;
         }
+
+
+        bool BonusAmountValidae(double bonusAmount)
+        {
+
+            if (bonusAmount > 0)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect bonus amount! The salary must be greater than 0.");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+
+        public bool BonusAmountValidation(double bonusAmount)
+        {
+            if (BonusAmountValidae(bonusAmount))
+                return true;
+            else
+                return false;
+        }
     }
 }

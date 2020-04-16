@@ -16,7 +16,7 @@ namespace PMS.Model
         [ForeignKey("User")]
         public int UserID { get; set; }
 
-        public string Month { get; set; }
+        public DateTime DateOfGrantiedBonuses { get; set; }
         public double Value { get; set; }
 
         public virtual User User { get; set; }

@@ -68,6 +68,51 @@
                     </Grid>
 
                 </Expander>
+
+
+                <Expander Header="Payouts" Margin="10" Background="WhiteSmoke">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Margin="10" >Select user:</Label>
+                        <ComboBox Margin="10" Grid.Column="1" SelectedValue="{Binding Path=SelectedUserInTeamPayout}" 
+                                  ItemsSource="{Binding Path=UserInTeamPayout}" DisplayMemberPath="FullNameAndNameUserRole"/>
+
+
+                        <Label Margin="10" Grid.Row="1">Date of granting bonuses:</Label>
+                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding GrantedBonus}" Margin="10"/>
+
+                       
+
+                        <Label Margin="10" Grid.Row="2">Bonus amount:</Label>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Path = BonusAmount}"/>
+                        
+                        <Button Margin="10" Grid.Row="3" Grid.Column="1" 
+                                Command="{Binding AddBonusButton}" IsEnabled="{Binding IsEnabledAddBonusButton}">Add bonus</Button>
+
+                        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                            <Label Margin="10"  Content="Select month: " />
+                            <ComboBox Margin="10"  SelectedValue="{Binding Path = SelectedMonth}" SelectedIndex="0" ItemsSource="{Binding Path = Months}" />
+                        </StackPanel>
+                       
+                        
+                        <Button Margin="10" Grid.Row="4" Grid.Column="1" 
+                                Command="{Binding GeneratePayoutsListButton}" >Generate payouts list</Button>
+
+                    </Grid>
+
+                </Expander>
                 
             </StackPanel>
         </Grid>
