@@ -24,7 +24,7 @@ namespace PMS
         #region command
 
         public ICommand OpenCocomoBasicButton { get; set; }
-
+        public ICommand OpenCocomoIntermediateButton { get; set; }
         #endregion
 
 
@@ -33,6 +33,7 @@ namespace PMS
         public ProjectManagerViewModel()
         {
             OpenCocomoBasicButton = new DelegateCommand(OpenCocomoBasic);
+            OpenCocomoIntermediateButton = new DelegateCommand(OpenCocomoIntermediate);
         }
 
         #endregion
@@ -40,10 +41,13 @@ namespace PMS
 
         private void OpenCocomoBasic()
         {
-            MessageBox.Show("ddddd");
             CocomoBasicView CBV = new CocomoBasicView();
-            //App.Current.MainWindow.Close();
-            //App.Current.MainWindow = CBV;
+            CBV.ShowDialog();
+        }
+
+        private void OpenCocomoIntermediate()
+        {
+            CocomoIntermediateView CBV = new CocomoIntermediateView();
             CBV.ShowDialog();
         }
 

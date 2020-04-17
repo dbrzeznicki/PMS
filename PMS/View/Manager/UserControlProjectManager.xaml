@@ -23,5 +23,6 @@
 
 
         <Button Margin="10" Command="{Binding OpenCocomoBasicButton}" >Cocomo basic</Button>
+        <Button Margin="10" Grid.Row="1" Command="{Binding OpenCocomoIntermediateButton}" >Cocomo intermediate</Button>
     </Grid>
 </UserControl>
