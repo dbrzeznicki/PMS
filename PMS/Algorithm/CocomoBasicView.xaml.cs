@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PMS
+namespace PMS.Algorithm
 {
     /// <summary>
-    /// Interaction logic for UserControlProjectManager.xaml
+    /// Interaction logic for BasicCocomoView.xaml
     /// </summary>
-    public partial class UserControlProjectManager : UserControl
+    public partial class CocomoBasicView : Window
     {
-        public UserControlProjectManager()
+        public CocomoBasicView()
         {
             InitializeComponent();
-            ProjectManagerViewModel vm = new ProjectManagerViewModel();
+            CocomoBasic vm = new CocomoBasic();
             this.DataContext = vm;
         }
     }
