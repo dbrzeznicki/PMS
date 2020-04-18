@@ -20,8 +20,11 @@ namespace PMS.Algorithm
         private double _Staff = 0;
         private double _Productivity = 0;
         private int _KLOC;
-        
-        private int model;
+
+        private List<string> _ProjectTypes;
+        private string _SelectedProjectType = "Organic";
+
+        private int model = 0;
         private double[,] table = new double[3, 4]
 {
             {2.4, 1.05, 2.5, 0.38}, // wiersz o indeksie 0
@@ -114,28 +117,46 @@ namespace PMS.Algorithm
                 RaisePropertyChanged("KLOC");
             }
         }
+
+        public List<string> ProjectTypes
+        {
+            get
+            {
+                _ProjectTypes = new List<string> { "Organic", "Semi-detached", "Embedded" };
+
+                return _ProjectTypes;
+            }
+        }
+
+        public string SelectedProjectType
+        {
+            get
+            {
+                if (_SelectedProjectType == "Organic")
+                    model = 0;
+                else if (_SelectedProjectType == "Semi-detached")
+                    model = 1;
+                else if (_SelectedProjectType == "Embedded")
+                    model = 2;
+
+                return _SelectedProjectType;
+            }
+            set
+            {
+                _SelectedProjectType = value;
+                RaisePropertyChanged("SelectedProjectType");
+            }
+        }
         #endregion
 
-
-
-        private void setModel ()
-        {
-            if (_KLOC >= 2 && _KLOC <= 50)
-                model = 0;
-            else if (_KLOC > 50 && _KLOC <= 300)
-                model = 1;
-            else if (_KLOC > 300)
-                model = 2;
-        }
 
         private void CocomoBasicA()
         {
             AlgorithmValidation AV = new AlgorithmValidation();
             bool correctForm = AV.CocomoBasicValidation(KLOC);
+
             if (correctForm)
             {
-                setModel();
-
                 Effort = table[model, 0] * Math.Pow(_KLOC, table[model, 1]);
                 Time = table[model, 2] * Math.Pow(_Effort, table[model, 3]);
                 Staff = _Effort / _Time;

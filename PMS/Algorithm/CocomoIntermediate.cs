@@ -23,8 +23,10 @@ namespace PMS.Algorithm
         private int _KLOC;
         private List<string>[] _Drivers = new List<string>[15];
         private string[] _SelectedDrivers = null;
+        private List<string> _ProjectTypes;
+        private string _SelectedProjectType = "Organic";
 
-        private int model;
+        private int model = 0;
         private int rating;
 
         private double[,] table = new double[3, 4]
@@ -184,19 +186,38 @@ namespace PMS.Algorithm
                 RaisePropertyChanged("SelectedDrivers");
             }
         }
+
+        public List<string> ProjectTypes
+        {
+            get
+            {
+                _ProjectTypes = new List<string> { "Organic", "Semi-detached", "Embedded" };
+
+                return _ProjectTypes;
+            }
+        }
+
+        public string SelectedProjectType
+        {
+            get
+            {
+                if (_SelectedProjectType == "Organic")
+                    model = 0;
+                else if (_SelectedProjectType == "Semi-detached")
+                    model = 1;
+                else if (_SelectedProjectType == "Embedded")
+                    model = 2;
+
+                return _SelectedProjectType;
+            }
+            set
+            {
+                _SelectedProjectType = value;
+                RaisePropertyChanged("SelectedProjectType");
+            }
+        }
         #endregion
 
-
-
-        private void setModel()
-        {
-            if (_KLOC >= 2 && _KLOC <= 50)
-                model = 0;
-            else if (_KLOC > 50 && _KLOC <= 300)
-                model = 1;
-            else if (_KLOC > 300)
-                model = 2;
-        }
 
         private void CocomoInermediateA()
         {
@@ -206,7 +227,6 @@ namespace PMS.Algorithm
             {
                 double EAF = 1;
                 setCostDrivers();
-                setModel();
 
                 for (int i = 0; i < 15; i++)
                     EAF += selectedCost[i];
