@@ -25,6 +25,11 @@ namespace PMS
 
         public ICommand OpenCocomoBasicButton { get; set; }
         public ICommand OpenCocomoIntermediateButton { get; set; }
+        public ICommand OpenCocomoDetailButton { get; set; }
+        public ICommand OpenFunctionPointButton { get; set; }
+        public ICommand OpenCocomoIIStageIButton { get; set; }
+        public ICommand OpenCocomoIIStageIIButton { get; set; }
+        public ICommand OpenCocomoIIStageIIIButton { get; set; }
         #endregion
 
 
@@ -34,6 +39,13 @@ namespace PMS
         {
             OpenCocomoBasicButton = new DelegateCommand(OpenCocomoBasic);
             OpenCocomoIntermediateButton = new DelegateCommand(OpenCocomoIntermediate);
+            OpenCocomoDetailButton = new DelegateCommand(OpenCocomoDetail);
+
+            //OpenFunctionPointButton = new DelegateCommand(OpenFunctionPoint);
+
+            //OpenCocomoIIStageIButton = new DelegateCommand(OpenCocomoIIStageI);
+            //OpenCocomoIIStageIIButton = new DelegateCommand(OpenCocomoIIStageII);
+            //OpenCocomoIIStageIIIButton = new DelegateCommand(OpenCocomoIIStageIII);
         }
 
         #endregion
@@ -50,6 +62,36 @@ namespace PMS
             CocomoIntermediateView CBV = new CocomoIntermediateView();
             CBV.ShowDialog();
         }
+
+        private void OpenCocomoDetail()
+        {
+            CocomoDetailView CDV = new CocomoDetailView();
+            CDV.ShowDialog();
+        }
+
+        //private void OpenFunctionPoint()
+        //{
+        //    FunctionPointView FPV = new FunctionPointView();
+        //    FPV.ShowDialog();
+        //}
+
+        //private void OpenCocomoIIStageI()
+        //{
+        //    CocomoIIStageIView CSV = new CocomoIIStageIView();
+        //    CBV.ShowDialog();
+        //}
+
+        //private void OpenCocomoIIStageII()
+        //{
+        //    CocomoIIStageIIView CSV = new CocomoIIStageIIView();
+        //    CBV.ShowDialog();
+        //}
+
+        //private void OpenCocomoIIStageIII()
+        //{
+        //    CocomoIIStageIIIView CSV = new CocomoIIStageIIIView();
+        //    CBV.ShowDialog();
+        //}
 
     }
 }

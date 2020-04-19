@@ -140,6 +140,10 @@
     <Compile Include="Algorithm\CocomoBasicView.xaml.cs">
       <DependentUpon>CocomoBasicView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Algorithm\CocomoDetail.cs" />
+    <Compile Include="Algorithm\CocomoDetailView.xaml.cs">
+      <DependentUpon>CocomoDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Algorithm\CocomoIntermediate.cs" />
     <Compile Include="Algorithm\CocomoIntermediateView.xaml.cs">
       <DependentUpon>CocomoIntermediateView.xaml</DependentUpon>
@@ -270,6 +274,10 @@
       <DependentUpon>UserControlWikiManager.xaml</DependentUpon>
     </Compile>
     <Page Include="Algorithm\CocomoBasicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Algorithm\CocomoDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

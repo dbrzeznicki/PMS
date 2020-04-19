@@ -22,7 +22,14 @@
         </Grid.ColumnDefinitions>
 
 
-        <Button Margin="10" Command="{Binding OpenCocomoBasicButton}" >Cocomo basic</Button>
+        <Button Margin="10" Command="{Binding OpenCocomoBasicButton}">Cocomo basic</Button>
         <Button Margin="10" Grid.Row="1" Command="{Binding OpenCocomoIntermediateButton}" >Cocomo intermediate</Button>
+        <Button Margin="10" Grid.Row="2" Command="{Binding OpenCocomoDetailButton}">Cocomo detail</Button>
+
+        <Button Margin="10" Grid.Row="3" Command="{Binding OpenFunctionPointButton}">Function point method</Button>
+
+        <Button Margin="10" Grid.Row="4" Command="{Binding OpenCocomoIIStageIButton}">Cocomo II Stage I</Button>
+        <Button Margin="10" Grid.Row="5" Command="{Binding OpenCocomoIIStageIIButton}">Cocomo II Stage II</Button>
+        <Button Margin="10" Grid.Row="6" Command="{Binding OpenCocomoIIStageIIIButton}">Cocomo II Stage III</Button>
     </Grid>
 </UserControl>
