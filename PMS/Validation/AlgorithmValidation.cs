@@ -22,7 +22,29 @@ namespace PMS.Validation
             }
         }
 
+        /*bool NumberOfElementsValidatin(int[] NumberOfElements)
+        {
+            int tmp = 0;
+            for(int i=0; i < 5; i++)
+            {
+                if (Regex.IsMatch(NumberOfElements[i].ToString(), @"[0-9]"))
+                    tmp = 0;
+                else
+                {
+                    tmp = 1;
+                    break;
+                }
+            }
 
+            if (tmp == 0)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect number of elements. Value must be > 0.");
+                er.ShowDialog();
+                return false;
+            }
+        }*/
 
         public bool CocomoBasicValidation(int KLOC)
         {
@@ -33,5 +55,12 @@ namespace PMS.Validation
         }
 
 
+        //public bool FunctionPointValidation(int[] NumberOfElements)
+        //{
+        //    if (NumberOfElementsValidatin(NumberOfElements))
+        //        return true;
+        //    else
+        //        return false;
+        //}
     }
 }

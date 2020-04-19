@@ -104,7 +104,7 @@ namespace PMS.Algorithm
 
         public CocomoDetail()
         {
-            CocomoIntermediateButton = new DelegateCommand(CocomoInermediateA);
+            CocomoIntermediateButton = new DelegateCommand(CocomoDetailA);
         }
 
         #endregion
@@ -301,7 +301,7 @@ namespace PMS.Algorithm
         #endregion
 
 
-        private void CocomoInermediateA()
+        private void CocomoDetailA()
         {
             AlgorithmValidation AV = new AlgorithmValidation();
             bool correctForm = AV.CocomoBasicValidation(KLOC);

@@ -148,6 +148,10 @@
     <Compile Include="Algorithm\CocomoIntermediateView.xaml.cs">
       <DependentUpon>CocomoIntermediateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Algorithm\FunctionPointMethod.cs" />
+    <Compile Include="Algorithm\FunctionPointMethodView.xaml.cs">
+      <DependentUpon>FunctionPointMethodView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\PMSContext.cs" />
     <Compile Include="DAL\PMSInitializer.cs" />
     <Compile Include="Migrations\202004151410266_payoutBonus.cs" />
@@ -282,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Algorithm\CocomoIntermediateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Algorithm\FunctionPointMethodView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
