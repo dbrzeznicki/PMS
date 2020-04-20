@@ -144,6 +144,10 @@
     <Compile Include="Algorithm\CocomoDetailView.xaml.cs">
       <DependentUpon>CocomoDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Algorithm\CocomoIIStageI.cs" />
+    <Compile Include="Algorithm\CocomoIIStageIView.xaml.cs">
+      <DependentUpon>CocomoIIStageIView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Algorithm\CocomoIntermediate.cs" />
     <Compile Include="Algorithm\CocomoIntermediateView.xaml.cs">
       <DependentUpon>CocomoIntermediateView.xaml</DependentUpon>
@@ -282,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Algorithm\CocomoDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Algorithm\CocomoIIStageIView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

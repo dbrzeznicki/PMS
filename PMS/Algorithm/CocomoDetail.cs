@@ -93,9 +93,9 @@ namespace PMS.Algorithm
         #endregion
 
 
-    #region command
+        #region command
 
-    public ICommand CocomoIntermediateButton { get; set; }
+        public ICommand CocomoIntermediateButton { get; set; }
 
         #endregion
 
@@ -230,16 +230,16 @@ namespace PMS.Algorithm
         {
             get
             {
-                if(model==0)
+                if (model == 0)
                 {
                     _SizesProjectDetail = new List<string> { "Small", "Medium" };
                     SelectedSizesProjectDetail = "Small";
-                }   
+                }
                 else if (model == 1)
                 {
                     _SizesProjectDetail = new List<string> { "Medium", "Large" };
                     SelectedSizesProjectDetail = "Medium";
-                }   
+                }
                 else if (model == 2)
                 {
                     _SizesProjectDetail = new List<string> { "Large", "Extra Large" };
@@ -319,7 +319,7 @@ namespace PMS.Algorithm
 
                 PhaseWiseDistributionOfEffort = "";
 
-                for (int i=0; i<5; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     PhaseWiseDistributionOfEffort += name[i] + " phase = ";
                     double tmp = Math.Round(Effort * costDetail1[size, i], 2);
