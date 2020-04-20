@@ -44,7 +44,7 @@ namespace PMS
             OpenFunctionPointButton = new DelegateCommand(OpenFunctionPoint);
 
             OpenCocomoIIStageIButton = new DelegateCommand(OpenCocomoIIStageI);
-            //OpenCocomoIIStageIIButton = new DelegateCommand(OpenCocomoIIStageII);
+            OpenCocomoIIStageIIButton = new DelegateCommand(OpenCocomoIIStageII);
             //OpenCocomoIIStageIIIButton = new DelegateCommand(OpenCocomoIIStageIII);
         }
 
@@ -81,11 +81,11 @@ namespace PMS
             CSV.ShowDialog();
         }
 
-        //private void OpenCocomoIIStageII()
-        //{
-        //    CocomoIIStageIIView CSV = new CocomoIIStageIIView();
-        //    CBV.ShowDialog();
-        //}
+        private void OpenCocomoIIStageII()
+        {
+            CocomoIIStageIIView CSV = new CocomoIIStageIIView();
+            CSV.ShowDialog();
+        }
 
         //private void OpenCocomoIIStageIII()
         //{
