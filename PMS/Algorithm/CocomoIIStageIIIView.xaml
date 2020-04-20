@@ -1,0 +1,145 @@
+﻿<Window x:Class="PMS.Algorithm.CocomoIIStageIIIView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PMS.Algorithm"
+        mc:Ignorable="d"
+        Title="CocomoIIStageIIIView" Height="450" Width="800">
+
+
+    <ScrollViewer>
+        <Grid>
+
+            <Border >
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Aqua" Offset="0.0"/>
+                        <GradientStop Color="MediumVioletRed" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Margin="10">KLOC:</Label>
+                <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = KLOC}"/>
+
+
+
+                <Label Margin="10" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20">Rate scaling factor</Label>
+
+                <Label Margin="10" Grid.Row="2">Precedentness:</Label>
+                <ComboBox Margin="10" Grid.Row="2" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[0]}" SelectedIndex="0" ItemsSource="{Binding RateScale[0]}" />
+
+                <Label Margin="10" Grid.Row="3">Development Flexibility:</Label>
+                <ComboBox Margin="10" Grid.Row="3" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[1]}" SelectedIndex="0" ItemsSource="{Binding RateScale[1]}" />
+
+                <Label Margin="10" Grid.Row="4">Risk Resolution:</Label>
+                <ComboBox Margin="10" Grid.Row="4" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[2]}" SelectedIndex="0" ItemsSource="{Binding RateScale[2]}" />
+
+                <Label Margin="10" Grid.Row="5">Team Cohesion:</Label>
+                <ComboBox Margin="10" Grid.Row="5" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[3]}" SelectedIndex="0" ItemsSource="{Binding RateScale[3]}" />
+
+                <Label Margin="10" Grid.Row="6">Process Maturity</Label>
+                <ComboBox Margin="10" Grid.Row="6" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[4]}" SelectedIndex="0" ItemsSource="{Binding RateScale[4]}" />
+
+
+                <Label Margin="10" Grid.Row="7" Grid.ColumnSpan="2" FontSize="20">Rate cost driver</Label>
+
+                <Label Margin="10" Grid.Row="8">RELY:</Label>
+                <ComboBox Margin="10" Grid.Row="8" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[0]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[0]}" />
+
+                <Label Margin="10" Grid.Row="9">DATA:</Label>
+                <ComboBox Margin="10" Grid.Row="9" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[1]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[1]}" />
+
+                <Label Margin="10" Grid.Row="10">CPLX:</Label>
+                <ComboBox Margin="10" Grid.Row="10" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[2]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[2]}" />
+
+                <Label Margin="10" Grid.Row="11">RUSE:</Label>
+                <ComboBox Margin="10" Grid.Row="11" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[3]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[3]}" />
+
+                <Label Margin="10" Grid.Row="12">DOCU:</Label>
+                <ComboBox Margin="10" Grid.Row="12" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[4]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[4]}" />
+
+                <Label Margin="10" Grid.Row="13">TIME:</Label>
+                <ComboBox Margin="10" Grid.Row="13" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[5]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[5]}" />
+
+                <Label Margin="10" Grid.Row="14">STOR:</Label>
+                <ComboBox Margin="10" Grid.Row="14" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[6]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[6]}" />
+
+                <Label Margin="10" Grid.Row="15">PVOL:</Label>
+                <ComboBox Margin="10" Grid.Row="15" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[7]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[7]}" />
+
+                <Label Margin="10" Grid.Row="16">ACAP:</Label>
+                <ComboBox Margin="10" Grid.Row="16" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[8]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[8]}" />
+
+                <Label Margin="10" Grid.Row="17">PCAP:</Label>
+                <ComboBox Margin="10" Grid.Row="17" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[9]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[9]}" />
+
+                <Label Margin="10" Grid.Row="18">PCON:</Label>
+                <ComboBox Margin="10" Grid.Row="18" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[10]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[10]}" />
+
+                <Label Margin="10" Grid.Row="19">AEXP:</Label>
+                <ComboBox Margin="10" Grid.Row="19" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[11]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[11]}" />
+
+                <Label Margin="10" Grid.Row="20">PEXP:</Label>
+                <ComboBox Margin="10" Grid.Row="20" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[12]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[12]}" />
+
+                <Label Margin="10" Grid.Row="21">LTEX:</Label>
+                <ComboBox Margin="10" Grid.Row="21" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[13]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[13]}" />
+
+                <Label Margin="10" Grid.Row="22">TOOL:</Label>
+                <ComboBox Margin="10" Grid.Row="22" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[14]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[14]}" />
+
+                <Label Margin="10" Grid.Row="23">SITE:</Label>
+                <ComboBox Margin="10" Grid.Row="23" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[15]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[15]}" />
+
+                <Label Margin="10" Grid.Row="24">SCED:</Label>
+                <ComboBox Margin="10" Grid.Row="24" Grid.Column="1" SelectedValue="{Binding SelectedRateCostDriver[16]}" SelectedIndex="0" ItemsSource="{Binding RateCostDriver[16]}" />
+
+                <Button Grid.Row="25" Grid.ColumnSpan="2" Margin="10" Command="{Binding CocomoIIStageIIButton}" >Calculate</Button>
+
+                <Label Margin="10" Grid.Row="26">Adjusted effort (person-month):</Label>
+                <Label Margin="10" Grid.Row="26" Grid.Column="1" Content="{Binding AdjustedPM}"/>
+
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+    
+    
+</Window>

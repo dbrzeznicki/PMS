@@ -45,7 +45,7 @@ namespace PMS
 
             OpenCocomoIIStageIButton = new DelegateCommand(OpenCocomoIIStageI);
             OpenCocomoIIStageIIButton = new DelegateCommand(OpenCocomoIIStageII);
-            //OpenCocomoIIStageIIIButton = new DelegateCommand(OpenCocomoIIStageIII);
+            OpenCocomoIIStageIIIButton = new DelegateCommand(OpenCocomoIIStageIII);
         }
 
         #endregion
@@ -87,11 +87,11 @@ namespace PMS
             CSV.ShowDialog();
         }
 
-        //private void OpenCocomoIIStageIII()
-        //{
-        //    CocomoIIStageIIIView CSV = new CocomoIIStageIIIView();
-        //    CBV.ShowDialog();
-        //}
+        private void OpenCocomoIIStageIII()
+        {
+            CocomoIIStageIIIView CSV = new CocomoIIStageIIIView();
+            CSV.ShowDialog();
+        }
 
     }
 }
