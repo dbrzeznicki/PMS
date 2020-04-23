@@ -3,10 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pdpcc="clr-namespace:DlhSoft.Windows.Controls.Pert;assembly=DlhSoft.ProjectData.PertChart.LightWPF.Controls"
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="CustomDependencyLineStroke" Color="Red"/>
+        <SolidColorBrush x:Key="CustomShapeStroke" Color="Red"/>
+
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+        </Style>
+
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid>
+
+            <StackPanel>
+                <!--<Button Click="CriticalPathButton" >
+                <TextBlock Text="Highlight critical path"/>
+            </Button>-->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="10" Grid.Column="0">Start project: </Label>
+                    <DatePicker Grid.Column="1" SelectedDate="{Binding StartProject}" Margin="10"/>
+                </Grid>
+
+
+
+                <ListView Margin="10" ItemsSource="{Binding PERTTaskList}" HorizontalContentAlignment="Stretch">
+                    <ListView.View>
+                        <GridView >
+                            
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Cost"  DisplayMemberBinding="{Binding Cost}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Pretask"  DisplayMemberBinding="{Binding StringPreTask}" Width="Auto"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+                <Button Margin="10" Command="{Binding CalculateButton}" >Calculate</Button>
+
+
+                <pdpcc:NetworkDiagramView x:Name="PertChartView" Items="{Binding items}">
+
+                </pdpcc:NetworkDiagramView>
+
+
+                <ListView Margin="10" ItemsSource="{Binding PERTTaskResult}" HorizontalContentAlignment="Stretch">
+                    <ListView.View>
+                        <GridView >
+
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="CC"  DisplayMemberBinding="{Binding CC}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="ES"  DisplayMemberBinding="{Binding ES}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="EF"  DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="LS"  DisplayMemberBinding="{Binding LS}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="LF"  DisplayMemberBinding="{Binding LF}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Slack"  DisplayMemberBinding="{Binding Slack}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="CS"  DisplayMemberBinding="{Binding CS}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Cost"  DisplayMemberBinding="{Binding Cost}" Width="Auto"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
