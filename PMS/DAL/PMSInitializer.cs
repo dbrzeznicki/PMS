@@ -142,7 +142,7 @@ namespace PMS.DAL
 
             var vacation = new List<Vacation>
                 {
-                    new Vacation() { VacationID=1, UserID=1 ,VacationTypeID=1,  StartVacation=new DateTime(2010, 11, 24), EndVacation=new DateTime(2010, 11, 30)},
+                    new Vacation() { VacationID=1, UserID=1 ,VacationTypeID=1,  StartVacation=new DateTime(2010, 11, 24), EndVacation=new DateTime(2020, 11, 30)},
                     new Vacation() { VacationID=2, UserID=2 ,VacationTypeID=1,  StartVacation=new DateTime(2011, 11, 11), EndVacation=new DateTime(2011, 11, 18)},
                     new Vacation() { VacationID=3, UserID=3 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 08, 05), EndVacation=new DateTime(2017, 08, 20)},
                     new Vacation() { VacationID=4, UserID=5 ,VacationTypeID=1,  StartVacation=new DateTime(2017, 12, 30), EndVacation=new DateTime(2018, 01, 10)},
@@ -191,15 +191,11 @@ namespace PMS.DAL
                     Cost=83500.00
                 },
 
-                new Project() { ProjectID=2, ClientID=1, ProjectStatusID=1, TeamID=1, Name="System zarządzania firmą",
+                new Project() { ProjectID=2, ClientID=2, ProjectStatusID=1, TeamID=1, Name="System zarządzania firmą",
                     StartTime=new DateTime(2012, 01, 10), EndTime=new DateTime(2012, 07, 20),
                     Cost=12000.00
                 },
 
-                    new Project() { ProjectID=3, ClientID=2, ProjectStatusID=1, TeamID=2, Name="System premiowy",
-                    StartTime=new DateTime(2011, 08, 02), EndTime=new DateTime(2012, 07, 21),
-                    Cost=40000.00
-                    },
                 };
 
             project.ForEach(p => context.Project.AddOrUpdate(p));
@@ -209,74 +205,113 @@ namespace PMS.DAL
             var mainTask = new List<MainTask>
                 {
                 //PROJECT 1
-                    new MainTask() { MainTaskID=1, ProjectID=1, Name="Prototype", Priority=1,
-                        StartTime=new DateTime(2011, 04, 10), EndTime=new DateTime(2011, 06, 01), Status=true,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=1, ProjectID=1, Name="1.Prototype", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 01), EarlyFinish=new DateTime(2020, 05, 04),
+                        LateStart=new DateTime(2020, 05, 01), LateFinish=new DateTime(2020, 05, 04), Effort = 3
+
                     },
-                    new MainTask() { MainTaskID=2, ProjectID=1, Name="Database", Priority=1,
-                        StartTime=new DateTime(2011, 06, 01), EndTime=new DateTime(2011, 08, 01), Status=true,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=2, ProjectID=1, Name="2.Database", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 05),
+                        LateStart=new DateTime(2020, 05, 08), LateFinish=new DateTime(2020, 05, 09), Effort = 1
+
                     },
-                    new MainTask() { MainTaskID=3, ProjectID=1, Name="Implementation", Priority=2,
-                        StartTime=new DateTime(2011, 08, 01), EndTime=new DateTime(2011, 10, 01), Status=true,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=3, ProjectID=1, Name="3.Implementation", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 05), EarlyFinish=new DateTime(2020, 05, 07),
+                        LateStart=new DateTime(2020, 05, 09), LateFinish=new DateTime(2020, 05, 10), Effort = 2
+
                     },
-                    new MainTask() { MainTaskID=4, ProjectID=1, Name="Testing", Priority=3,
-                        StartTime=new DateTime(2011, 10, 01), EndTime=new DateTime(2012, 01, 01), Status=true,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=4, ProjectID=1, Name="4.Testing", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 08), EarlyFinish=new DateTime(2020, 05, 11),
+                        LateStart=new DateTime(2020, 05, 10), LateFinish=new DateTime(2020, 05, 13), Effort = 3
+
                     },
+                    new MainTask() { MainTaskID=5, ProjectID=1, Name="5.Prototype", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 07),
+                        LateStart=new DateTime(2020, 05, 06), LateFinish=new DateTime(2020, 05, 09), Effort = 3
+
+                    },
+                    new MainTask() { MainTaskID=6, ProjectID=1, Name="6.Database", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 06),
+                        LateStart=new DateTime(2020, 05, 07), LateFinish=new DateTime(2020, 05, 09), Effort = 2
+
+                    },
+                    new MainTask() { MainTaskID=7, ProjectID=1, Name="7.Implementation", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 07), EarlyFinish=new DateTime(2020, 05, 09),
+                        LateStart=new DateTime(2020, 05, 09), LateFinish=new DateTime(2020, 05, 11), Effort = 2
+
+                    },
+                    new MainTask() { MainTaskID=8, ProjectID=1, Name="8.Testing", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 09),
+                        LateStart=new DateTime(2020, 05, 04), LateFinish=new DateTime(2020, 05, 09), Effort = 5
+
+                    },
+                    new MainTask() { MainTaskID=9, ProjectID=1, Name="9.Prototype", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 09), EarlyFinish=new DateTime(2020, 05, 10),
+                        LateStart=new DateTime(2020, 05, 09), LateFinish=new DateTime(2020, 05, 10), Effort = 1
+
+                    },
+                    new MainTask() { MainTaskID=10, ProjectID=1, Name="10.Database", Status=false, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 10), EarlyFinish=new DateTime(2020, 05, 14),
+                        LateStart=new DateTime(2020, 05, 10), LateFinish=new DateTime(2020, 05, 14), Effort = 4
+
+                    },
+                    new MainTask() { MainTaskID=11, ProjectID=1, Name="11.Implementation", Status=false, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
+                        LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
+                    },
+
+
 
                     //PROJECT 2
-                    new MainTask() { MainTaskID=5, ProjectID=2, Name="Prototype", Priority=1,
-                        StartTime=new DateTime(2012, 01, 11), EndTime=new DateTime(2012, 01, 20), Status=true,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=12, ProjectID=2, Name="Prototype", Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
+                        LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
+
                     },
-                    new MainTask() { MainTaskID=6, ProjectID=2, Name="Database", Priority=1,
-                        StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 02, 10), Status=true,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=13, ProjectID=2, Name="Database",  Status=true, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
+                        LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
+
                     },
-                    new MainTask() { MainTaskID=7, ProjectID=2, Name="Database 2", Priority=2,
-                        StartTime=new DateTime(2012, 01, 21), EndTime=new DateTime(2012, 04, 15), Status=false,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=14, ProjectID=2, Name="Database 2", Status=false, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
+                        LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
+
                     },
-                    new MainTask() { MainTaskID=8, ProjectID=2, Name="Implementation", Priority=3,
-                        StartTime=new DateTime(2012, 02, 12), EndTime=new DateTime(2012, 05, 22), Status=false,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=15, ProjectID=2, Name="Implementation", Status=false, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
+                        LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
+
                     },
-                    new MainTask() { MainTaskID=9, ProjectID=2, Name="Testing", Priority=3,
-                        StartTime=new DateTime(2012, 05, 25), EndTime=new DateTime(2012, 07, 20), Status=false,
-                        PrecedingMainTasks=null
+                    new MainTask() { MainTaskID=16, ProjectID=2, Name="Testing", Status=false, PrecedingMainTasks=null,
+                        EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
+                        LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
+
                     },
 
-                    //PROJECT 3
-                    new MainTask() { MainTaskID=10, ProjectID=3, Name="Prototype", Priority=1,
-                        StartTime=new DateTime(2011, 08, 04), EndTime=new DateTime(2011, 12, 21), Status=true,
-                        PrecedingMainTasks=null
-                    },
-                    new MainTask() { MainTaskID=11, ProjectID=3, Name="Implementation", Priority=1,
-                        StartTime=new DateTime(2011, 12, 25), EndTime=new DateTime(2012, 03, 21), Status=false,
-                        PrecedingMainTasks=null
-                    },
-                    new MainTask() { MainTaskID=12, ProjectID=3, Name="Testing", Priority=3,
-                        StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Status=false,
-                        PrecedingMainTasks=null
-                    }
+
                 };
 
             //Project 1
             mainTask[1].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
+            mainTask[4].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
+            mainTask[5].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
+            mainTask[7].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
+
             mainTask[2].PrecedingMainTasks = new List<MainTask> { mainTask[1] };
-            mainTask[3].PrecedingMainTasks = new List<MainTask> { mainTask[1], mainTask[2] };
+            mainTask[6].PrecedingMainTasks = new List<MainTask> { mainTask[4], mainTask[5] };
+            mainTask[8].PrecedingMainTasks = new List<MainTask> { mainTask[7] };
+
+            mainTask[3].PrecedingMainTasks = new List<MainTask> { mainTask[2], mainTask[6] };
+            mainTask[9].PrecedingMainTasks = new List<MainTask> { mainTask[8] };
+
+            mainTask[10].PrecedingMainTasks = new List<MainTask> { mainTask[3], mainTask[9] };
 
             //Project 2
             mainTask[5].PrecedingMainTasks = new List<MainTask> { mainTask[4] };
             mainTask[6].PrecedingMainTasks = new List<MainTask> { mainTask[4] };
             mainTask[7].PrecedingMainTasks = new List<MainTask> { mainTask[5], mainTask[6]};
             mainTask[8].PrecedingMainTasks = new List<MainTask> { mainTask[7]};
-
-            //Project 3
-            mainTask[10].PrecedingMainTasks = new List<MainTask> { mainTask[9] };
-            mainTask[11].PrecedingMainTasks = new List<MainTask> { mainTask[10] };
 
             mainTask.ForEach(mt => context.MainTask.AddOrUpdate(mt));
             context.SaveChanges();
@@ -339,30 +374,16 @@ namespace PMS.DAL
                     WhoCreated=2
                     },
 
-                    //PROJEKT 3, 3 main taski, zespol 2 (id user 3,6,7,8,9)
-                    new Subtask() { SubtaskID=14, MainTaskID=10, SubtaskStatusID=2,UserID=6, Description="subtask 14 do wykonania",
-                    Name="subtask 14", StartTime=new DateTime(2011, 08, 04), EndTime=new DateTime(2011, 12, 21), Priority = "High",
-                    WhoCreated=3
-                    },
-                    new Subtask() { SubtaskID=15, MainTaskID=11, SubtaskStatusID=2,UserID=7, Description="subtask 15 do wykonania",
-                    Name="subtask 15", StartTime=new DateTime(2011, 12, 25), EndTime=new DateTime(2012, 03, 21), Priority = "Medium",
-                    WhoCreated=3
-                    },
-                    new Subtask() { SubtaskID=16, MainTaskID=12, SubtaskStatusID=2,UserID=8, Description="subtask 16 do wykonania",
-                    Name="subtask 16", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
-                    WhoCreated=3
-                    },
-
                     //zlecone przez pracownikow
-                    new Subtask() { SubtaskID=17, MainTaskID=null, SubtaskStatusID=1,UserID=4, Description="subtask 17 do wykonania",
+                    new Subtask() { SubtaskID=14, MainTaskID=null, SubtaskStatusID=1,UserID=4, Description="subtask 17 do wykonania",
                     Name="subtask 17", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=4
                     },
-                    new Subtask() { SubtaskID=18, MainTaskID=null, SubtaskStatusID=3,UserID=4, Description="subtask 18 do wykonania",
+                    new Subtask() { SubtaskID=15, MainTaskID=null, SubtaskStatusID=3,UserID=4, Description="subtask 18 do wykonania",
                     Name="subtask 18", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=4
                     },
-                    new Subtask() { SubtaskID=19, MainTaskID=null, SubtaskStatusID=2,UserID=4, Description="subtask 19 do wykonania",
+                    new Subtask() { SubtaskID=16, MainTaskID=null, SubtaskStatusID=2,UserID=4, Description="subtask 19 do wykonania",
                     Name="subtask 19", StartTime=new DateTime(2012, 03, 22), EndTime=new DateTime(2012, 07, 21), Priority = "Low",
                     WhoCreated=4
                     },

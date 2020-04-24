@@ -16,9 +16,11 @@ namespace PMS.Model
         public int ProjectID { get; set; }
         
         public string Name { get; set; }
-        public int Priority { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime EarlyStart { get; set; }
+        public DateTime EarlyFinish { get; set; }
+        public DateTime LateStart { get; set; }
+        public DateTime LateFinish { get; set; }
+        public int Effort { get; set; }
         public bool Status { get; set; }
         public List<MainTask> PrecedingMainTasks { get; set; }
 
