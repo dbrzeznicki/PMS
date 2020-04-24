@@ -54,7 +54,11 @@ namespace PMS.Algorithm
                 }
 
                 if (!error)
-                    throw new Exception("Cyclic dependency, algorithm stopped!");
+                {
+                    ErrorMessage er = new ErrorMessage("Cyclic dependency!");
+                    er.ShowDialog();
+                    return new List<PERTTask>();
+                }
             }
 
             tt.setMC(tasks);

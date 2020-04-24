@@ -23,75 +23,18 @@ namespace PMS
 
         #region command
 
-        public ICommand OpenCocomoBasicButton { get; set; }
-        public ICommand OpenCocomoIntermediateButton { get; set; }
-        public ICommand OpenCocomoDetailButton { get; set; }
-        public ICommand OpenFunctionPointButton { get; set; }
-        public ICommand OpenCocomoIIStageIButton { get; set; }
-        public ICommand OpenCocomoIIStageIIButton { get; set; }
-        public ICommand OpenCocomoIIStageIIIButton { get; set; }
+
+
         #endregion
 
 
         #region constructor
 
-        public ProjectManagerViewModel()
-        {
-            OpenCocomoBasicButton = new DelegateCommand(OpenCocomoBasic);
-            OpenCocomoIntermediateButton = new DelegateCommand(OpenCocomoIntermediate);
-            OpenCocomoDetailButton = new DelegateCommand(OpenCocomoDetail);
-
-            OpenFunctionPointButton = new DelegateCommand(OpenFunctionPoint);
-
-            OpenCocomoIIStageIButton = new DelegateCommand(OpenCocomoIIStageI);
-            OpenCocomoIIStageIIButton = new DelegateCommand(OpenCocomoIIStageII);
-            OpenCocomoIIStageIIIButton = new DelegateCommand(OpenCocomoIIStageIII);
-        }
 
         #endregion
 
 
-        private void OpenCocomoBasic()
-        {
-            CocomoBasicView CBV = new CocomoBasicView();
-            CBV.ShowDialog();
-        }
-
-        private void OpenCocomoIntermediate()
-        {
-            CocomoIntermediateView CBV = new CocomoIntermediateView();
-            CBV.ShowDialog();
-        }
-
-        private void OpenCocomoDetail()
-        {
-            CocomoDetailView CDV = new CocomoDetailView();
-            CDV.ShowDialog();
-        }
-
-        private void OpenFunctionPoint()
-        {
-            FunctionPointMethodView FPV = new FunctionPointMethodView();
-            FPV.ShowDialog();
-        }
-
-        private void OpenCocomoIIStageI()
-        {
-            CocomoIIStageIView CSV = new CocomoIIStageIView();
-            CSV.ShowDialog();
-        }
-
-        private void OpenCocomoIIStageII()
-        {
-            CocomoIIStageIIView CSV = new CocomoIIStageIIView();
-            CSV.ShowDialog();
-        }
-
-        private void OpenCocomoIIStageIII()
-        {
-            CocomoIIStageIIIView CSV = new CocomoIIStageIIIView();
-            CSV.ShowDialog();
-        }
+        
 
     }
 }

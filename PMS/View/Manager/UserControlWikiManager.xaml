@@ -80,7 +80,7 @@
                         <Label  Margin="10" Grid.Row="1">Description:</Label>
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Description}"/>
 
-                        <Button Margin="10" Name="AddArticleButton" Grid.Row="3" Grid.Column="1" Command="{Binding AddArticleButton}">Add article</Button>
+                        <Button Margin="10" Name="AddArticleButton" Grid.Row="2" Grid.Column="1" Command="{Binding AddArticleButton}">Add article</Button>
 
                     </Grid>
                 </Expander>

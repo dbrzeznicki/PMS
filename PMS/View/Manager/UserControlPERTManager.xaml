@@ -25,9 +25,7 @@
         <Grid>
 
             <StackPanel>
-                <!--<Button Click="CriticalPathButton" >
-                <TextBlock Text="Highlight critical path"/>
-            </Button>-->
+
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -38,7 +36,73 @@
                     <DatePicker Grid.Column="1" SelectedDate="{Binding StartProject}" Margin="10"/>
                 </Grid>
 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
+                    <Label  Margin="10" >Name:</Label>
+                    <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = Name}"/>
+                    <Label  Margin="10" Grid.Row="1">Cost:</Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Cost}"/>
+
+                    <Button Margin="10" Grid.Row="2" Grid.Column="1" Command="{Binding AddPERTTaskButton}">Add task</Button>
+
+                </Grid>
+        
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="0" Margin="10" Text="Select task where you add pretask: " VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Margin="10" ItemsSource="{Binding TaskWhereAddThePretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedTaskWhereAddThePretask}"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Select pretask: " VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding TaskWhichIsPretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedTaskWhichIsPretask}"/>
+                    
+                    <Button Margin="10" Grid.Row="2" Grid.Column="1" Command="{Binding AddPreTaskButton}">Add pretask</Button>
+
+                </Grid>
+
+                
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="0" Margin="10" Text="Select task where you remove pretask: " VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Margin="10" ItemsSource="{Binding TaskWhereRemoveThePretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedTaskWhereRemoveThePretask}"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Select pretask to remove: " VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding RemovePretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedRemovePretask}"/>
+
+                    <Button Margin="10" Grid.Row="2" Grid.Column="1" Command="{Binding RemovePreTaskButton}">Remove pretask</Button>
+
+                </Grid>
 
                 <ListView Margin="10" ItemsSource="{Binding PERTTaskList}" HorizontalContentAlignment="Stretch">
                     <ListView.View>
@@ -47,7 +111,15 @@
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Cost"  DisplayMemberBinding="{Binding Cost}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Pretask"  DisplayMemberBinding="{Binding StringPreTask}" Width="Auto"/>
-
+                            
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Remove task" Width="Auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Button Content="Remove" Margin="5" CommandParameter="{Binding Name}" Command="{Binding Path=DataContext.RemovePERTTaskButton, RelativeSource={RelativeSource AncestorType=ListView, Mode=FindAncestor}}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -56,10 +128,11 @@
                 <Button Margin="10" Command="{Binding CalculateButton}" >Calculate</Button>
 
 
-                <pdpcc:NetworkDiagramView x:Name="PertChartView" Items="{Binding items}">
+                <pdpcc:NetworkDiagramView x:Name="NetworkDiagramView" Items="{Binding items}">
 
                 </pdpcc:NetworkDiagramView>
 
+                <Button Click="CriticalPathButton" >Highlight critical path </Button>
 
                 <ListView Margin="10" ItemsSource="{Binding PERTTaskResult}" HorizontalContentAlignment="Stretch">
                     <ListView.View>
@@ -68,7 +141,7 @@
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="CC"  DisplayMemberBinding="{Binding CC}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="ES"  DisplayMemberBinding="{Binding ES}" Width="Auto"/>
-                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="EF"  DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="EF"  DisplayMemberBinding="{Binding EF}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="LS"  DisplayMemberBinding="{Binding LS}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="LF"  DisplayMemberBinding="{Binding LF}" Width="Auto"/>
                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Slack"  DisplayMemberBinding="{Binding Slack}" Width="Auto"/>
@@ -78,6 +151,36 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Button Margin="10" Command="{Binding OpenCocomoBasicButton}">Cocomo basic</Button>
+                    <Button Margin="10" Grid.Row="1" Command="{Binding OpenCocomoIntermediateButton}" >Cocomo intermediate</Button>
+                    <Button Margin="10" Grid.Row="2" Command="{Binding OpenCocomoDetailButton}">Cocomo detail</Button>
+
+                    <Button Margin="10" Grid.Row="3" Command="{Binding OpenFunctionPointButton}">Function point method</Button>
+
+                    <Button Margin="10" Grid.Row="4" Command="{Binding OpenCocomoIIStageIButton}">Cocomo II Stage I</Button>
+                    <Button Margin="10" Grid.Row="5" Command="{Binding OpenCocomoIIStageIIButton}">Cocomo II Stage II</Button>
+                    <Button Margin="10" Grid.Row="6" Command="{Binding OpenCocomoIIStageIIIButton}">Cocomo II Stage III</Button>
+                </Grid>
             </StackPanel>
         </Grid>
     </ScrollViewer>
