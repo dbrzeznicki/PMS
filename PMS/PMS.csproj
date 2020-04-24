@@ -176,6 +176,10 @@
     <Compile Include="Migrations\202004151823384_payoutBonusEdit.Designer.cs">
       <DependentUpon>202004151823384_payoutBonusEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241709307_addResourcesToProject.cs" />
+    <Compile Include="Migrations\202004241709307_addResourcesToProject.designer.cs">
+      <DependentUpon>202004241709307_addResourcesToProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
     <Compile Include="Model\Client.cs" />
@@ -185,6 +189,7 @@
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\ProjectStatus.cs" />
     <Compile Include="Model\RecentActivity.cs" />
+    <Compile Include="Model\Resources.cs" />
     <Compile Include="Model\Subtask.cs" />
     <Compile Include="Model\SubtaskStatus.cs" />
     <Compile Include="Model\Team.cs" />
@@ -462,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004151823384_payoutBonusEdit.resx">
       <DependentUpon>202004151823384_payoutBonusEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241709307_addResourcesToProject.resx">
+      <DependentUpon>202004241709307_addResourcesToProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

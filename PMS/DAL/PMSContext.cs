@@ -37,6 +37,7 @@ namespace PMS.DAL
         public DbSet<Article> Article { get; set; }
         public DbSet<RecentActivity> RecentActivity { get; set; }
         public DbSet<PayoutBonus> PayoutBonus { get; set; }
+        public DbSet<Resources> Resources { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

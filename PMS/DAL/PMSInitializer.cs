@@ -171,40 +171,35 @@ namespace PMS.DAL
             client.ForEach(c => context.Client.AddOrUpdate(c));
             context.SaveChanges();
 
+
+
+
+            var resources = new List<Resources>
+                {
+                    new Resources() { ResourcesID=1, Name="Visual Studio", Cost = 2200.30, ProjectID=1 },
+                    new Resources() { ResourcesID=2, Name="Meeting", Cost = 5500.00, ProjectID=1}
+                };
+
+            resources.ForEach(c => context.Resources.AddOrUpdate(c));
+            context.SaveChanges();
+
+
             var project = new List<Project>
                 {
                     new Project() { ProjectID=1, ClientID=1, ProjectStatusID=2, TeamID=1, Name="Online Shop Mix",
                     StartTime=new DateTime(2011, 04, 01), EndTime=new DateTime(2012, 01, 01),
-                    Cost=83500.00, Resources=new Dictionary<string, double> {
-                        {"Software", 5000.00},
-                        {"Prototype" , 4000.00},
-                        {"Testing", 4000.00},
-                        {"Maintenance", 10000.00},
-                        {"Implementation", 6000.00},
-                        {"Other", 3000.00} }
+                    Cost=83500.00
                 },
 
                 new Project() { ProjectID=2, ClientID=1, ProjectStatusID=1, TeamID=1, Name="System zarządzania firmą",
                     StartTime=new DateTime(2012, 01, 10), EndTime=new DateTime(2012, 07, 20),
-                    Cost=12000.00, Resources=new Dictionary<string, double> {
-                        {"Software", 10000.00},
-                        {"Prototype" , 10000.00},
-                        {"Testing", 15000.00},
-                        {"Maintenance", 25000.00},
-                        {"Implementation", 15000.00},
-                        {"Other", 30000.00} }
+                    Cost=12000.00
                 },
 
                     new Project() { ProjectID=3, ClientID=2, ProjectStatusID=1, TeamID=2, Name="System premiowy",
                     StartTime=new DateTime(2011, 08, 02), EndTime=new DateTime(2012, 07, 21),
-                    Cost=40000.00, Resources=new Dictionary<string, double> {
-                        {"Software", 3000.00},
-                        {"Prototype" , 3000.00},
-                        {"Testing", 6000.00},
-                        {"Maintenance", 6000.00},
-                        {"Implementation", 4000.00},
-                        {"Other", 3000.00} }
-                },
+                    Cost=40000.00
+                    },
                 };
 
             project.ForEach(p => context.Project.AddOrUpdate(p));

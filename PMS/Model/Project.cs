@@ -22,7 +22,6 @@ namespace PMS.Model
 
 
         public string Name { get; set; }
-        public Dictionary <string, double> Resources { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public double Cost { get; set; }
@@ -32,5 +31,6 @@ namespace PMS.Model
         public virtual Client Client { get; set; }
         public virtual ProjectStatus ProjectStatus { get; set; }
         public virtual Team Team { get; set; }
+        public virtual ICollection<Resources> Resources { get; set; }
     }
 }
