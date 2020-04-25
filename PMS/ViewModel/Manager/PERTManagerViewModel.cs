@@ -619,7 +619,6 @@ namespace PMS
                     //add first
 
                     NetworkDiagramItem itemStart = new NetworkDiagramItem { DisplayedText = "Start", Content = "Start" };
-
                     itemStart.Effort = TimeSpan.Zero;
                     itemStart.EarlyStart = StartProject;
                     itemStart.EarlyFinish = StartProject;
@@ -627,21 +626,12 @@ namespace PMS
                     itemStart.LateFinish = StartProject;
                     itemStart.Slack = TimeSpan.Zero;
                     itemStart.AssignmentsContent = "Tekst po najechaniu";
-
                     listItem.Add(itemStart);
 
-
-
-
-
                     //add last
-
                     int maxCS = PERTTaskResult.Max(x => x.CS);
                     PERTTask tmpPertTask = PERTTaskResult.Where(x => x.CS == maxCS).FirstOrDefault();
-
-
                     NetworkDiagramItem lastItem = new NetworkDiagramItem { DisplayedText = "End", Content = "End" };
-
                     lastItem.Effort = TimeSpan.Zero;
                     lastItem.EarlyStart = StartProject.AddDays(maxCS);
                     lastItem.EarlyFinish = StartProject.AddDays(maxCS);
@@ -649,13 +639,7 @@ namespace PMS
                     lastItem.LateFinish = StartProject.AddDays(maxCS);
                     lastItem.Slack = TimeSpan.Zero;
                     lastItem.AssignmentsContent = "End";
-
-
                     listItem.Add(lastItem);
-
-
-
-
 
                     //w listItem mamy teraz wszystkie network item ale bez poprzednikow
 

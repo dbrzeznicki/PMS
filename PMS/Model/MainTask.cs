@@ -26,5 +26,17 @@ namespace PMS.Model
 
         public virtual ICollection<Subtask> Subtasks { get; set; }
         public virtual Project Project { get; set; }
+
+
+
+        public string StringMainTask
+        {
+            get
+            {
+                List<string> tmp = new List<string>(PrecedingMainTasks.Select(x => x.Name));
+                return string.Join(",", tmp);
+            }
+        }
+
     }
 }
