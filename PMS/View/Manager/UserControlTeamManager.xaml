@@ -6,7 +6,70 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
+        <StackPanel>
+            <Label Margin="10" Content="Users table" FontSize="20" FontWeight="Bold"/>
             
+            <Grid Margin="10" Background="WhiteSmoke">
+                <ListView Margin="10" ItemsSource="{Binding UsersList}" HorizontalContentAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="First name" DisplayMemberBinding="{Binding FirstName}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Last name"  DisplayMemberBinding="{Binding LastName}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Salary" DisplayMemberBinding="{Binding Salary}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Phone number"  DisplayMemberBinding="{Binding PhoneNumber}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Email" DisplayMemberBinding="{Binding Email}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Fired date"  DisplayMemberBinding="{Binding FiredDate}" Width="Auto"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+
+
+
+
+            <Label Margin="10" Content="Task of the selected user" FontSize="20" FontWeight="Bold"/>
+
+            <Grid Margin="10" Background="WhiteSmoke">
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="10" Content="Select user: " />
+
+                    <ComboBox Margin="10" ItemsSource="{Binding Users}" DisplayMemberPath="FullNameAndNameUserRole"
+                                  SelectedItem="{Binding SelectedUsers}"/>
+
+                </StackPanel>
+            </Grid>
+            
+            
+            <Grid Margin="10" Background="WhiteSmoke">
+                <ListView Margin="10" ItemsSource="{Binding SubtaskSelectedUserList}" HorizontalContentAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description"  DisplayMemberBinding="{Binding Description}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Priority" DisplayMemberBinding="{Binding Priority}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Start time"  DisplayMemberBinding="{Binding StartTime}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="End time" DisplayMemberBinding="{Binding EndTime}" Width="Auto"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Subtask status"  DisplayMemberBinding="{Binding SubtaskStatus.Name}" Width="Auto"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
