@@ -219,6 +219,7 @@
     <Compile Include="ViewModel\Employee\WikiEmployeeViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Manager\AddProjectManagerViewModel.cs" />
     <Compile Include="ViewModel\Manager\ClientsManagerViewModel.cs" />
     <Compile Include="ViewModel\Manager\ContractsManagerViewModel.cs" />
     <Compile Include="ViewModel\Manager\HomeManagerViewModel.cs" />
@@ -267,6 +268,9 @@
     </Compile>
     <Compile Include="View\Error\ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Manager\AddProjectWindow.xaml.cs">
+      <DependentUpon>AddProjectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Manager\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
@@ -404,6 +408,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\UserControlUsersList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Manager\AddProjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

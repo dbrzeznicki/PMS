@@ -90,12 +90,6 @@
                                     <TextBlock Text="Task" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="Reports" Height="60">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ChartGantt" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Reports" VerticalAlignment="Center"  Margin="20 10"/>
-                                </StackPanel>
-                            </ListViewItem>
                             <ListViewItem x:Name="PERT" Height="60">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Graph" Height="25" Width="25" Margin="10"/>

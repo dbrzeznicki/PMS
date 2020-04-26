@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -374,6 +375,69 @@ namespace PMS
         public bool BonusAmountValidation(double bonusAmount)
         {
             if (BonusAmountValidae(bonusAmount))
+                return true;
+            else
+                return false;
+        }
+
+
+
+
+        bool MainTaskListCountValidation(ObservableCollection<MainTask> ProjectMainTasks)
+        {
+            if (ProjectMainTasks.Count() > 0)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("There must be at least 1 item on the main task list");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        bool ResourcesListCountValidation(ObservableCollection<Resources> ProjectResources)
+        {
+            if (ProjectResources.Count() > 0)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("There must be at least 1 item on the resources list");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        public bool CalculateCostValidation(ObservableCollection<MainTask> ProjectMainTasks, ObservableCollection<Resources> ProjectResources)
+        {
+            if (MainTaskListCountValidation(ProjectMainTasks) && ResourcesListCountValidation(ProjectResources))
+                return true;
+            else
+                return false;
+        }
+
+        bool NameProjectValidation(string name)
+        {
+            PMSContext dbContext = new PMSContext();
+            List<Project> listOfPrject = new List<Project>(dbContext.Project);
+            foreach(var tmp in listOfPrject)
+            {
+                if (tmp.Name == name)
+                    name = null;
+            }
+
+            if (name.Length > 10 && name != null)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Project name must be over 10 characters and be unique");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        public bool AddProjectValidation(ObservableCollection<MainTask> ProjectMainTasks, ObservableCollection<Resources> ProjectResources, string name)
+        {
+            if (MainTaskListCountValidation(ProjectMainTasks) && ResourcesListCountValidation(ProjectResources) && NameProjectValidation(name))
                 return true;
             else
                 return false;

@@ -218,8 +218,8 @@
 
 
                 <Label Margin="10,30,10,10" FontSize="20" FontWeight="Bold">Helpful algorithms</Label>
-                <Grid>
 
+                <Grid Margin="10" Background="WhiteSmoke">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button Margin="10" Grid.Row="3" Command="{Binding OpenFunctionPointButton}">Function point method</Button>
@@ -238,11 +238,8 @@
                             <Button Margin="10" Grid.Row="6" Command="{Binding OpenCocomoIIStageIIIButton}">Cocomo II Stage III</Button>
                         </StackPanel>
                     </StackPanel>
-
-
-
-
                 </Grid>
+                
             </StackPanel>
         </Grid>
     </ScrollViewer>

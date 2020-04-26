@@ -12,7 +12,7 @@ namespace PMS
         public Manager()
         {
             InitializeComponent();
-            StackPanelMain.Children.Add(new UserControlUsersList());
+            StackPanelMain.Children.Add(new UserControlHomeManager());
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,10 +36,6 @@ namespace PMS
                     break;
                 case "Task":
                     usc = new UserControlTaskManager();
-                    StackPanelMain.Children.Add(usc);
-                    break;
-                case "Reports":
-                    usc = new UserControlReportsManager();
                     StackPanelMain.Children.Add(usc);
                     break;
                 case "PERT":
