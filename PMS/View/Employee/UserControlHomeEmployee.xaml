@@ -154,7 +154,7 @@
                 <Grid Grid.Column="0">
                     <ScrollViewer>
                         <StackPanel Margin="10" Background="WhiteSmoke">
-                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="My sybtask list:"/>
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="My subtask list:"/>
                             <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=NewAndInProgressSubtasks}" ItemTemplate="{StaticResource mySubtaskTemplate}">
 
                             </ListBox>

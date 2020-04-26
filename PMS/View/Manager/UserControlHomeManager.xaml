@@ -6,7 +6,194 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="mySubtaskTemplate">
+
+            <Border Name="border" BorderBrush="Gray" BorderThickness="3" Padding="5" Margin="5" Background="LightGray">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="5,5,25,5" Grid.Row="0" Grid.Column="0" Text="Name:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="1" Grid.Column="0" Text="Description:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="2" Grid.Column="0" Text="Priority:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Priority}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="3" Grid.Column="0" Text="Start time:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="3" Grid.Column="1" Text="{Binding Path=StartTime}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="4" Grid.Column="0" Text="End time:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="4" Grid.Column="1" Text="{Binding Path=EndTime}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="5" Grid.Column="0" Text="Status:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="5" Grid.Column="1" Text="{Binding Path=SubtaskStatus.Name}" />
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="myProjectTemplate">
+
+            <Border Name="border" BorderBrush="Gray" BorderThickness="3" Padding="5" Margin="5" Background="LightGray">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="5,5,25,5" Grid.Row="0" Grid.Column="0" Text="Name:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="1" Grid.Column="0" Text="Start time:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="1" Grid.Column="1" Text="{Binding Path=StartTime}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="2" Grid.Column="0" Text="End time:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=EndTime}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="3" Grid.Column="0" Text="Client:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Client.CompanyName}" />
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+
+
+        <DataTemplate x:Key="recentActivityTemplate">
+
+            <Border Name="border" BorderBrush="Gray" BorderThickness="3" Padding="5" Margin="5" Background="LightGray">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="0" Grid.Column="0" Text="Date:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="0" Grid.Column="1" Text="{Binding Path=DateAdded}" />
+
+                    <TextBlock Margin="5,5,25,5" Grid.Row="1" Grid.Column="0" Text="Description:"/>
+                    <TextBlock Margin="0,5,0,5" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" TextWrapping="Wrap"/>
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+
+
+    </UserControl.Resources>
+
+
+    <Grid Margin="10">
+
+        <DockPanel>
+
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--po lewo mozna dac jakas ikone w kazdym przypadku-->
+                <Grid Margin="10" Grid.Column="0" Background="WhiteSmoke">
+                    <StackPanel>
+                        <TextBlock Padding="15" FontSize="15" Text="All task:"/>
+                        <TextBlock Padding="15,5,10,15" FontSize="15" Text="{Binding Path=AllTask}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="10" Grid.Column="1" Background="WhiteSmoke">
+                    <StackPanel>
+                        <TextBlock Padding="15" FontSize="15" Text="New task:"/>
+                        <TextBlock Padding="15,5,10,15" FontSize="15" Text="{Binding Path=NewTask}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="10" Grid.Column="2" Background="WhiteSmoke" >
+                    <StackPanel >
+                        <TextBlock Padding="15" FontSize="15" Text="In progress task:"/>
+                        <TextBlock Padding="15,5,10,15" FontSize="15" Text="{Binding Path=InProgressTask}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Column="0">
+                    <ScrollViewer>
+                        <StackPanel Margin="10" Background="WhiteSmoke">
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="My subtask list:"/>
+                            <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=NewAndInProgressSubtasks}" ItemTemplate="{StaticResource mySubtaskTemplate}">
+
+                            </ListBox>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </Grid>
+
+
+
+                <Grid Grid.Column="1">
+                    <ScrollViewer>
+                        <StackPanel Margin="10" Background="WhiteSmoke">
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="Active project:"/>
+                            <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=ActiveProjects}" ItemTemplate="{StaticResource myProjectTemplate}">
+
+                            </ListBox>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+
+                <Grid Grid.Column="2">
+                    <ScrollViewer>
+                        <StackPanel Margin="10" Background="WhiteSmoke">
+                            <TextBlock Margin="20" Padding="10" Background="LightGray" FontSize="15" Text="Recent activity:"/>
+                            <ListBox Width="Auto" HorizontalContentAlignment="Stretch" Margin="10" ItemsSource="{Binding Path=RecentActivities}" ItemTemplate="{StaticResource recentActivityTemplate}">
+
+                            </ListBox>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+
+
+        </DockPanel>
+
     </Grid>
 </UserControl>
