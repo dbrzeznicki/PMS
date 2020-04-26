@@ -1,6 +1,8 @@
 ﻿using DlhSoft.Windows.Controls.Pert;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +24,7 @@ namespace PMS
     public partial class UserControlPERTManager : UserControl
     {
 
-        //int i = 0;
-
+        int i = 0;
         public UserControlPERTManager()
         {
             InitializeComponent();
@@ -31,56 +32,64 @@ namespace PMS
             this.DataContext = vm;
         }
 
+        private void EIButton_Click(object sender, RoutedEventArgs e)
+        {
+            NDV.Export((Action)delegate
+            {
+                SaveFileDialog SFD = new SaveFileDialog
+                {
+                    Filter = "PNG image files|*.png|JPEG image files|*.jpeg",
+                    FileName = "PERT",
+                    Title = "Export PERT diagram to png"
+                };
+                if (SFD.ShowDialog() != true)
+                    return;
+                BitmapSource BS = NDV.GetExportBitmapSource(194);
+                Stream S = SFD.OpenFile();
+                BitmapEncoder(S, BS);
+            });
+        }
 
-        
-        
         private void CriticalPathButton(object sender, RoutedEventArgs e)
         {
-
-
-            int i = 0;
-
-
             if (i == 0)
             {
-                foreach (NetworkDiagramItem item in NetworkDiagramView.ManagedItems)
+                foreach (NetworkDiagramItem i in NDV.ManagedItems)
                 {
-                    SetCriticalPathHighlighting(item, false);
-                    if (item.Predecessors != null)
-                    {
-                        foreach (NetworkPredecessorItem predecessorItem in item.Predecessors)
-                            SetCriticalPathHighlighting(predecessorItem, false);
-                    }
+                    NetworkDiagramView.SetShapeFill(i, false ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
+                    NetworkDiagramView.SetShapeStroke(i, false ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                    if (i.Predecessors != null)
+                        foreach (NetworkPredecessorItem PI in i.Predecessors)
+                            NetworkDiagramView.SetDependencyLineStroke(PI, false ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
                 }
-                foreach (NetworkDiagramItem item in NetworkDiagramView.GetCriticalItems())
-                    SetCriticalPathHighlighting(item, true);
-                foreach (NetworkPredecessorItem predecessorItem in NetworkDiagramView.GetCriticalDependencies())
-                    SetCriticalPathHighlighting(predecessorItem, true);
+                foreach (NetworkDiagramItem i in NDV.GetCriticalItems())
+                {
+                    NetworkDiagramView.SetShapeFill(i, true ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
+                    NetworkDiagramView.SetShapeStroke(i, true ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                }
+                foreach (NetworkPredecessorItem PI in NDV.GetCriticalDependencies())
+                    NetworkDiagramView.SetDependencyLineStroke(PI, true ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
 
                 i = 1;
-            } else
+            } 
+            else
             {
-                foreach (NetworkPredecessorItem predecessorItem in NetworkDiagramView.GetCriticalDependencies())
-                    SetCriticalPathHighlighting(predecessorItem, false);
-                foreach (NetworkDiagramItem item in NetworkDiagramView.GetCriticalItems())
-                    SetCriticalPathHighlighting(item, false);
+                foreach (NetworkPredecessorItem PI in NDV.GetCriticalDependencies())
+                    NetworkDiagramView.SetDependencyLineStroke(PI, false ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
+                foreach (NetworkDiagramItem i in NDV.GetCriticalItems())
+                {
+                    NetworkDiagramView.SetShapeFill(i, false ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
+                    NetworkDiagramView.SetShapeStroke(i, false ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                }
                 i = 0;
             }
-
-
-
-
-
         }
 
-        private void SetCriticalPathHighlighting(NetworkDiagramItem item, bool isHighlighted)
+        private void BitmapEncoder(Stream S, BitmapSource BS)
         {
-            DlhSoft.Windows.Controls.Pert.NetworkDiagramView.SetShapeFill(item, isHighlighted ? Resources["CustomShapeFill"] as Brush : NetworkDiagramView.ShapeFill);
-            DlhSoft.Windows.Controls.Pert.NetworkDiagramView.SetShapeStroke(item, isHighlighted ? Resources["CustomShapeStroke"] as Brush : NetworkDiagramView.ShapeStroke);
-        }
-        private void SetCriticalPathHighlighting(NetworkPredecessorItem predecessorItem, bool isHighlighted)
-        {
-            DlhSoft.Windows.Controls.Pert.NetworkDiagramView.SetDependencyLineStroke(predecessorItem, isHighlighted ? Resources["CustomDependencyLineStroke"] as Brush : NetworkDiagramView.DependencyLineStroke);
+            PngBitmapEncoder PBE = new PngBitmapEncoder();
+            PBE.Frames.Add(BitmapFrame.Create(BS));
+            PBE.Save(S);
         }
     }
 }
