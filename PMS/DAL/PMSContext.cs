@@ -17,7 +17,7 @@ namespace PMS.DAL
 
         static PMSContext()
         {
-            Database.SetInitializer<PMSContext>(new PMSInitializer());
+            //Database.SetInitializer<PMSContext>(new PMSInitializer());
         }
 
         //tutaj dodajmy wszystkie tabele jakie mamy w bazie/modelu

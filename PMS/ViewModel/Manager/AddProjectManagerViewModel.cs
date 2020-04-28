@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PMS
@@ -69,9 +70,12 @@ namespace PMS
         #region command
         public ICommand AddProjectButton { get; set; }
         public ICommand AddResourcesButton { get; set; }
-        public ICommand AddMainTaskButton { get; set; }
+        
         public ICommand RemoveMainTaskButton { get; set; }
         public ICommand RemoveResourcesButton { get; set; }
+
+
+        public ICommand AddMainTaskButton { get; set; }
         public ICommand AddPreMainTaskButton { get; set; }
         public ICommand RemovePreMainTaskButton { get; set; }
 

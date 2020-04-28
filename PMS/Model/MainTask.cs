@@ -33,8 +33,16 @@ namespace PMS.Model
         {
             get
             {
-                List<string> tmp = new List<string>(PrecedingMainTasks.Select(x => x.Name));
-                return string.Join(",", tmp);
+                if (PrecedingMainTasks != null)
+                {
+                    List<string> tmp = new List<string>(PrecedingMainTasks.Select(x => x.Name));
+                    return string.Join(",", tmp);
+                } 
+                else
+                {
+                    return "";
+                }
+                
             }
         }
 

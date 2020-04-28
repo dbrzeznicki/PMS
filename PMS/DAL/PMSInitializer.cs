@@ -205,57 +205,57 @@ namespace PMS.DAL
             var mainTask = new List<MainTask>
                 {
                 //PROJECT 1
-                    new MainTask() { MainTaskID=1, ProjectID=1, Name="1.Prototype", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=1, ProjectID=1, Name="1.Prototype", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 01), EarlyFinish=new DateTime(2020, 05, 04),
                         LateStart=new DateTime(2020, 05, 01), LateFinish=new DateTime(2020, 05, 04), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=2, ProjectID=1, Name="2.Database", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=2, ProjectID=1, Name="2.Database", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 05),
                         LateStart=new DateTime(2020, 05, 08), LateFinish=new DateTime(2020, 05, 09), Effort = 1
 
                     },
-                    new MainTask() { MainTaskID=3, ProjectID=1, Name="3.Implementation", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=3, ProjectID=1, Name="3.Implementation", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 05), EarlyFinish=new DateTime(2020, 05, 07),
                         LateStart=new DateTime(2020, 05, 09), LateFinish=new DateTime(2020, 05, 10), Effort = 2
 
                     },
-                    new MainTask() { MainTaskID=4, ProjectID=1, Name="4.Testing", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=4, ProjectID=1, Name="4.Testing", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 08), EarlyFinish=new DateTime(2020, 05, 11),
                         LateStart=new DateTime(2020, 05, 10), LateFinish=new DateTime(2020, 05, 13), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=5, ProjectID=1, Name="5.Prototype", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=5, ProjectID=1, Name="5.Prototype", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 07),
                         LateStart=new DateTime(2020, 05, 06), LateFinish=new DateTime(2020, 05, 09), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=6, ProjectID=1, Name="6.Database", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=6, ProjectID=1, Name="6.Database", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 06),
                         LateStart=new DateTime(2020, 05, 07), LateFinish=new DateTime(2020, 05, 09), Effort = 2
 
                     },
-                    new MainTask() { MainTaskID=7, ProjectID=1, Name="7.Implementation", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=7, ProjectID=1, Name="7.Implementation", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 07), EarlyFinish=new DateTime(2020, 05, 09),
                         LateStart=new DateTime(2020, 05, 09), LateFinish=new DateTime(2020, 05, 11), Effort = 2
 
                     },
-                    new MainTask() { MainTaskID=8, ProjectID=1, Name="8.Testing", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=8, ProjectID=1, Name="8.Testing", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 04), EarlyFinish=new DateTime(2020, 05, 09),
                         LateStart=new DateTime(2020, 05, 04), LateFinish=new DateTime(2020, 05, 09), Effort = 5
 
                     },
-                    new MainTask() { MainTaskID=9, ProjectID=1, Name="9.Prototype", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=9, ProjectID=1, Name="9.Prototype", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 09), EarlyFinish=new DateTime(2020, 05, 10),
                         LateStart=new DateTime(2020, 05, 09), LateFinish=new DateTime(2020, 05, 10), Effort = 1
 
                     },
-                    new MainTask() { MainTaskID=10, ProjectID=1, Name="10.Database", Status=false, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=10, ProjectID=1, Name="10.Database", Status=false, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 10), EarlyFinish=new DateTime(2020, 05, 14),
                         LateStart=new DateTime(2020, 05, 10), LateFinish=new DateTime(2020, 05, 14), Effort = 4
 
                     },
-                    new MainTask() { MainTaskID=11, ProjectID=1, Name="11.Implementation", Status=false, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=11, ProjectID=1, Name="11.Implementation", Status=false, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
                     },
@@ -263,27 +263,27 @@ namespace PMS.DAL
 
 
                     //PROJECT 2
-                    new MainTask() { MainTaskID=12, ProjectID=2, Name="Prototype", Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=12, ProjectID=2, Name="Prototype", Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=13, ProjectID=2, Name="Database",  Status=true, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=13, ProjectID=2, Name="Database",  Status=true, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=14, ProjectID=2, Name="Database 2", Status=false, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=14, ProjectID=2, Name="Database 2", Status=false, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=15, ProjectID=2, Name="Implementation", Status=false, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=15, ProjectID=2, Name="Implementation", Status=false, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
 
                     },
-                    new MainTask() { MainTaskID=16, ProjectID=2, Name="Testing", Status=false, PrecedingMainTasks=null,
+                    new MainTask() { MainTaskID=16, ProjectID=2, Name="Testing", Status=false, PrecedingMainTasks=new List<MainTask>(),
                         EarlyStart=new DateTime(2020, 05, 14), EarlyFinish=new DateTime(2020, 05, 17),
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
 
