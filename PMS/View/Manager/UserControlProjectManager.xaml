@@ -341,11 +341,14 @@
 
                                 <Button Grid.Row="2" Grid.ColumnSpan="1" Margin="10" Command="{Binding EditResourcesButton}">Edit resource</Button>
 
+                                
                             </Grid>
                         </StackPanel>
                     </Expander>
                 </StackPanel>
-
+                
+                <Button Margin="10" Command="{Binding GenerateRaportButton}">Generate raport</Button>
+                
 
             </StackPanel>
         </Grid>

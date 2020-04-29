@@ -2,6 +2,7 @@
 using PMS.Algorithm;
 using PMS.DAL;
 using PMS.Model;
+using PMS.Utils;
 using PMS.ViewModel;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -98,6 +99,8 @@ namespace PMS
         public ICommand RemovePreMainTaskButton { get; set; }
         public ICommand RemoveMainTaskButton { get; set; }
         public ICommand EditMainTaskButton { get; set; }
+        public ICommand GenerateRaportButton { get; set; }
+        
 
         #endregion
 
@@ -118,6 +121,7 @@ namespace PMS
             RemovePreMainTaskButton = new DelegateCommand(RemovePreMainTask);
             RemoveMainTaskButton = new DelegateCommand<object>(RemoveMainTask);
             EditMainTaskButton = new DelegateCommand(EditMainTask);
+            GenerateRaportButton = new DelegateCommand(GenerateRaport);
         }
 
         #endregion
@@ -992,7 +996,12 @@ namespace PMS
             }
         }
 
-        
+        private void GenerateRaport()
+        {
+            GenerateProjectStatistic GPS = new GenerateProjectStatistic();
+            GPS.generateWordDocument(SelectedProject);
+        }
+            
         #endregion
 
     }

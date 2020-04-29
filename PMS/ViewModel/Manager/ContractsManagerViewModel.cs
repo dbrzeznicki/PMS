@@ -1,5 +1,4 @@
-﻿using NPOI.XWPF.UserModel;
-using PMS.DAL;
+﻿using PMS.DAL;
 using PMS.Model;
 using PMS.ViewModel;
 using Prism.Commands;
@@ -8,10 +7,7 @@ using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PMS
