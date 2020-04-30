@@ -19,8 +19,8 @@
 
 
     <Grid Margin="10">
-        <DockPanel>
-            <Expander Grid.Row="0" Header="Filters" Margin="10" Background="WhiteSmoke" DockPanel.Dock="Top">
+        <StackPanel>
+            <Expander Header="Filters" Margin="10" Background="WhiteSmoke" IsExpanded="True">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -31,17 +31,28 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Margin="25,10,10,10" Grid.Row="0" Grid.Column="0" Text="Write company name:"/>
-                    <TextBox Margin="25,10,10,10" Grid.Row="1" Grid.Column="0" Text="{Binding Path = SelectedCompanyName, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Margin="10,10,25,10" Grid.Row="0" Grid.Column="1" Text="Write NIP: " />
-                    <TextBox Margin="10,10,25,10" Grid.Row="1" Grid.Column="1" Text="{Binding Path = SelectedNIP, UpdateSourceTrigger=PropertyChanged}"/>
+                    <StackPanel Orientation="Horizontal" Margin="10" Background="LightGray">
+                        <TextBlock Margin="10" Text="Write company name:"/>
+                        <TextBox Margin="10" MinWidth="140" Text="{Binding Path = SelectedCompanyName, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="10" Background="LightGray">
+                        <TextBlock Margin="10" Text="Write NIP: " />
+                        <TextBox Margin="10" MinWidth="140" Text="{Binding Path = SelectedNIP, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
 
                 </Grid>
             </Expander>
 
-
-            <ListView Margin="10" ItemsSource="{Binding FilteredClients}" HorizontalContentAlignment="Stretch">
-                <ListView.View>
+            <Grid Margin="10" Background="WhiteSmoke">
+                <Grid Margin="10" Background="LightGray">
+                <ListView Margin="10" ItemsSource="{Binding FilteredClients}" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Height" Value="50" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
                     <GridView >
 
                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="First name" DisplayMemberBinding="{Binding FirstName}" Width="Auto"/>
@@ -54,7 +65,9 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-        </DockPanel>
+            </Grid>
+            </Grid>
+        </StackPanel>
     </Grid>
     
 </UserControl>

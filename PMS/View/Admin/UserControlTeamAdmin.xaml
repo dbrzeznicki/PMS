@@ -24,35 +24,37 @@
 
             <StackPanel>
 
-                <Expander Header="Add team" Margin="10" Background="WhiteSmoke">
+                <Expander Header="Add team" Margin="10" Background="WhiteSmoke" IsExpanded="True">
                     <StackPanel>
-                        
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Margin="10">Name:</Label>
-                            <TextBox Margin="10" Grid.Column="1" Text="{Binding Path = Name}"/>
-                        </Grid>
 
-                        <Grid Margin="10">
+
+
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="10" Background="LightGray">
+                                <Label Margin="10">Name:</Label>
+                                <TextBox Margin="10" MinWidth="140" Width="Auto" Text="{Binding Path = Name}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10" Background="LightGray">
                             <Label Margin="10">Select user:</Label>
                             <ComboBox Margin="15" Grid.Column="1" SelectedValue="{Binding Path=SelectedUserWithoutTeam}" 
                                   ItemsSource="{Binding Path=UserWithoutTeam}" DisplayMemberPath="FullNameAndNameUserRole"/>
                             <Button Margin="10" Name="AddUserToTeamButton" Grid.Column="2" Command="{Binding AddUserToTeamButton}" IsEnabled="{Binding IsEnabledAddUserToTeamButton}">Add user to team</Button>
+                            </StackPanel>
+
+                       
                         </Grid>
+                        
+                        <Grid Margin="10" Background="LightGray">
+                            <StackPanel>
+                                <Label Margin="10" FontSize="16" FontWeight="Bold" >List of users in the team</Label>
 
-                        <Grid Margin="10">
-                            <DockPanel>
-                                <Label Margin="10" DockPanel.Dock="Top">List of users in the team</Label>
-
-                                <ListView Margin="10" ItemsSource="{Binding UserInNewTeam}" HorizontalContentAlignment="Stretch">
+                                <ListView Margin="10" ItemsSource="{Binding UserInNewTeam}" HorizontalContentAlignment="Stretch" Width="Auto">
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="First name" DisplayMemberBinding="{Binding FirstName}" Width="Auto"/>
@@ -68,11 +70,11 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                            </DockPanel>
+                                </StackPanel>
                         </Grid>
 
                         <Grid Margin="10">
-                            <Button Content="Add team" Margin="10" Name="CreateTeamButton" Command="{Binding CreateTeamButton}" IsEnabled="{Binding IsEnabledAddTeamButton}"/>
+                            <Button Content="Add team" Command="{Binding CreateTeamButton}" IsEnabled="{Binding IsEnabledAddTeamButton}"/>
                         </Grid>
                     </StackPanel>
                 </Expander>
@@ -81,40 +83,34 @@
                 <Expander Header="Edit team" Margin="10" Background="WhiteSmoke">
                     <StackPanel>
 
-                        <Grid Margin="10" Background="LightGray">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Margin="10">Select team:</Label>
-                            <ComboBox Margin="15" Grid.Column="1" SelectedValue="{Binding Path=EditSelectedTeam}" 
+
+                            <StackPanel Orientation="Horizontal" Margin="10" Background="LightGray">
+                                <Label Margin="10">Select team:</Label>
+                            <ComboBox Margin="15" Grid.Column="1" Width="Auto" SelectedValue="{Binding Path=EditSelectedTeam}" 
                                   ItemsSource="{Binding Path=EditTeamsList}" DisplayMemberPath="Name"/>
-                        </Grid>
-                        
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10" Background="LightGray">
                             <Label Margin="10">Name:</Label>
                             <TextBox Margin="10" Grid.Column="1" Text="{Binding Path = EditName}"/>
-                        </Grid>
+                            </StackPanel>
 
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10" Background="LightGray">
                             <Label Margin="10">Select user:</Label>
                             <ComboBox Margin="15" Grid.Column="1" SelectedValue="{Binding Path=EditSelectedUserWithoutTeam}" 
                                   ItemsSource="{Binding Path=EditUserWithoutTeam}" DisplayMemberPath="FullNameAndNameUserRole"/>
                             <Button Margin="10" Grid.Column="2" Command="{Binding EditAddUserToTeamButton}" IsEnabled="{Binding EditIsEnabledAddUserToTeamButton}">Add user to team</Button>
+                            </StackPanel>
                         </Grid>
 
-                        <Grid Margin="10">
-                            <DockPanel>
-                                <Label Margin="10" DockPanel.Dock="Top">List of users in the team</Label>
+                        <Grid Margin="10"  Background="LightGray">
+                            <StackPanel >
+                                <Label Margin="10" FontSize="16" FontWeight="Bold" >List of users in the team</Label>
 
                                 <ListView Margin="10" ItemsSource="{Binding EditUserInNewTeam}" HorizontalContentAlignment="Stretch">
                                     <ListView.View>
@@ -132,11 +128,11 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                            </DockPanel>
+                                </StackPanel>
                         </Grid>
 
                         <Grid Margin="10">
-                            <Button Content="Edit team" Margin="10" Command="{Binding EditCreateTeamButton}" IsEnabled="{Binding EditIsEnabledAddTeamButton}"/>
+                            <Button Content="Edit team" Command="{Binding EditCreateTeamButton}" IsEnabled="{Binding EditIsEnabledAddTeamButton}"/>
                         </Grid>
                     </StackPanel>
                 </Expander>

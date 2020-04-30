@@ -20,21 +20,14 @@
      
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="LightSlateGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Border Grid.RowSpan="2" CornerRadius="15">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Aqua" Offset="0.0"/>
-                        <GradientStop Color="MediumVioletRed" Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
+
 
 
             <StackPanel VerticalAlignment="Center">

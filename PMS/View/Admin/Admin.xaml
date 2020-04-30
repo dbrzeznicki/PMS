@@ -23,16 +23,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Border Grid.Column="1" Grid.Row="1">
-            <Border.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="Aqua" Offset="0.0"/>
-                    <GradientStop Color="MediumVioletRed" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
-
-        <materialDesign:ColorZone Background="BlueViolet" Grid.ColumnSpan="2">
+        <materialDesign:ColorZone Background="LightSlateGray" Grid.ColumnSpan="2">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="You are logged as: " VerticalAlignment="Center" FontSize="16"/>
@@ -49,7 +40,7 @@
         </materialDesign:ColorZone>
 
         <!--HorizontalAlignment="Stretch"-->
-        <Grid Background="BlueViolet" Grid.RowSpan="2">
+        <Grid Background="LightSlateGray" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="46"/>
                 <RowDefinition Height="326*"/>
@@ -122,8 +113,8 @@
             </ScrollViewer>
         </Grid>
 
-        
-        <Grid x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+        <Grid x:Name="StackPanelMain" Background="LightSeaGreen" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
 
     </Grid>
 </Window>

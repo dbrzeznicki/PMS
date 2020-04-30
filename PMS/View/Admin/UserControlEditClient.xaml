@@ -6,18 +6,27 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid  Margin="10">
-        <DockPanel Height="Auto" VerticalAlignment="Top">
-            <Grid Margin="10"  Background="WhiteSmoke" DockPanel.Dock="Top">
-                <StackPanel Margin="10" Orientation="Horizontal">
-                    <TextBlock Margin="10" Text="Select client: " VerticalAlignment="Center"/>
-                    <ComboBox Margin="10" ItemsSource="{Binding Clients}" DisplayMemberPath="SearchEditClient"
-                                  SelectedItem="{Binding MySelectedClient}"/>
-                </StackPanel>
-            </Grid>
 
-            <ScrollViewer>
-                <Grid Margin="10">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid  Margin="10">
+
+
+
+            <StackPanel>
+                <Grid Margin="10"  Background="WhiteSmoke">
+                <Grid Margin="10"  Background="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Text="Select client: " VerticalAlignment="Center"/>
+                        <ComboBox Margin="10" ItemsSource="{Binding Clients}" DisplayMemberPath="SearchEditClient"
+                                  SelectedItem="{Binding MySelectedClient}"/>
+                    </StackPanel>
+                </Grid>
+                </Grid>
+                
+                
+                <Grid Margin="10"  Background="WhiteSmoke">
+                    <Grid Margin="10" Background="LightGray">
 
                     <Grid.Resources>
                         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -73,7 +82,8 @@
 
                     <Button  Margin="10" Name="EditClient" Grid.Row="10" Grid.Column="1" Command="{Binding EditClientButton}" IsEnabled="{Binding IsEnabledEditButton}">Edit client</Button>
                 </Grid>
-            </ScrollViewer>
-        </DockPanel>
-    </Grid>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
