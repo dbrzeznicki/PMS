@@ -18,13 +18,11 @@
 
         </Style>
     </UserControl.Resources>
-
-
-    <ScrollViewer>
-        <Grid Margin="10">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="10" >
             <StackPanel>
-                <Expander Header="Articles list" Margin="10" Background="WhiteSmoke">
-                    <Grid Margin="10">
+                <Expander Header="Articles list" Margin="10"  Background="WhiteSmoke" IsExpanded="True">
+                    <Grid Margin="10" Background="LightGray">
                         <ListView Margin="10" ItemsSource="{Binding Articles}" HorizontalContentAlignment="Stretch">
                             <ListView.View>
                                 <GridView>
@@ -43,6 +41,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
+
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Date added"  DisplayMemberBinding="{Binding DateAdded}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Who added"  DisplayMemberBinding="{Binding User.FullName}" Width="Auto"/>
 
@@ -52,8 +51,8 @@
                     </Grid>
                 </Expander>
 
-                <Expander Header="Add article" Margin="10" Background="WhiteSmoke">
-                    <Grid Margin="10">
+                <Expander Header="Add article" Margin="10"  Background="WhiteSmoke">
+                    <Grid Margin="10" Background="LightGray">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -65,18 +64,18 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <Label Margin="10">Url:</Label>
+                        <Label  Margin="10" >Url:</Label>
                         <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = Url}"/>
-                        <Label Margin="10" Grid.Row="1">Description:</Label>
+                        <Label  Margin="10" Grid.Row="1">Description:</Label>
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Description}"/>
 
                         <Button Margin="10" Name="AddArticleButton" Grid.Row="3" Grid.Column="1" Command="{Binding AddArticleButton}">Add article</Button>
 
                     </Grid>
                 </Expander>
+
+
             </StackPanel>
         </Grid>
     </ScrollViewer>
-    
-    
 </UserControl>

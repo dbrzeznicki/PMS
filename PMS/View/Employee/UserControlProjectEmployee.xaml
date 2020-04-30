@@ -14,8 +14,9 @@
 
     <Grid Margin="10">
         <DockPanel>
-            <Grid Margin="10" DockPanel.Dock="Top" Height="Auto">
-                <StackPanel Orientation="Horizontal">
+            <Grid Margin="10" DockPanel.Dock="Top" Height="Auto" Background="WhiteSmoke">
+
+                <StackPanel Margin="10" Orientation="Horizontal" Background="LightGray">
                     <TextBlock Margin="10,20,20,10" Grid.Row="0" Grid.Column="0" Text="Select project:" />
                     <ComboBox Margin="10" Grid.Row="1" Grid.Column="0" SelectedValue="{Binding Path=SelectedProject}" SelectedIndex="0" ItemsSource="{Binding Path=Projects}" DisplayMemberPath="Name"/>
                 </StackPanel>
@@ -25,22 +26,25 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid Margin="10" Grid.Column="0">
+                <Grid Margin="10" Grid.Column="0" Background="WhiteSmoke">
+                <Grid Margin="10" Grid.Column="0" Background="LightGray">
                     <oxy:PlotView Margin="20" Model="{Binding MyTaskPieChart}" Background="Transparent" />
                 </Grid>
-
-                <Grid Margin="10" Grid.Column="1">
+                </Grid>
+                
+                <Grid Margin="10" Grid.Column="1" Background="WhiteSmoke">
+                <Grid Margin="10" Grid.Column="1" Background="LightGray">
                     <TextBlock FontSize="20" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ProgressPercentage}"></TextBlock>
                     <oxy:PlotView Margin="20" Model="{Binding ProgressPieChart}" Background="Transparent" />
                 </Grid>
-
+                </Grid>
 
                 <Grid Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
                     <pdgcc:GanttChartView x:Name="GanttChartDataGrid" Items="{Binding Items}">
