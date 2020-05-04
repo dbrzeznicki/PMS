@@ -20,17 +20,8 @@
 
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="10">
+        <Grid Margin="10" Background="LightSeaGreen">
 
-            <Border >
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Aqua" Offset="0.0"/>
-                        <GradientStop Color="MediumVioletRed" Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-            
             <StackPanel>
 
 
@@ -108,14 +99,17 @@
                         <Grid Grid.Column="1" Margin="10" Background="WhiteSmoke">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Grid Margin="10" >
                                 <Label FontSize="20" FontWeight="Bold">Table resources</Label>
                             </Grid>
 
-                            <ListView Grid.Row="1" Margin="10" ItemsSource="{Binding ProjectResources}" HorizontalContentAlignment="Stretch" >
+                            <Grid Margin="10" Background="LightGray" Grid.Row="1">
+                                
+                            
+                            <ListView  Margin="10" ItemsSource="{Binding ProjectResources}" HorizontalContentAlignment="Stretch" >
                                 <ListView.View>
                                     <GridView >
                                         <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
@@ -132,6 +126,7 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </ScrollViewer>
@@ -139,7 +134,7 @@
 
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <Grid>
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -261,22 +256,23 @@
                         <Grid Margin="10" Grid.Column="1"  Background="WhiteSmoke">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Margin="10" Grid.Row="0">
-                                <Label FontSize="20" FontWeight="Bold">Table main task operation</Label>
+                                <Label FontSize="20" FontWeight="Bold">Table main task</Label>
                             </Grid>
 
-                            <Grid Grid.Row="1" >
+                            <Grid Grid.Row="1" Margin="10"  Background="LightGray">
+
                                 <ListView Margin="10" ItemsSource="{Binding ProjectMainTasks}" HorizontalContentAlignment="Stretch">
                                     <ListView.View>
                                         <GridView >
 
                                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early start"  DisplayMemberBinding="{Binding EarlyStart}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early finish" DisplayMemberBinding="{Binding EarlyFinish}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late start"  DisplayMemberBinding="{Binding LateStart}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late finish" DisplayMemberBinding="{Binding LateFinish}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early start"  DisplayMemberBinding="{Binding StringEarlyStart}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early finish" DisplayMemberBinding="{Binding StringEarlyFinish}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late start"  DisplayMemberBinding="{Binding StringLateStart}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late finish" DisplayMemberBinding="{Binding StringLateFinish}" Width="Auto"/>
                                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Effort"  DisplayMemberBinding="{Binding Effort}" Width="Auto"/>
 
                                             <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Preceding task"  DisplayMemberBinding="{Binding StringMainTask}" Width="Auto"/>

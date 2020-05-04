@@ -9,18 +9,9 @@
 
 
     <ScrollViewer>
-        <Grid>
 
-            <Border >
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Aqua" Offset="0.0"/>
-                        <GradientStop Color="MediumVioletRed" Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-
-            <Grid>
+            <Grid Background="LightSeaGreen" Margin="10">
+            <Grid Background="LightGray" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

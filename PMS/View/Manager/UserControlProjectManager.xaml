@@ -17,52 +17,59 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid Margin="10">
 
-            <StackPanel Margin="10">
-
-                <StackPanel Orientation="Horizontal" Background="WhiteSmoke" Margin="10">
-                    <StackPanel Orientation="Horizontal">
+            <StackPanel>
+               
+                
+                <Grid Background="WhiteSmoke" Margin="10">
+                    <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10">
                         <Label Margin="10" Content="Select project: "/>
                         <ComboBox Margin="10" SelectedValue="{Binding Path=SelectedProject}" ItemsSource="{Binding Path=Projects}" DisplayMemberPath="Name"/>
+                        <Button Margin="10" Command="{Binding ShowAddProjectButton}" Content="Add project"/>
                     </StackPanel>
-                    <Button Margin="10" Command="{Binding ShowAddProjectButton}" Content="Add project"/>
+                </Grid>
 
-                </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Background="WhiteSmoke" Margin="10">
+                <Grid Background="WhiteSmoke" Margin="10">
+                    <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10">
 
-                    <Label Margin="10" Content="Project cost: "/>
+                        <Label Margin="10" Content="Project cost: "/>
                     <TextBox Margin="10" Text="{Binding Path = Cost}" MinWidth="80"/>
 
                     <Button Margin="10" Command="{Binding CalculateCostButton}" Content="Calculate cost"/>
                     <Button Margin="10" Command="{Binding UpdateCostButton}" Content="Update cost"/>
-                </StackPanel>
+                    </StackPanel>
+                </Grid>
 
-                <StackPanel Orientation="Horizontal" Background="WhiteSmoke" Margin="10">
-                    <StackPanel Orientation="Horizontal">
+                <Grid Background="WhiteSmoke" Margin="10">
+                    <StackPanel Orientation="Horizontal" Background="LightGray" Margin="10">
                         <Label Margin="10" Content="Change status project: "/>
                         <ComboBox Margin="10" SelectedValue="{Binding Path=SelectedProjectStatus}" ItemsSource="{Binding Path=ProjectStatus}" DisplayMemberPath="Name"/>
-                    </StackPanel>
+                    
                     <Button Margin="10" Command="{Binding ChangeStatusButton}" Content="Change status"/>
-
-                </StackPanel>
+            </StackPanel>
+        </Grid>
 
                 <Label Margin="10" Content="Main task table for the selected project" FontSize="20" FontWeight="Bold"/>
 
                 <Grid Margin="10" Background="WhiteSmoke">
-
+                    
                     <StackPanel>
-                        <ListView ItemsSource="{Binding ListOfMaintask}" HorizontalContentAlignment="Stretch">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <Grid Margin="10" Background="LightGray">
+
+
+                                <ListView ItemsSource="{Binding ListOfMaintask}" Margin="10" HorizontalContentAlignment="Stretch">
                             <ListView.View>
                                 <GridView >
 
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early start"  DisplayMemberBinding="{Binding EarlyStart}" Width="Auto"/>
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early finish"  DisplayMemberBinding="{Binding EarlyFinish}" Width="Auto"/>
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late start"  DisplayMemberBinding="{Binding LateStart}" Width="Auto"/>
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late finish"  DisplayMemberBinding="{Binding LateFinish}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early start"  DisplayMemberBinding="{Binding StringEarlyStart}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Early finish"  DisplayMemberBinding="{Binding StringEarlyFinish}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late start"  DisplayMemberBinding="{Binding StringLateStart}" Width="Auto"/>
+                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late finish"  DisplayMemberBinding="{Binding StringLateFinish}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Effort"  DisplayMemberBinding="{Binding Effort}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Status"  DisplayMemberBinding="{Binding Status}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Preceding tasks"  DisplayMemberBinding="{Binding StringMainTask}" Width="Auto"/>
@@ -86,164 +93,175 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-
-
-                        <Expander Margin="10" Background="LightGray" Header="Add/edit main task">
-
-
-                            <Grid Margin="10" Background="WhiteSmoke">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-
-
-
-                                <Grid Margin="10" Grid.Row="0" Grid.Column="0" Background="LightGray">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="120"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <Label  Margin="10" >Name:</Label>
-                                    <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = NameMainTask}"/>
-                                    <Label Margin="10" Grid.Row="1" Grid.Column="0">Early start:</Label>
-                                    <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding EarlyStart}" Margin="10"/>
-                                    <Label Margin="10" Grid.Row="2" Grid.Column="0">Early finish:</Label>
-                                    <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding EarlyFinish}" Margin="10"/>
-                                    <Label Margin="10" Grid.Row="3" Grid.Column="0">Late start:</Label>
-                                    <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding LateStart}" Margin="10"/>
-                                    <Label Margin="10" Grid.Row="4" Grid.Column="0">Late finish:</Label>
-                                    <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding LateFinish}" Margin="10"/>
-                                    <Label  Margin="10" Grid.Row="5" >Effort:</Label>
-                                    <TextBox Grid.Row="5" Grid.Column="1" Margin="10" Text="{Binding Path = Effort}"/>
-
-                                    <Button Margin="10" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddMainTaskButton}">Add main task</Button>
-
-                                </Grid>
-
-                                <Grid Margin="10" Grid.Row="0" Grid.Column="1" Background="LightGray">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="120"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Column="0" Margin="10" VerticalAlignment="Center">
-                             <Run Text="Select the task where you want"/>
-                            <LineBreak/>
-                            <Run Text="to add the preceding task: "/>
-                                    </TextBlock>
-
-                                    <ComboBox Grid.Column="1" Margin="10" ItemsSource="{Binding MainTaskWhereAddThePretask}" DisplayMemberPath="Name"
-                                  SelectedItem="{Binding SelectedMainTaskWhereAddThePretask}"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center">
-                             <Run Text="Select the preceding task: "/>
-                                    </TextBlock>
-                                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding MainTaskWhichIsPretask}" DisplayMemberPath="Name"
-                                  SelectedItem="{Binding SelectedMainTaskWhichIsPretask}"/>
-
-                                    <Button Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddPreMainTaskButton}">Add preceding task</Button>
-
-                                </Grid>
-
-                                <Grid Margin="10" Grid.Row="0" Grid.Column="2" Background="LightGray">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="120"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Column="0" Margin="10" VerticalAlignment="Center">
-                             <Run Text="Select the task where you want"/>
-                            <LineBreak/>
-                            <Run Text="to remove the preceding task: "/>
-                                    </TextBlock>
-                                    <ComboBox Grid.Column="1" Margin="10" ItemsSource="{Binding MainTaskWhereRemoveThePretask}" DisplayMemberPath="Name"
-                                  SelectedItem="{Binding SelectedMainTaskWhereRemoveThePretask}"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center">
-                             <Run Text="Select the preceding task: "/>
-                                    </TextBlock>
-                                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding RemovePretask}" DisplayMemberPath="Name"
-                                  SelectedItem="{Binding SelectedRemovePretask}"/>
-
-                                    <Button Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding RemovePreMainTaskButton}">Remove preceding task</Button>
-
-                                </Grid>
-
-
-                                <Grid Margin="10" Grid.Row="0" Grid.Column="3" Background="LightGray">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="120"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <Label  Margin="10" >Select main task:</Label>
-                                    <ComboBox Grid.Row="0" Grid.Column="1" Margin="10" ItemsSource="{Binding ListOfMaintask}" DisplayMemberPath="Name"
-                                  SelectedItem="{Binding EditSelectedMainTask}"/>
-
-                                    <Label Grid.Row="1" Margin="10" >Name:</Label>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = EditNameMainTask}"/>
-                                    <Label Margin="10" Grid.Row="2" Grid.Column="0">Early start:</Label>
-                                    <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding EditEarlyStart}" Margin="10"/>
-                                    <Label Margin="10" Grid.Row="3" Grid.Column="0">Early finish:</Label>
-                                    <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding EditEarlyFinish}" Margin="10"/>
-                                    <Label Margin="10" Grid.Row="4" Grid.Column="0">Late start:</Label>
-                                    <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding EditLateStart}" Margin="10"/>
-                                    <Label Margin="10" Grid.Row="5" Grid.Column="0">Late finish:</Label>
-                                    <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding EditLateFinish}" Margin="10"/>
-                                    <Label  Margin="10" Grid.Row="6" >Effort:</Label>
-                                    <TextBox Grid.Row="6" Grid.Column="1" Margin="10" Text="{Binding Path = EditEffort}"/>
-
-                                    <Button Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding EditMainTaskButton}">Edit main task</Button>
-
-                                </Grid>
-
                             </Grid>
-                        </Expander>
+                    </ScrollViewer>
+                    
                     </StackPanel>
 
 
+                    
+                    
+                    
+                    
+                    
                 </Grid>
 
+
+                <Grid>
+
+
+
+                    <Expander Margin="10" Background="WhiteSmoke" Header="Add/edit main task">
+
+                        <Grid  Background="WhiteSmoke">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+
+
+                            <Grid Margin="10" Grid.Row="0" Grid.Column="0" Background="LightGray">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label  Margin="10" >Name:</Label>
+                                <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = NameMainTask}"/>
+                                <Label Margin="10" Grid.Row="1" Grid.Column="0">Early start:</Label>
+                                <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding EarlyStart}" Margin="10"/>
+                                <Label Margin="10" Grid.Row="2" Grid.Column="0">Early finish:</Label>
+                                <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding EarlyFinish}" Margin="10"/>
+                                <Label Margin="10" Grid.Row="3" Grid.Column="0">Late start:</Label>
+                                <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding LateStart}" Margin="10"/>
+                                <Label Margin="10" Grid.Row="4" Grid.Column="0">Late finish:</Label>
+                                <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding LateFinish}" Margin="10"/>
+                                <Label  Margin="10" Grid.Row="5" >Effort:</Label>
+                                <TextBox Grid.Row="5" Grid.Column="1" Margin="10" Text="{Binding Path = Effort}"/>
+
+                                <Button Margin="10" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddMainTaskButton}">Add main task</Button>
+
+                            </Grid>
+
+                            <Grid Margin="10" Grid.Row="1" Grid.Column="0" Background="LightGray">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Margin="10" VerticalAlignment="Center">
+                             <Run Text="Select the task where you want"/>
+                            <LineBreak/>
+                            <Run Text="to add the preceding task: "/>
+                                </TextBlock>
+
+                                <ComboBox Grid.Column="1" Margin="10" ItemsSource="{Binding MainTaskWhereAddThePretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedMainTaskWhereAddThePretask}"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center">
+                             <Run Text="Select the preceding task: "/>
+                                </TextBlock>
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding MainTaskWhichIsPretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedMainTaskWhichIsPretask}"/>
+
+                                <Button Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddPreMainTaskButton}">Add preceding task</Button>
+
+                            </Grid>
+
+                            <Grid Margin="10" Grid.Row="1" Grid.Column="1" Background="LightGray">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Margin="10" VerticalAlignment="Center">
+                             <Run Text="Select the task where you want"/>
+                            <LineBreak/>
+                            <Run Text="to remove the preceding task: "/>
+                                </TextBlock>
+                                <ComboBox Grid.Column="1" Margin="10" ItemsSource="{Binding MainTaskWhereRemoveThePretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedMainTaskWhereRemoveThePretask}"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center">
+                             <Run Text="Select the preceding task: "/>
+                                </TextBlock>
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="10" ItemsSource="{Binding RemovePretask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedRemovePretask}"/>
+
+                                <Button Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding RemovePreMainTaskButton}">Remove preceding task</Button>
+
+                            </Grid>
+
+                            <Grid Margin="10" Grid.Row="0" Grid.Column="1" Background="LightGray">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label  Margin="10" >Select main task:</Label>
+                                <ComboBox Grid.Row="0" Grid.Column="1" Margin="10" ItemsSource="{Binding ListOfMaintask}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding EditSelectedMainTask}"/>
+
+                                <Label Grid.Row="1" Margin="10" >Name:</Label>
+                                <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = EditNameMainTask}"/>
+                                <Label Margin="10" Grid.Row="2" Grid.Column="0">Early start:</Label>
+                                <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding EditEarlyStart}" Margin="10"/>
+                                <Label Margin="10" Grid.Row="3" Grid.Column="0">Early finish:</Label>
+                                <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding EditEarlyFinish}" Margin="10"/>
+                                <Label Margin="10" Grid.Row="4" Grid.Column="0">Late start:</Label>
+                                <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding EditLateStart}" Margin="10"/>
+                                <Label Margin="10" Grid.Row="5" Grid.Column="0">Late finish:</Label>
+                                <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding EditLateFinish}" Margin="10"/>
+                                <Label  Margin="10" Grid.Row="6" >Effort:</Label>
+                                <TextBox Grid.Row="6" Grid.Column="1" Margin="10" Text="{Binding Path = EditEffort}"/>
+
+                                <Button Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding EditMainTaskButton}">Edit main task</Button>
+
+                            </Grid>
+
+                        </Grid>
+                        
+                    </Expander>
+
+                </Grid>
+
+
+                <Label Margin="10" Content="Gantt chart" FontSize="20" FontWeight="Bold"/>
                 <Grid Margin="10">
                     <pdgcc:GanttChartView x:Name="GanttChartDataGrid" Items="{Binding Items}">
                     </pdgcc:GanttChartView>
@@ -252,11 +270,19 @@
                 <Label Margin="10" Content="Subtask table for the selected main task" FontSize="20" FontWeight="Bold"/>
 
                 <StackPanel Margin="10" Background="WhiteSmoke">
-                    <StackPanel Margin="10" Background="WhiteSmoke" Orientation="Horizontal">
+                    <StackPanel Margin="10" Background="LightGray" Orientation="Horizontal">
                         <Label  Margin="10" Content="Select main task: "></Label>
                         <ComboBox Margin="10" SelectedValue="{Binding Path=SelectedMaintask}" ItemsSource="{Binding Path=ListOfMaintask}" DisplayMemberPath="Name"/>
                     </StackPanel>
-                    <ListView ItemsSource="{Binding ListOfSubtask}" HorizontalContentAlignment="Stretch">
+                    <Grid Margin="10" Background="LightGray">
+
+
+                        <ListView ItemsSource="{Binding ListOfSubtask}" HorizontalContentAlignment="Stretch" Margin="10">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Height" Value="50" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView >
 
@@ -270,12 +296,17 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    </Grid>
 
                 </StackPanel >
 
                 <Label Margin="10" Content="Resources table for the selected project" FontSize="20" FontWeight="Bold"/>
                 <StackPanel Margin="10" Background="WhiteSmoke">
+                    <Grid Margin="10" Background="LightGray">
+                        
+                    
                     <ListView Margin="10" ItemsSource="{Binding ListOfResources}" HorizontalContentAlignment="Stretch" >
+                        
                         <ListView.View>
                             <GridView >
                                 <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
@@ -292,59 +323,58 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    </Grid>
+                    <Expander Background="WhiteSmoke" Header="Add/edit resource">
 
-                    <Expander Margin="10" Background="LightGray" Header="Add resource">
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
+                        <Grid  Background="WhiteSmoke">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
-                            <Label Margin="10" Grid.Row="0" Grid.Column="0" Content="Name resource:" />
-                            <TextBox Margin="10" Grid.Row="0" Grid.Column="1" Text="{Binding Path = NameResource}"/>
-                            <Label Margin="10" Grid.Row="1" Grid.Column="0" Content="Cost resource:" />
-                            <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding Path = CostResource}"/>
-
-                            <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="10" Command="{Binding AddResourcesButton}">Add resource</Button>
-
-                        </Grid>
-
-                    </Expander>
-
-
-                    <Expander Margin="10" Background="LightGray" Header="Edit resource">
-
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Margin="10" Content="Select resource: "/>
-                                <ComboBox Margin="10" SelectedValue="{Binding Path=SelectedResource}" ItemsSource="{Binding Path=ListOfResources}" DisplayMemberPath="Name"/>
-                            </StackPanel>
-
-                            <Grid>
+                            
+                            <Grid Grid.Column="0" Margin="10" Background="LightGray">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Label Margin="10" Grid.Row="0" Grid.Column="0" Content="Cost resource:" />
-                                <TextBox Margin="10" Grid.Row="0" Grid.Column="1" Text="{Binding Path = EditCostResource}"/>
+                                <Label Margin="10" Grid.Row="0" Grid.Column="0" Content="Name resource:" />
+                                <TextBox Margin="10" Grid.Row="0" Grid.Column="1" Text="{Binding Path = NameResource}"/>
+                                <Label Margin="10" Grid.Row="1" Grid.Column="0" Content="Cost resource:" />
+                                <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding Path = CostResource}"/>
 
-                                <Button Grid.Row="2" Grid.ColumnSpan="1" Margin="10" Command="{Binding EditResourcesButton}">Edit resource</Button>
-
-                                
+                                <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="10" Command="{Binding AddResourcesButton}">Add resource</Button>
                             </Grid>
-                        </StackPanel>
+
+                            <Grid Grid.Column="1"  Margin="10" Background="LightGray">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Margin="10" Content="Select resource: "/>
+                                <ComboBox Margin="10" Grid.Column="1" SelectedValue="{Binding Path=SelectedResource}" ItemsSource="{Binding Path=ListOfResources}" DisplayMemberPath="Name"/>
+
+                                <Label Margin="10" Grid.Row="1" Grid.Column="0" Content="Cost resource:" />
+                                <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding Path = EditCostResource}"/>
+
+                                <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="10" Command="{Binding EditResourcesButton}">Edit resource</Button>
+                            </Grid>
+
+                        </Grid>
+
                     </Expander>
+
                 </StackPanel>
                 
                 <Button Margin="10" Command="{Binding GenerateRaportButton}">Generate raport</Button>

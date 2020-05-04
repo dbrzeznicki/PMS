@@ -20,7 +20,7 @@
      
     </Window.Resources>
 
-    <Grid Background="LightSlateGray">
+    <Grid Background="LightGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -42,8 +42,6 @@
                              FontSize="19" 
                              FontWeight="Thin"
                              Text="{Binding Path = Login}"          
-                             Background="Transparent"
-                             Foreground="White"
                              Width="235"
                              Height="26"
                              Opacity="0.6"
@@ -61,8 +59,6 @@
                                  FontSize="19"
                                  FontWeight="Thin"
                                  Text="{Binding Path = Password}"
-                                 Background="Transparent"
-                                 Foreground="White"
                                  Width="235"
                                  Height="26"
                                  Opacity="0.6"
@@ -73,8 +69,8 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    <Button Name ="LoginB" Command="{Binding ZalogujButton}" Width="100" Height="40" Content="LOGIN" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" Margin="60,0,60,0"/>
-                    <Button Name ="RegisterB" Command="{Binding ResetButton}" Width="100" Height="40" Content="RESET" FontSize="15" FontWeight="Bold" Background="Transparent" BorderBrush="White" BorderThickness="3" Foreground="White" />
+                    <Button Name ="LoginB"  Command="{Binding ZalogujButton}" Width="100" Height="40" Content="LOGIN" FontSize="15" FontWeight="Bold" Background="LightSlateGray" BorderBrush="White" BorderThickness="3" Foreground="White" Margin="60,0,60,0"/>
+                    <Button Name ="RegisterB" Command="{Binding ResetButton}" Width="100" Height="40" Content="RESET" FontSize="15" FontWeight="Bold" Background="LightSlateGray" BorderBrush="White" BorderThickness="3" Foreground="White" />
                 </StackPanel>
 
             </StackPanel>

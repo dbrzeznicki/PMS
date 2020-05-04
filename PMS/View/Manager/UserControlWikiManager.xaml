@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:PMS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
-    
+
+
+
     <UserControl.Resources>
         <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -20,11 +20,11 @@
     </UserControl.Resources>
 
 
-    <ScrollViewer>
-        <Grid  Margin="10" >
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="10" >
             <StackPanel>
-                <Expander Header="Articles list" Margin="10"  Background="WhiteSmoke">
-                    <Grid Margin="10">
+                <Expander Header="Articles list" Margin="10"  Background="WhiteSmoke" IsExpanded="True">
+                    <Grid Margin="10" Background="LightGray">
                         <ListView Margin="10" ItemsSource="{Binding Articles}" HorizontalContentAlignment="Stretch">
                             <ListView.View>
                                 <GridView>
@@ -63,7 +63,7 @@
                 </Expander>
 
                 <Expander Header="Add article" Margin="10"  Background="WhiteSmoke">
-                    <Grid Margin="10">
+                    <Grid Margin="10" Background="LightGray">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -80,22 +80,22 @@
                         <Label  Margin="10" Grid.Row="1">Description:</Label>
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Description}"/>
 
-                        <Button Margin="10" Name="AddArticleButton" Grid.Row="2" Grid.Column="1" Command="{Binding AddArticleButton}">Add article</Button>
+                        <Button Margin="10" Name="AddArticleButton" Grid.Row="3" Grid.Column="1" Command="{Binding AddArticleButton}">Add article</Button>
 
                     </Grid>
                 </Expander>
 
                 <Expander Header="Edit article" Margin="10"  Background="WhiteSmoke">
-                    <DockPanel>
-                        <Grid Margin="10" Background="WhiteSmoke" DockPanel.Dock="Top">
-                            <StackPanel Margin="10" Orientation="Horizontal">
-                                <TextBlock Margin="10" Text="Select article: " VerticalAlignment="Center"/>
+                    <StackPanel Margin="10" Background="LightGray">
+                        <Grid>
+                            <StackPanel  Orientation="Horizontal">
+                                <Label Margin="10" Content="Select article: " VerticalAlignment="Center"/>
                                 <ComboBox Margin="10" ItemsSource="{Binding Articles}" DisplayMemberPath="Url"
                                   SelectedItem="{Binding MySelectedArticle}"/>
                             </StackPanel>
                         </Grid>
 
-                        <Grid Margin="10">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -113,7 +113,7 @@
 
                             <Button Margin="10" Name="EditArticleButton" Grid.Row="3" Grid.Column="1" Command="{Binding EditArticleButton}" IsEnabled="{Binding IsEnabledEditButton}">Edit article</Button>
                         </Grid>
-                    </DockPanel>
+                    </StackPanel>
                 </Expander>
 
 

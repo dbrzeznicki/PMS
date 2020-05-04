@@ -23,12 +23,12 @@
 
 
             <StackPanel>
-                <Expander Header="Clients list" Margin="10" Background="WhiteSmoke">
+                <Expander Header="Clients list" Margin="10" Background="WhiteSmoke" IsExpanded="True">
 
                     <DockPanel>
 
 
-                        <Expander Grid.Row="0" Header="Filters" Margin="10" Background="LightGray" DockPanel.Dock="Top">
+                        <Expander Grid.Row="0" Header="Filters" Margin="10" Background="LightGray" DockPanel.Dock="Top" >
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
@@ -47,8 +47,13 @@
                             </Grid>
                         </Expander>
 
-                        <Grid>
+                        <Grid Margin="10" Background="LightGray" >
                             <ListView Margin="10" ItemsSource="{Binding FilteredClients}" HorizontalContentAlignment="Stretch">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Height" Value="50" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView >
 
@@ -67,7 +72,7 @@
                 </Expander>
 
                 <Expander Header="Add client" Margin="10" Background="WhiteSmoke">
-                    <Grid Margin="10">
+                    <Grid Margin="10" Background="LightGray">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -122,20 +127,20 @@
                 </Expander>
 
                 <Expander Header="Edit client" Margin="10" Background="WhiteSmoke">
-                    <Grid Margin="10">
+                    <Grid>
 
 
                         <DockPanel Height="Auto" VerticalAlignment="Top">
                             <Grid Margin="10"  Background="WhiteSmoke" DockPanel.Dock="Top">
-                                <StackPanel Margin="10" Orientation="Horizontal" Background="LightGray">
-                                    <TextBlock Margin="10" Text="Select client: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Background="LightGray">
+                                    <Label Margin="10" Content="Select client: " VerticalAlignment="Center"/>
                                     <ComboBox Margin="10" ItemsSource="{Binding Clients}" DisplayMemberPath="SearchEditClient"
                                   SelectedItem="{Binding MySelectedClient}"/>
                                 </StackPanel>
                             </Grid>
 
-                            <ScrollViewer>
-                                <Grid Margin="10">
+                            
+                                <Grid Margin="10" Background="LightGray">
 
                                     <Grid.Resources>
                                         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -191,7 +196,7 @@
 
                                     <Button  Margin="10" Name="EditClient" Grid.Row="10" Grid.Column="1" Command="{Binding EditClientButton}" IsEnabled="{Binding IsEnabledEditButton}">Edit client</Button>
                                 </Grid>
-                            </ScrollViewer>
+                           
                         </DockPanel>
 
 

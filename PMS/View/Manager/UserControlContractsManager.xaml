@@ -24,10 +24,15 @@
         <Grid Margin="10">
             <StackPanel>
 
-                <Expander Header="List of users" Margin="10" Background="WhiteSmoke">
+                <Expander Header="List of users" Margin="10" Background="WhiteSmoke" IsExpanded="True">
 
-                    <Grid Margin="10">
+                    <Grid Margin="10" Background="LightGray">
                         <ListView Margin="10" ItemsSource="{Binding ListOfUsers}" HorizontalContentAlignment="Stretch">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Height" Value="50" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView >
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Full name" DisplayMemberBinding="{Binding FullName}" Width="Auto"/>
@@ -44,7 +49,7 @@
 
                 <Expander Header="Generate new contract" Margin="10" Background="WhiteSmoke">
 
-                    <Grid>
+                    <Grid Margin="10" Background="LightGray">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -72,7 +77,7 @@
 
                 <Expander Header="Payouts" Margin="10" Background="WhiteSmoke">
 
-                    <Grid>
+                    <Grid Margin="10" Background="LightGray">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -101,19 +106,25 @@
                         <Button Margin="10" Grid.Row="3" Grid.Column="1" 
                                 Command="{Binding AddBonusButton}" IsEnabled="{Binding IsEnabledAddBonusButton}">Add bonus</Button>
 
-                        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
-                            <Label Margin="10"  Content="Select month: " />
-                            <ComboBox Margin="10"  SelectedValue="{Binding Path = SelectedMonth}" SelectedIndex="0" ItemsSource="{Binding Path = Months}" />
-                        </StackPanel>
-                       
-                        
-                        <Button Margin="10" Grid.Row="4" Grid.Column="1" 
-                                Command="{Binding GeneratePayoutsListButton}" >Generate payouts list</Button>
+
 
                     </Grid>
 
                 </Expander>
-                
+
+                <Grid Margin="10" Background="WhiteSmoke">
+
+                    <StackPanel Orientation="Horizontal" Margin="10" Background="LightGray">
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="10"  Content="Select month: " />
+                    <ComboBox Margin="10"  SelectedValue="{Binding Path = SelectedMonth}" SelectedIndex="0" ItemsSource="{Binding Path = Months}" />
+                </StackPanel>
+
+
+                <Button Margin="10" Grid.Row="4" Grid.Column="1" 
+                                Command="{Binding GeneratePayoutsListButton}" >Generate payouts list</Button>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </Grid>
     </ScrollViewer>

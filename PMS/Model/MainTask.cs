@@ -46,5 +46,37 @@ namespace PMS.Model
             }
         }
 
+        public string StringEarlyStart
+        {
+            get
+            {
+                    return EarlyStart.ToString("dd/MM/yyyy");
+            }
+        }
+
+        public string StringEarlyFinish
+        {
+            get
+            {
+                return EarlyFinish.ToString("dd/MM/yyyy");
+            }
+        }
+
+        public string StringLateStart
+        {
+            get
+            {
+                return LateStart.ToString("dd/MM/yyyy");
+            }
+        }
+
+        public string StringLateFinish
+        {
+            get
+            {
+                return LateFinish.ToString("dd/MM/yyyy");
+            }
+        }
+
     }
 }

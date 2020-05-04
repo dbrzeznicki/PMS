@@ -24,9 +24,9 @@
 
             <StackPanel>
 
-                <Expander Header="My tasks" Margin="10" Background="WhiteSmoke">
+                <Expander Header="My tasks" Margin="10" Background="WhiteSmoke" IsExpanded="True">
 
-                    <DockPanel>
+                    <StackPanel>
 
                         <Expander Header="Filter" Margin="10" Background="LightGray" DockPanel.Dock="Top">
                             <Grid Margin="10">
@@ -49,46 +49,51 @@
                             </Grid>
                         </Expander>
 
-                        <StackPanel>
-                            <Grid Margin="10">
-                                <ListView Margin="10" ItemsSource="{Binding Subtasks}" HorizontalContentAlignment="Stretch">
-                                    <ListView.View>
-                                        <GridView >
+                      
+                        <Grid Margin="10" Background="LightGray">
+                            <ListView Margin="10" ItemsSource="{Binding Subtasks}" HorizontalContentAlignment="Stretch">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Height" Value="50" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView >
 
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description"  DisplayMemberBinding="{Binding Description}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Start time"  DisplayMemberBinding="{Binding StartTime}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="End time"  DisplayMemberBinding="{Binding EndTime}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Priority"  DisplayMemberBinding="{Binding Priority}" Width="Auto"/>
-                                            <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Status"  DisplayMemberBinding="{Binding SubtaskStatus.Name}" Width="Auto"/>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
+                                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description"  DisplayMemberBinding="{Binding Description}" Width="Auto"/>
+                                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Start time"  DisplayMemberBinding="{Binding StartTime}" Width="Auto"/>
+                                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="End time"  DisplayMemberBinding="{Binding EndTime}" Width="Auto"/>
+                                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Priority"  DisplayMemberBinding="{Binding Priority}" Width="Auto"/>
+                                        <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Status"  DisplayMemberBinding="{Binding SubtaskStatus.Name}" Width="Auto"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
 
-                            <Grid>
-                                <StackPanel Margin="10" Orientation="Horizontal">
 
-                                    <TextBlock Margin="0,20,10,20" Text="Select subtask: " VerticalAlignment="Center"/>
+                       
+                            <StackPanel Margin="10" Orientation="Horizontal" Background="LightGray">
+
+                                    <Label Margin="10" Content="Select subtask: " VerticalAlignment="Center"/>
                                     <ComboBox Margin="10" ItemsSource="{Binding Subtasks}" DisplayMemberPath="Name"
                                     SelectedItem="{Binding SelectedSubtask}"/>
 
-                                    <TextBlock Margin="0,20,10,20" Text="Select status: " VerticalAlignment="Center"/>
+                                <Label Margin="10" Content="Select status: " VerticalAlignment="Center"/>
                                     <ComboBox Margin="10" ItemsSource="{Binding SubtaskStatus}" DisplayMemberPath="Name"
                                     SelectedItem="{Binding SelectedSubtaskStatus}"/>
 
-                                    <Button Name="ChangeStatus"  Margin="0,20,10,20" Command="{Binding ChangeStatusButton}" IsEnabled="{Binding IsEnabledChangeStatusButton}">Change status</Button>
+                                    <Button Name="ChangeStatus"  Margin="10" Command="{Binding ChangeStatusButton}" IsEnabled="{Binding IsEnabledChangeStatusButton}">Change status</Button>
                                 </StackPanel>
-                            </Grid>
+                         
+
 
                         </StackPanel>
-
-                    </DockPanel>
                 </Expander>
 
 
                 <Expander Header="Add task" Margin="10" Background="WhiteSmoke">
-                    <Grid Margin="10">
+                    <Grid Margin="10" Background="LightGray">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />

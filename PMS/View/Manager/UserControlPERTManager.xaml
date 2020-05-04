@@ -25,11 +25,11 @@
 
 
     <ScrollViewer>
-        <Grid>
+        <Grid Margin="10">
 
             <StackPanel>
-
                 <Grid Margin="10" Background="WhiteSmoke">
+                <Grid Margin="10" Background="LightGray">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -37,7 +37,7 @@
                     <Label Margin="10" Grid.Column="0">Start project:</Label>
                     <DatePicker Grid.Column="1" SelectedDate="{Binding StartProject}" Margin="10"/>
                 </Grid>
-
+                </Grid>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid Margin="10" Background="WhiteSmoke">
                         <Grid.ColumnDefinitions>
@@ -153,7 +153,9 @@
                     <Label Margin="10,30,10,10" Grid.Column="1" FontSize="20" FontWeight="Bold">Results table (visible when you press the button 'Run the PERT algorithm')</Label>
 
                     <Grid Margin="10" Background="WhiteSmoke" Grid.Row="1">
-                        <ListView  ItemsSource="{Binding PERTTaskList}" HorizontalContentAlignment="Stretch">
+                    <Grid Margin="10" Background="LightGray" >
+                            <ListView Margin="10" ItemsSource="{Binding PERTTaskList}" HorizontalContentAlignment="Stretch">
+                            
                             <ListView.View>
                                 <GridView >
 
@@ -173,8 +175,16 @@
                             </ListView.View>
                         </ListView>
                     </Grid>
+                    </Grid>
+
                     <Grid Grid.Column="1" Grid.Row="1" Margin="10" Background="WhiteSmoke">
+                        <Grid Margin="10" Background="LightGray">
                         <ListView Margin="10" ItemsSource="{Binding PERTTaskResult}" HorizontalContentAlignment="Stretch">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Height" Value="50" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView >
 
@@ -186,20 +196,12 @@
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Late finish"  DisplayMemberBinding="{Binding LF}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Slack"  DisplayMemberBinding="{Binding Slack}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Effort"  DisplayMemberBinding="{Binding Cost}" Width="Auto"/>
-
-                                    <GridViewColumn Width="0">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate >
-                                                <Button Margin="5" Background="WhiteSmoke" BorderBrush="WhiteSmoke"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
+                                    
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </Grid>
-
+                    </Grid>
                 </Grid>
 
 
@@ -209,9 +211,12 @@
                 <Button Margin="10" Command="{Binding CalculateButton}" >Run the PERT algorithm</Button>
 
 
-                <pdpcc:NetworkDiagramView Margin="10" Name="NDV" Items="{Binding items}"/>
+                <Grid  Margin="10" Background="WhiteSmoke">
 
 
+                    <pdpcc:NetworkDiagramView Margin="10" Name="NDV" Items="{Binding items}" Background="LightGray"/>
+
+                </Grid>
 
                 <Button Margin="10" Click="CriticalPathButton" >Show critical path</Button>
                 <Button Margin="10" Name="EIButton" Click="EIButton_Click">Export PERT diagram</Button>
@@ -220,7 +225,7 @@
                 <Label Margin="10,30,10,10" FontSize="20" FontWeight="Bold">Helpful algorithms</Label>
 
                 <Grid Margin="10" Background="WhiteSmoke">
-                    <StackPanel>
+                    <StackPanel Margin="10" Background="LightGray" >
                         <StackPanel Orientation="Horizontal">
                             <Button Margin="10" Grid.Row="3" Command="{Binding OpenFunctionPointButton}">Function point method</Button>
                         </StackPanel>
