@@ -309,7 +309,7 @@ namespace PMS
             {
                 return _CheckBoxAdress;
 
-                
+
             }
             set
             {
@@ -322,7 +322,7 @@ namespace PMS
                     CorrespondenceApartmentNumber = ResidenceApartmentNumber;
                     CorrespondencePostcode = ResidencePostcode;
                     CorrespondenceCity = ResidenceCity;
-                } 
+                }
                 else
                 {
                     CorrespondenceStreet = _CorrespondenceStreet;
@@ -352,54 +352,42 @@ namespace PMS
             get { return _mySelectedUser; }
             set
             {
-                //_mySelectedUser was null.
                 _mySelectedUser = value;
                 RaisePropertyChanged("MySelectedUser");
 
-
-                IsEnabledEditButton = true;
-
-                FirstName = _mySelectedUser.FirstName;
-                LastName = _mySelectedUser.LastName;
-                Password = _mySelectedUser.Password;
-                Salary = _mySelectedUser.Salary;
-                PhoneNumber = _mySelectedUser.PhoneNumber;
-                Email = _mySelectedUser.Email;
-                //if (_mySelectedUser.Team != null)
-                //{
-                //    VisibilityTeam = "Visible";
-                //    Team = _mySelectedUser.Team.Name;
-                //}
-                //else
-                //{
-                //    VisibilityTeam = "Collapsed";
-                //    Team = null;
-                //}
-
-                ResidenceStreet = _mySelectedUser.ResidenceStreet;
-                ResidenceHouseNumber = _mySelectedUser.ResidenceHouseNumber;
-                ResidenceApartmentNumber = _mySelectedUser.ResidenceApartmentNumber;
-                ResidencePostcode = _mySelectedUser.ResidencePostcode;
-                ResidenceCity = _mySelectedUser.ResidenceCity;
-                if (_mySelectedUser.CorrespondenceStreet == _mySelectedUser.ResidenceStreet)
+                if(_mySelectedUser != null)
                 {
-                    CheckBoxAdress = false;
+                    IsEnabledEditButton = true;
+                    FirstName = _mySelectedUser.FirstName;
+                    LastName = _mySelectedUser.LastName;
+                    Password = _mySelectedUser.Password;
+                    Salary = _mySelectedUser.Salary;
+                    PhoneNumber = _mySelectedUser.PhoneNumber;
+                    Email = _mySelectedUser.Email;
+
+                    ResidenceStreet = _mySelectedUser.ResidenceStreet;
+                    ResidenceHouseNumber = _mySelectedUser.ResidenceHouseNumber;
+                    ResidenceApartmentNumber = _mySelectedUser.ResidenceApartmentNumber;
+                    ResidencePostcode = _mySelectedUser.ResidencePostcode;
+                    ResidenceCity = _mySelectedUser.ResidenceCity;
+                    if (_mySelectedUser.CorrespondenceStreet == _mySelectedUser.ResidenceStreet)
+                    {
+                        CheckBoxAdress = false;
+                    }
+
+                    else
+                    {
+                        CheckBoxAdress = true;
+                    }
+
+                    CorrespondenceStreet = _mySelectedUser.CorrespondenceStreet;
+                    CorrespondenceHouseNumber = _mySelectedUser.CorrespondenceHouseNumber;
+                    CorrespondenceApartmentNumber = _mySelectedUser.CorrespondenceApartmentNumber;
+                    CorrespondencePostcode = _mySelectedUser.CorrespondencePostcode;
+                    CorrespondenceCity = _mySelectedUser.CorrespondenceCity;
+                    HiredDate = _mySelectedUser.HiredDate;
+                    FiredDate = _mySelectedUser.FiredDate;
                 }
-
-                else
-                {
-                    CheckBoxAdress = true;
-                }
-
-                CorrespondenceStreet = _mySelectedUser.CorrespondenceStreet;
-                CorrespondenceHouseNumber = _mySelectedUser.CorrespondenceHouseNumber;
-                CorrespondenceApartmentNumber = _mySelectedUser.CorrespondenceApartmentNumber;
-                CorrespondencePostcode = _mySelectedUser.CorrespondencePostcode;
-                CorrespondenceCity = _mySelectedUser.CorrespondenceCity;
-                HiredDate = _mySelectedUser.HiredDate;
-                FiredDate = _mySelectedUser.FiredDate;
-
-
             }
         }
 
@@ -464,6 +452,7 @@ namespace PMS
 
                 Users = new ObservableCollection<User>(dbContext.User);
 
+                setVariable();
                 ErrorMessage er = new ErrorMessage("User edit successfully!");
                 er.ShowDialog();
             }
@@ -477,12 +466,29 @@ namespace PMS
             }
         }
 
-        //public List<Team> Teams
-        //{
-        //    get
-        //    {
-        //        return dbContext.Team.ToList();
-        //    }
-        //}
+        private void setVariable()
+        {
+            FirstName = "";
+            LastName = "";
+            Password = "";
+            Salary = 0;
+            PhoneNumber = "";
+            Email = "";
+            ResidenceStreet = "";
+            ResidenceHouseNumber = "";
+            ResidenceApartmentNumber = "";
+            ResidencePostcode = "";
+            ResidenceCity = "";
+            CorrespondenceStreet = "";
+            CorrespondenceHouseNumber = "";
+            CorrespondenceApartmentNumber = "";
+            CorrespondencePostcode = "";
+            CorrespondenceCity = "";
+            HiredDate = DateTime.Now;
+            FiredDate = DateTime.Now;
+            CheckBoxAdress = false;
+            IsEnabledEditButton = false;
+            MySelectedUser = null;
+        }
     }
 }

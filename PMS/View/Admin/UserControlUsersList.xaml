@@ -18,10 +18,12 @@
         </Style>
     </UserControl.Resources>
 
-
-    <Grid Margin="10">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="10">
         <StackPanel>
-            <Expander Header="Filters" Margin="10" Background="WhiteSmoke" IsExpanded="True">
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Users list</Label>
+            
+                <Expander Header="Filters" Margin="10" Background="WhiteSmoke" IsExpanded="True">
                     <Grid>
 
                         <Grid.ColumnDefinitions>
@@ -51,8 +53,10 @@
 
                     </Grid>
                 </Expander>
-
-            <Grid Margin="10" Background="WhiteSmoke" Height="Auto">
+           
+                
+                <Grid Margin="10" Background="WhiteSmoke" Height="Auto">
+              
             <Grid Margin="10" Background="LightGray">
                     <ListView Margin="10" ItemsSource="{Binding FilteredUsers}" >
                     <ListView.ItemContainerStyle>
@@ -80,8 +84,10 @@
                 </ListView.View>
             </ListView>
             </Grid>
+                
             </Grid>
+           
         </StackPanel>
     </Grid>
-    
+    </ScrollViewer>
 </UserControl>

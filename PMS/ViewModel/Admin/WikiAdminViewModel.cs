@@ -128,19 +128,20 @@ namespace PMS
             set
             {
                 _mySelectedArticle = value;
-                
+
                 if (_mySelectedArticle != null)
                 {
                     IsEnabledEditButton = true;
                     UrlEdit = _mySelectedArticle.Url;
                     DescriptionEdit = _mySelectedArticle.Description;
-                } else
+                }
+                else
                 {
                     IsEnabledEditButton = false;
                     UrlEdit = "";
                     DescriptionEdit = "";
                 }
-                
+
 
                 RaisePropertyChanged("MySelectedArticle"); //to wczesniej?
             }
@@ -167,11 +168,10 @@ namespace PMS
 
                 Articles = new ObservableCollection<Article>(dbContext.Article);
 
+                setVariableWhenAddArticle();
                 ErrorMessage er = new ErrorMessage("Add article!");
                 er.ShowDialog();
             }
-
-
         }
 
 
@@ -190,6 +190,7 @@ namespace PMS
 
                 Articles = new ObservableCollection<Article>(dbContext.Article);
 
+                setVariableWhenEditArticle();
                 ErrorMessage er = new ErrorMessage("Edit article!");
                 er.ShowDialog();
             }
@@ -204,6 +205,20 @@ namespace PMS
 
             _Articles.Remove(article);
 
+        }
+
+        private void setVariableWhenAddArticle()
+        {
+            Url = "";
+            Description = "";
+        }
+
+        private void setVariableWhenEditArticle()
+        {
+            UrlEdit = "";
+            DescriptionEdit = "";
+            MySelectedArticle = null;
+            IsEnabledEditButton = false;
         }
     }
 }

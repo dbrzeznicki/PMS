@@ -197,19 +197,21 @@ namespace PMS
                 _mySelectedClient = value;
                 RaisePropertyChanged("MySelectedClient");
 
-                IsEnabledEditButton = true;
+                if (_mySelectedClient != null)
+                {
+                    IsEnabledEditButton = true;
+                    FirstName = _mySelectedClient.FirstName;
+                    LastName = _mySelectedClient.LastName;
+                    CompanyName = _mySelectedClient.CompanyName;
+                    NIP = _mySelectedClient.NIP;
+                    REGON = _mySelectedClient.REGON;
 
-                FirstName = _mySelectedClient.FirstName;
-                LastName = _mySelectedClient.LastName;
-                CompanyName = _mySelectedClient.CompanyName;
-                NIP = _mySelectedClient.NIP;
-                REGON = _mySelectedClient.REGON;
-
-                Street = _mySelectedClient.Street;
-                HouseNumber = _mySelectedClient.HouseNumber;
-                ApartmentNumber = _mySelectedClient.ApartmentNumber;
-                Postcode = _mySelectedClient.Postcode;
-                City = _mySelectedClient.City;
+                    Street = _mySelectedClient.Street;
+                    HouseNumber = _mySelectedClient.HouseNumber;
+                    ApartmentNumber = _mySelectedClient.ApartmentNumber;
+                    Postcode = _mySelectedClient.Postcode;
+                    City = _mySelectedClient.City;
+                }
             }
         }
 
@@ -259,9 +261,28 @@ namespace PMS
 
                 Clients = new ObservableCollection<Client>(dbContext.Client);
 
+                setVariable();
+
                 ErrorMessage er = new ErrorMessage("Client edit successfully!");
                 er.ShowDialog();
             }
         }
+
+        private void setVariable()
+        {
+            FirstName = "";
+            LastName = "";
+            CompanyName = "";
+            NIP = "";
+            REGON = "";
+            Street = "";
+            HouseNumber = "";
+            ApartmentNumber = "";
+            City = "";
+            Postcode = "";
+            MySelectedClient = null;
+            IsEnabledEditButton = false;
+        }
+
     }
 }

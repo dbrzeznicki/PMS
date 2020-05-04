@@ -187,6 +187,8 @@ namespace PMS
                 dbContext.Client.Add(client);
                 dbContext.SaveChanges();
 
+                setVariable();
+
                 ErrorMessage er = new ErrorMessage("Client created successfully!");
                 er.ShowDialog();
             }
@@ -213,6 +215,20 @@ namespace PMS
             };
 
             return client;
+        }
+
+        private void setVariable()
+        {
+            FirstName = "";
+            LastName = "";
+            CompanyName = "";
+            NIP = "";
+            REGON = "";
+            Street = "";
+            HouseNumber = "";
+            ApartmentNumber = "";
+            City = "";
+            Postcode = "";
         }
     }
 }

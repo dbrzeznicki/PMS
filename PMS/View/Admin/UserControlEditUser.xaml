@@ -10,6 +10,8 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Margin="10">
             <StackPanel>
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Edit user</Label>
+                
                 <Grid Margin="10" Background="WhiteSmoke">
                 <Grid Margin="10" Background="LightGray">
                     <StackPanel Orientation="Horizontal">

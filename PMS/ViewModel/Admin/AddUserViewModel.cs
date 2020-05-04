@@ -356,6 +356,8 @@ namespace PMS
                     dbContext.User.Add(user);
                     dbContext.SaveChanges();
 
+                    setVariable();
+
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
                 }
@@ -365,6 +367,8 @@ namespace PMS
                     user = AddUserWithCorrespondenceAdress();
                     dbContext.User.Add(user);
                     dbContext.SaveChanges();
+
+                    setVariable();
 
                     ErrorMessage er = new ErrorMessage("User created successfully!");
                     er.ShowDialog();
@@ -456,13 +460,28 @@ namespace PMS
             }
         }
 
-        /*public List<Team> Teams
+        private void setVariable()
         {
-            get
-            {
-                PMSContext dbContext = new PMSContext();
-                return dbContext.Team.ToList();
-            }
-        }*/
+            FirstName = "";
+            LastName = "";
+            Login = "";
+            Password = "";
+            UserRole = "Employee";
+            Salary = 0;
+            PhoneNumber = "";
+            Email = "";
+            ResidenceStreet = "";
+            ResidenceHouseNumber = "";
+            ResidenceApartmentNumber = "";
+            ResidencePostcode = "";
+            ResidenceCity = "";
+            CorrespondenceStreet = "";
+            CorrespondenceHouseNumber = "";
+            CorrespondenceApartmentNumber = "";
+            CorrespondencePostcode = "";
+            CorrespondenceCity = "";
+            HiredDate = DateTime.Now;
+            FiredDate = DateTime.Now;
+        }
     }
 }

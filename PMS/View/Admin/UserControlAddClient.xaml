@@ -11,6 +11,8 @@
 
     <ScrollViewer>
         <StackPanel Margin="10">
+            <Label Margin="10" FontSize="20" FontWeight="Bold">Add client</Label>
+            
             <Grid Margin="10"  Background="WhiteSmoke">
         <Grid Margin="10" Background="LightGray">
             <Grid.ColumnDefinitions>
