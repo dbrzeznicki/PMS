@@ -160,21 +160,9 @@
     <Compile Include="Algorithm\PERT.cs" />
     <Compile Include="DAL\PMSContext.cs" />
     <Compile Include="DAL\PMSInitializer.cs" />
-    <Compile Include="Migrations\202004151410266_payoutBonus.cs" />
-    <Compile Include="Migrations\202004151410266_payoutBonus.Designer.cs">
-      <DependentUpon>202004151410266_payoutBonus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004151823384_payoutBonusEdit.cs" />
-    <Compile Include="Migrations\202004151823384_payoutBonusEdit.Designer.cs">
-      <DependentUpon>202004151823384_payoutBonusEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004241709307_addResourcesToProject.cs" />
-    <Compile Include="Migrations\202004241709307_addResourcesToProject.designer.cs">
-      <DependentUpon>202004241709307_addResourcesToProject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004241831491_editMainTask.cs" />
-    <Compile Include="Migrations\202004241831491_editMainTask.designer.cs">
-      <DependentUpon>202004241831491_editMainTask.cs</DependentUpon>
+    <Compile Include="Migrations\202005040659535_fullDatabase.cs" />
+    <Compile Include="Migrations\202005040659535_fullDatabase.designer.cs">
+      <DependentUpon>202005040659535_fullDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
@@ -467,17 +455,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202004151410266_payoutBonus.resx">
-      <DependentUpon>202004151410266_payoutBonus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004151823384_payoutBonusEdit.resx">
-      <DependentUpon>202004151823384_payoutBonusEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004241709307_addResourcesToProject.resx">
-      <DependentUpon>202004241709307_addResourcesToProject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004241831491_editMainTask.resx">
-      <DependentUpon>202004241831491_editMainTask.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005040659535_fullDatabase.resx">
+      <DependentUpon>202005040659535_fullDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -174,14 +174,7 @@ namespace PMS.DAL
 
 
 
-            var resources = new List<Resources>
-                {
-                    new Resources() { ResourcesID=1, Name="Visual Studio", Cost = 2200.30, ProjectID=1 },
-                    new Resources() { ResourcesID=2, Name="Meeting", Cost = 5500.00, ProjectID=1}
-                };
 
-            resources.ForEach(c => context.Resources.AddOrUpdate(c));
-            context.SaveChanges();
 
 
             var project = new List<Project>
@@ -201,6 +194,14 @@ namespace PMS.DAL
             project.ForEach(p => context.Project.AddOrUpdate(p));
             context.SaveChanges();
 
+            var resources = new List<Resources>
+                {
+                    new Resources() { ResourcesID=1, Name="Visual Studio", Cost = 2200.30, ProjectID=1 },
+                    new Resources() { ResourcesID=2, Name="Meeting", Cost = 5500.00, ProjectID=1}
+                };
+
+            resources.ForEach(c => context.Resources.AddOrUpdate(c));
+            context.SaveChanges();
 
             var mainTask = new List<MainTask>
                 {

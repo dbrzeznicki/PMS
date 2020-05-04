@@ -1,9 +1,9 @@
-namespace PMS.Migrations
+﻿namespace PMS.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class payoutBonus : DbMigration
+    public partial class fullDatabase : DbMigration
     {
         public override void Up()
         {
@@ -52,8 +52,8 @@ namespace PMS.Migrations
                 .PrimaryKey(t => t.UserID)
                 .ForeignKey("dbo.Teams", t => t.TeamID)
                 .ForeignKey("dbo.UserRoles", t => t.UserRoleID, cascadeDelete: true)
-                .Index(t => t.TeamID)
-                .Index(t => t.UserRoleID);
+                .Index(t => t.UserRoleID)
+                .Index(t => t.TeamID);
             
             CreateTable(
                 "dbo.PayoutBonus",
@@ -61,7 +61,7 @@ namespace PMS.Migrations
                     {
                         PayoutBonusID = c.Int(nullable: false, identity: true),
                         UserID = c.Int(nullable: false),
-                        Month = c.String(),
+                        DateOfGrantiedBonuses = c.DateTime(nullable: false),
                         Value = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.PayoutBonusID)
@@ -87,8 +87,8 @@ namespace PMS.Migrations
                 .ForeignKey("dbo.MainTasks", t => t.MainTaskID)
                 .ForeignKey("dbo.SubtaskStatus", t => t.SubtaskStatusID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
-                .Index(t => t.MainTaskID)
                 .Index(t => t.SubtaskStatusID)
+                .Index(t => t.MainTaskID)
                 .Index(t => t.UserID);
             
             CreateTable(
@@ -98,17 +98,19 @@ namespace PMS.Migrations
                         MainTaskID = c.Int(nullable: false, identity: true),
                         ProjectID = c.Int(nullable: false),
                         Name = c.String(),
-                        Priority = c.Int(nullable: false),
-                        StartTime = c.DateTime(nullable: false),
-                        EndTime = c.DateTime(nullable: false),
+                        EarlyStart = c.DateTime(nullable: false),
+                        EarlyFinish = c.DateTime(nullable: false),
+                        LateStart = c.DateTime(nullable: false),
+                        LateFinish = c.DateTime(nullable: false),
+                        Effort = c.Int(nullable: false),
                         Status = c.Boolean(nullable: false),
                         MainTask_MainTaskID = c.Int(),
                     })
                 .PrimaryKey(t => t.MainTaskID)
                 .ForeignKey("dbo.MainTasks", t => t.MainTask_MainTaskID)
                 .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: true)
-                .Index(t => t.MainTask_MainTaskID)
-                .Index(t => t.ProjectID);
+                .Index(t => t.ProjectID)
+                .Index(t => t.MainTask_MainTaskID);
             
             CreateTable(
                 "dbo.Projects",
@@ -157,6 +159,19 @@ namespace PMS.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.ProjectStatusID);
+            
+            CreateTable(
+                "dbo.Resources",
+                c => new
+                    {
+                        ResourcesID = c.Int(nullable: false, identity: true),
+                        ProjectID = c.Int(nullable: false),
+                        Name = c.String(),
+                        Cost = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.ResourcesID)
+                .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: true)
+                .Index(t => t.ProjectID);
             
             CreateTable(
                 "dbo.Teams",
@@ -240,31 +255,34 @@ namespace PMS.Migrations
             DropForeignKey("dbo.MainTasks", "ProjectID", "dbo.Projects");
             DropForeignKey("dbo.Projects", "TeamID", "dbo.Teams");
             DropForeignKey("dbo.RecentActivities", "TeamID", "dbo.Teams");
+            DropForeignKey("dbo.Resources", "ProjectID", "dbo.Projects");
             DropForeignKey("dbo.Projects", "ProjectStatusID", "dbo.ProjectStatus");
             DropForeignKey("dbo.Projects", "ClientID", "dbo.Clients");
             DropForeignKey("dbo.MainTasks", "MainTask_MainTaskID", "dbo.MainTasks");
             DropForeignKey("dbo.PayoutBonus", "UserID", "dbo.Users");
-            DropIndex("dbo.Articles", new[] { "UserID" });
             DropIndex("dbo.Vacations", new[] { "VacationTypeID" });
             DropIndex("dbo.Vacations", new[] { "UserID" });
-            DropIndex("dbo.Users", new[] { "UserRoleID" });
-            DropIndex("dbo.Users", new[] { "TeamID" });
-            DropIndex("dbo.Subtasks", new[] { "UserID" });
-            DropIndex("dbo.Subtasks", new[] { "SubtaskStatusID" });
-            DropIndex("dbo.Subtasks", new[] { "MainTaskID" });
-            DropIndex("dbo.MainTasks", new[] { "ProjectID" });
-            DropIndex("dbo.Projects", new[] { "TeamID" });
             DropIndex("dbo.RecentActivities", new[] { "TeamID" });
+            DropIndex("dbo.Resources", new[] { "ProjectID" });
+            DropIndex("dbo.Projects", new[] { "TeamID" });
             DropIndex("dbo.Projects", new[] { "ProjectStatusID" });
             DropIndex("dbo.Projects", new[] { "ClientID" });
             DropIndex("dbo.MainTasks", new[] { "MainTask_MainTaskID" });
+            DropIndex("dbo.MainTasks", new[] { "ProjectID" });
+            DropIndex("dbo.Subtasks", new[] { "UserID" });
+            DropIndex("dbo.Subtasks", new[] { "MainTaskID" });
+            DropIndex("dbo.Subtasks", new[] { "SubtaskStatusID" });
             DropIndex("dbo.PayoutBonus", new[] { "UserID" });
+            DropIndex("dbo.Users", new[] { "TeamID" });
+            DropIndex("dbo.Users", new[] { "UserRoleID" });
+            DropIndex("dbo.Articles", new[] { "UserID" });
             DropTable("dbo.VacationTypes");
             DropTable("dbo.Vacations");
             DropTable("dbo.UserRoles");
             DropTable("dbo.SubtaskStatus");
             DropTable("dbo.RecentActivities");
             DropTable("dbo.Teams");
+            DropTable("dbo.Resources");
             DropTable("dbo.ProjectStatus");
             DropTable("dbo.Clients");
             DropTable("dbo.Projects");
