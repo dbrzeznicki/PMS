@@ -24,7 +24,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         <Grid Margin="10">
 
             <StackPanel>
-
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Task</Label>
                 <Expander Header="My tasks" Margin="10" Background="WhiteSmoke"  IsExpanded="True">
 
                     <DockPanel>
@@ -53,6 +53,11 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         <StackPanel>
                             <Grid Margin="10" Background="LightGray">
                                 <ListView Margin="10" ItemsSource="{Binding Subtasks}" HorizontalContentAlignment="Stretch">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Height" Value="45" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
                                     <ListView.View>
                                         <GridView >
 
@@ -104,9 +109,13 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                   ItemsSource="{Binding Path=StatusWhichICreated}" SelectedIndex="0"/>
                         </StackPanel>
                         <Grid Grid.Row="2" Background="LightGray" Margin="10">
-                        <ListView Margin="10" ItemsSource="{Binding SubtasksWhichICreated}" 
-                              HorizontalContentAlignment="Stretch">
-                            <ListView.View>
+                        <ListView Margin="10" ItemsSource="{Binding SubtasksWhichICreated}" HorizontalContentAlignment="Stretch">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Height" Value="45" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
                                 <GridView>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Description"  DisplayMemberBinding="{Binding Description}" Width="Auto"/>

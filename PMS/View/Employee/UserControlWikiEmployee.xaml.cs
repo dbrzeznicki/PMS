@@ -1,6 +1,9 @@
-﻿using System;
+﻿using PMS.Model;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,5 +29,30 @@ namespace PMS
             WikiEmployeeViewModel vm = new WikiEmployeeViewModel();
             this.DataContext = vm;
         }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedItem = (Article)(WikiList.SelectedItem ?? "(none)");
+            OpenUrl(selectedItem.Url);
+        }
+
+        private void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    url = url.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                }
+                else
+                    throw;
+            }
+        }
+
     }
 }

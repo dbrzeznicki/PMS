@@ -238,7 +238,7 @@ namespace PMS
         {
             get
             {
-                
+
                 if (_Subtasks == null)
                 {
                     _Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => x.UserID == Global.user.UserID));
@@ -264,14 +264,15 @@ namespace PMS
                 _SelectedSubtask = value;
                 RaisePropertyChanged("SelectedSubtask");
 
-                if(SelectedSubtask != null && SelectedSubtaskStatus != null) 
+                if (SelectedSubtask != null && SelectedSubtaskStatus != null)
                 {
                     IsEnabledChangeStatusButton = true;
-                } else
+                }
+                else
                 {
                     IsEnabledChangeStatusButton = false;
                 }
-                
+
             }
         }
 
@@ -376,8 +377,8 @@ namespace PMS
         {
             EmployeeValidation EV = new EmployeeValidation();
             bool correctForm = EV.AddTaskValidation(Name, Description);
-            
-            if(correctForm)
+
+            if (correctForm)
             {
                 PMSContext dbContext = new PMSContext();
 
@@ -408,6 +409,9 @@ namespace PMS
                 dbContext.RecentActivity.Add(ra);
                 dbContext.SaveChanges();
 
+
+                setVariableWhenAddTask();
+
                 ErrorMessage er = new ErrorMessage("Task created successfully!");
                 er.ShowDialog();
             }
@@ -418,7 +422,7 @@ namespace PMS
         private void ChangeStatus()
         {
             //globalne db context?
-            
+
 
             SelectedSubtask.SubtaskStatusID = SelectedSubtaskStatus.SubtaskStatusID;
 
@@ -434,6 +438,7 @@ namespace PMS
             dbContext.RecentActivity.Add(ra);
             dbContext.SaveChanges();
 
+            
 
             Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => x.UserID == Global.user.UserID));
             SelectedSubtask = null;
@@ -490,11 +495,20 @@ namespace PMS
 
         public void FilterSubtaskWhichICreated()
         {
+            PMSContext dbContext = new PMSContext();
+            SubtasksWhichICreated = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.WhoCreated == Global.user.UserID) && (SelectedStatusWhichICreated == "All" ? true : x.SubtaskStatus.Name == SelectedStatusWhichICreated)));
+        }
 
-           PMSContext dbContext = new PMSContext();
-
-           SubtasksWhichICreated = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => (x.WhoCreated == Global.user.UserID) && (SelectedStatusWhichICreated == "All" ? true : x.SubtaskStatus.Name == SelectedStatusWhichICreated)));
-
+        private void setVariableWhenAddTask()
+        {
+            Name = "";
+            Description = "";
+            EndTime = DateTime.Now;
+            SelectedPriority = "Very low";
+            IsEnabledAddButton = false;
+            SelectedUser = null;
+            FilterSubtask();
+            FilterSubtaskWhichICreated();
         }
 
     }

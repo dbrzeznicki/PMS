@@ -90,9 +90,20 @@ namespace PMS
 
                 Articles = new ObservableCollection<Article>(dbContext.Article);
 
+                setVariableWhenAddArticle();
+
                 ErrorMessage er = new ErrorMessage("Add article!");
                 er.ShowDialog();
             }
+
+
+        }
+
+
+        private void setVariableWhenAddArticle()
+        {
+            Url = "";
+            Description = "";
         }
     }
 }

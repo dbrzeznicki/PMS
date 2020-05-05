@@ -156,7 +156,7 @@ namespace PMS
             }
             else if (newTask == 0 && inProgressTask == 0)
             {
-                seriesP1.Slices.Add(new PieSlice("No tasks", 0) { IsExploded = true });
+                seriesP1.Slices.Add(new PieSlice("No tasks", 1) { IsExploded = false});
             }
 
             _MyTaskPieChart.Series.Add(seriesP1);
@@ -229,7 +229,7 @@ namespace PMS
 
             foreach(var a in subtasks)
             {
-                _Items.Add(new GanttChartItem { Content = a.Name, Start = a.StartTime, Finish = a.EndTime, IsBarReadOnly=true });
+                _Items.Add(new GanttChartItem { Content = a.Name, Start = a.StartTime, Finish = a.EndTime, IsBarReadOnly=true});
             }
 
 

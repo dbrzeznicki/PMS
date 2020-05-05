@@ -7,8 +7,8 @@
         xmlns:global="clr-namespace:PMS.ViewModel"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Employee" Height="450" Width="800" WindowStartupLocation="CenterScreen" 
-        WindowStyle="None" WindowState="Normal" MinWidth="800" MinHeight="560"
+        Title="Employee" WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" WindowState="Normal" MinWidth="1280" MinHeight="600"
         ResizeMode="CanResize" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
