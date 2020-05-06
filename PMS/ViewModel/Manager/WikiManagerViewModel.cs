@@ -150,7 +150,7 @@ namespace PMS
         private void AddArticle()
         {
 
-            ManagerValidation VM = new ManagerValidation();
+            AdminValidation VM = new AdminValidation();
             bool correctForm = VM.WikiValidation(Url, Description);
 
             if (correctForm)
@@ -168,18 +168,17 @@ namespace PMS
 
                 Articles = new ObservableCollection<Article>(dbContext.Article);
 
+                setVariableWhenAddArticle();
                 ErrorMessage er = new ErrorMessage("Add article!");
                 er.ShowDialog();
             }
-
-
         }
 
 
         private void EditArticle()
         {
 
-            ManagerValidation VM = new ManagerValidation();
+            AdminValidation VM = new AdminValidation();
             bool correctForm = VM.WikiValidation(UrlEdit, DescriptionEdit);
 
             if (correctForm)
@@ -191,6 +190,7 @@ namespace PMS
 
                 Articles = new ObservableCollection<Article>(dbContext.Article);
 
+                setVariableWhenEditArticle();
                 ErrorMessage er = new ErrorMessage("Edit article!");
                 er.ShowDialog();
             }
@@ -205,6 +205,20 @@ namespace PMS
 
             _Articles.Remove(article);
 
+        }
+
+        private void setVariableWhenAddArticle()
+        {
+            Url = "";
+            Description = "";
+        }
+
+        private void setVariableWhenEditArticle()
+        {
+            UrlEdit = "";
+            DescriptionEdit = "";
+            MySelectedArticle = null;
+            IsEnabledEditButton = false;
         }
     }
 }

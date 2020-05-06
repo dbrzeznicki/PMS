@@ -110,95 +110,99 @@
 
     <Grid Margin="10">
 
-        <DockPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-            <Grid DockPanel.Dock="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+        <Label Margin="10" FontSize="20" FontWeight="Bold">Home</Label>
 
-                <!--po lewo mozna dac jakas ikone w kazdym przypadku-->
-                <Grid Margin="10" Grid.Column="0" Background="WhiteSmoke">
-                    <Grid Margin="10" Grid.Column="0" Background="LightGray">
-                        <StackPanel>
-                            <TextBlock Margin="10" FontSize="15" Text="All task:" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Margin="10" FontSize="15" Text="{Binding Path=AllTask}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-                <Grid Margin="10" Grid.Column="1" Background="WhiteSmoke">
-                    <Grid Margin="10" Grid.Column="1" Background="LightGray">
-                        <StackPanel>
-                            <TextBlock Margin="10" FontSize="15" Text="New task:" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Margin="10" FontSize="15" Text="{Binding Path=NewTask}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-                <Grid Margin="10" Grid.Column="2" Background="WhiteSmoke" >
-                    <Grid Margin="10" Grid.Column="2" Background="LightGray">
-                        <StackPanel >
-                            <TextBlock Margin="10" FontSize="15" Text="In progress task:" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Margin="10" FontSize="15" Text="{Binding Path=InProgressTask}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--po lewo mozna dac jakas ikone w kazdym przypadku-->
+            <Grid Margin="10" Grid.Column="0" Background="WhiteSmoke">
+                <Grid Margin="10" Grid.Column="0" Background="LightGray">
+                    <StackPanel>
+                        <TextBlock Margin="10" FontSize="15" Text="All task:" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Margin="10" FontSize="15" Text="{Binding Path=AllTask}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
             </Grid>
-
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-
-                <Grid Grid.Column="0" Margin="10" Background="WhiteSmoke">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Margin="10" Background="LightGray">
-                            <TextBlock Margin="10" Padding="10" Background="LightGray" FontSize="15" Text="My subtask list:"/>
-                            <ListBox Width="Auto" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=NewAndInProgressSubtasks}" ItemTemplate="{StaticResource mySubtaskTemplate}">
-
-                            </ListBox>
-
-                        </StackPanel>
-                    </ScrollViewer>
-
+            <Grid Margin="10" Grid.Column="1" Background="WhiteSmoke">
+                <Grid Margin="10" Grid.Column="1" Background="LightGray">
+                    <StackPanel>
+                        <TextBlock Margin="10" FontSize="15" Text="New task:" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Margin="10" FontSize="15" Text="{Binding Path=NewTask}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
-
-
-
-                <Grid Grid.Column="1" Margin="10" Background="WhiteSmoke">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Margin="10" Background="LightGray">
-                            <TextBlock Margin="10" Padding="10" Background="LightGray" FontSize="15" Text="Active project:"/>
-                            <ListBox Width="Auto" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=ActiveProjects}" ItemTemplate="{StaticResource myProjectTemplate}">
-
-                            </ListBox>
-
-                        </StackPanel>
-                    </ScrollViewer>
+            </Grid>
+            <Grid Margin="10" Grid.Column="2" Background="WhiteSmoke" >
+                <Grid Margin="10" Grid.Column="2" Background="LightGray">
+                    <StackPanel >
+                        <TextBlock Margin="10" FontSize="15" Text="In progress task:" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Margin="10" FontSize="15" Text="{Binding Path=InProgressTask}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
 
-                <Grid Grid.Column="2" Margin="10" Background="WhiteSmoke">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Margin="10" Background="LightGray">
-                            <TextBlock Margin="10" Padding="10" Background="LightGray" FontSize="15" Text="Recent activity:"/>
-                            <ListBox Width="Auto" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=RecentActivities}" ItemTemplate="{StaticResource recentActivityTemplate}">
+            <Grid Grid.Column="0" Margin="10" Background="WhiteSmoke">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10" Background="LightGray">
+                        <TextBlock Margin="10" Padding="10" Background="LightGray" FontSize="15" Text="My subtask list:"/>
+                        <ListBox Width="Auto" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=NewAndInProgressSubtasks}" ItemTemplate="{StaticResource mySubtaskTemplate}">
 
-                            </ListBox>
+                        </ListBox>
 
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
+                    </StackPanel>
+                </ScrollViewer>
 
             </Grid>
 
 
-        </DockPanel>
+
+            <Grid Grid.Column="1" Margin="10" Background="WhiteSmoke">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10" Background="LightGray">
+                        <TextBlock Margin="10" Padding="10" Background="LightGray" FontSize="15" Text="Active project:"/>
+                        <ListBox Width="Auto" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=ActiveProjects}" ItemTemplate="{StaticResource myProjectTemplate}">
+
+                        </ListBox>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+
+            <Grid Grid.Column="2" Margin="10" Background="WhiteSmoke">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10" Background="LightGray">
+                        <TextBlock Margin="10" Padding="10" Background="LightGray" FontSize="15" Text="Recent activity:"/>
+                        <ListBox Width="Auto" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=RecentActivities}" ItemTemplate="{StaticResource recentActivityTemplate}">
+
+                        </ListBox>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+        </Grid>
+
 
     </Grid>
 </UserControl>

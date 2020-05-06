@@ -280,6 +280,7 @@ namespace PMS
             StartVacation = DateTime.Now;
             EndVacation = DateTime.Now;
             EndVacation = EndVacation.AddDays(1);
+            ListOfVacations = new ObservableCollection<Vacation>(dbContext.Vacation.Where(x => (x.User.TeamID == Global.user.TeamID)).OrderByDescending(x => x.StartVacation));
             RaisePropertyChanged("IsEnabledAddButton");
         }
 

@@ -23,7 +23,7 @@
     <ScrollViewer>
         <Grid Margin="10">
             <StackPanel>
-
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Vacation</Label>
                 <Expander Header="List of vacations" Margin="10" Background="WhiteSmoke" IsExpanded="True">
 
                     <DockPanel>

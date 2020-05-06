@@ -7,6 +7,7 @@ using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 
@@ -28,8 +29,13 @@ namespace PMS
 
         private ObservableCollection<User> _UserInTeamPayout;
         private User _SelectedUserInTeamPayout = null;
+        
         private List<string> _Months;
         private string _SelectedMonth = "January";
+
+        private List<string> _Years;
+        private string _SelectedYear = "2010";
+
         private DateTime _GrantedBonus = DateTime.Now;
         private double _BonusAmount = 0;
         private bool _IsEnabledAddBonusButton = false;
@@ -206,6 +212,38 @@ namespace PMS
             }
         }
 
+        public List<string> Years
+        {
+            get
+            {
+                _Years = new List<string>();
+                int year = DateTime.Now.Year;
+                for (int i = 2010; i <= year; i++)
+                    _Years.Add(i.ToString());
+
+                _SelectedYear = _Years[0];
+                return _Years;
+            }
+            set
+            {
+                _Years = value;
+                RaisePropertyChanged("Years");
+            }
+        }
+
+        public string SelectedYear
+        {
+            get
+            {
+                return _SelectedYear;
+            }
+            set
+            {
+                _SelectedYear = value;
+                RaisePropertyChanged("SelectedYear");
+            }
+        }
+
         public double BonusAmount
         {
             get
@@ -282,7 +320,8 @@ namespace PMS
             
             Workbook workbook = new Workbook();
             Worksheet sheet = workbook.Worksheets[0];
-            
+            CultureInfo us = new CultureInfo("en-US");
+
             sheet.Name = "Payout bonus";
 
             sheet.Range["A1"].Text = "User";
@@ -308,8 +347,8 @@ namespace PMS
                 if (pbtmp.Count > 0)
                     foreach(var tmp in pbtmp)
                     {
-                        string monthString = tmp.DateOfGrantiedBonuses.ToString("MMMM");
-                        if (monthString == SelectedMonth && tmp.DateOfGrantiedBonuses.Year == DateTime.Now.Year)
+                        string monthString = tmp.DateOfGrantiedBonuses.ToString("MMMM", us);
+                        if (monthString == SelectedMonth && tmp.DateOfGrantiedBonuses.Year == int.Parse(SelectedYear))
                         {
                             pb.Add(tmp);
                         }
@@ -362,6 +401,7 @@ namespace PMS
 
                 GrantedBonus = DateTime.Now;
                 BonusAmount = 0;
+                SelectedUserInTeamPayout = null;
 
                 ErrorMessage er = new ErrorMessage("Add payout bonus!");
                 er.ShowDialog();

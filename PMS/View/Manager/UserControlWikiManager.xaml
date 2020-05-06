@@ -23,9 +23,10 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Margin="10" >
             <StackPanel>
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Wiki</Label>
                 <Expander Header="Articles list" Margin="10"  Background="WhiteSmoke" IsExpanded="True">
                     <Grid Margin="10" Background="LightGray">
-                        <ListView Margin="10" ItemsSource="{Binding Articles}" HorizontalContentAlignment="Stretch">
+                        <ListView Name="WikiList" Margin="10" ItemsSource="{Binding Articles}" HorizontalContentAlignment="Stretch" MouseDoubleClick="Row_DoubleClick">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Url">
@@ -45,7 +46,6 @@
                                     </GridViewColumn>
 
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Date added"  DisplayMemberBinding="{Binding DateAdded}" Width="Auto"/>
-                                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Who added"  DisplayMemberBinding="{Binding User.FullName}" Width="Auto"/>
 
 
                                     <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Remove" Width="Auto">
