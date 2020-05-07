@@ -160,9 +160,9 @@
     <Compile Include="Algorithm\PERT.cs" />
     <Compile Include="DAL\PMSContext.cs" />
     <Compile Include="DAL\PMSInitializer.cs" />
-    <Compile Include="Migrations\202005040659535_fullDatabase.cs" />
-    <Compile Include="Migrations\202005040659535_fullDatabase.designer.cs">
-      <DependentUpon>202005040659535_fullDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202005071037416_editMaintask.cs" />
+    <Compile Include="Migrations\202005071037416_editMaintask.designer.cs">
+      <DependentUpon>202005071037416_editMaintask.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Article.cs" />
@@ -455,8 +455,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202005040659535_fullDatabase.resx">
-      <DependentUpon>202005040659535_fullDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005071037416_editMaintask.resx">
+      <DependentUpon>202005071037416_editMaintask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

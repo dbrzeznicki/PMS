@@ -870,7 +870,7 @@ namespace PMS
                 }
             }
 
-            SelectedMainTaskWhereAddThePretask.PrecedingMainTasks = new List<MainTask>();
+            //SelectedMainTaskWhereAddThePretask.PrecedingMainTasks = new List<MainTask>();
             SelectedMainTaskWhereAddThePretask.PrecedingMainTasks.Add(SelectedMainTaskWhichIsPretask);
 
             dbContext.SaveChanges();
@@ -948,13 +948,22 @@ namespace PMS
             {
                 foreach (var mt in ListOfMaintask) //usuniecie pretask
                 {
+
                     if (mt.PrecedingMainTasks != null)
                     {
-                        for (int i = 0; i < mt.PrecedingMainTasks.Count(); i++)
+                        foreach(var tmp in mt.PrecedingMainTasks.ToList())
                         {
-                            if (mt.PrecedingMainTasks[i].Name == tmpMainTask.Name)
+                            if (tmp.Name == tmpMainTask.Name)
                                 mt.PrecedingMainTasks.Remove(tmpMainTask);
                         }
+
+
+
+                        //for (int i = 0; i < mt.PrecedingMainTasks.Count(); i++)
+                        //{
+                        //    if (mt.PrecedingMainTasks[i].Name == tmpMainTask.Name)
+                        //        mt.PrecedingMainTasks.Remove(tmpMainTask);
+                        //}
                     }
                 }
 

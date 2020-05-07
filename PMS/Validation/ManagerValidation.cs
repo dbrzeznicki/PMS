@@ -435,9 +435,22 @@ namespace PMS
             }
         }
 
-        public bool AddProjectValidation(ObservableCollection<MainTask> ProjectMainTasks, ObservableCollection<Resources> ProjectResources, string name)
+        bool CostValidation(double cost)
         {
-            if (MainTaskListCountValidation(ProjectMainTasks) && ResourcesListCountValidation(ProjectResources) && NameProjectValidation(name))
+
+            if (cost > 0)
+                return true;
+            else
+            {
+                ErrorMessage er = new ErrorMessage("Incorrect cost! The cost must be greater than 0.");
+                er.ShowDialog();
+                return false;
+            }
+        }
+
+        public bool AddProjectValidation(ObservableCollection<MainTask> ProjectMainTasks, ObservableCollection<Resources> ProjectResources, string name, double Cost)
+        {
+            if (MainTaskListCountValidation(ProjectMainTasks) && ResourcesListCountValidation(ProjectResources) && NameProjectValidation(name) && CostValidation(Cost))
                 return true;
             else
                 return false;

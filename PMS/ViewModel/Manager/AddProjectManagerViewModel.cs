@@ -421,11 +421,11 @@ namespace PMS
         {
 
             ManagerValidation MV = new ManagerValidation();
-            bool correctForm = MV.AddProjectValidation(ProjectMainTasks, ProjectResources, Name);
+            bool correctForm = MV.AddProjectValidation(ProjectMainTasks, ProjectResources, Name, Cost);
 
             bool tmp2 = checkWhichAreCyclicDependency();
 
-            if (tmp2 && correctForm && Cost > 0 && Clients != null)
+            if (tmp2 && correctForm && Clients != null)
             {
 
                 DateTime startProject = DateTime.Now;
@@ -483,7 +483,7 @@ namespace PMS
                 {
                     foreach (MainTask task in tmpTaskList.ToList())
                     {
-                        bool tmp = check(calc, task.PrecedingMainTasks);
+                        bool tmp = check(calc, task.PrecedingMainTasks.ToList());
 
                         if (tmp)
                         {
@@ -531,7 +531,7 @@ namespace PMS
 
                 foreach (MainTask task in tmpTaskList.ToList())
                 {
-                    bool tmp = check(calc, task.PrecedingMainTasks);
+                    bool tmp = check(calc, task.PrecedingMainTasks.ToList());
 
                     if (tmp)
                     {

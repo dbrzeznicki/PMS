@@ -11,6 +11,9 @@
     <ScrollViewer>
 
             <Grid Background="LightSeaGreen" Margin="10">
+            <StackPanel>
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Function point method</Label>
+            
             <Grid Background="LightGray" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -49,69 +52,69 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Margin="10" Grid.Row="0">Level of element complexity</Label>
+                <Label Margin="10" Grid.Row="0">Level of element complexity:</Label>
                 <ComboBox Margin="10" Grid.Row="0" Grid.Column="1" SelectedValue="{Binding SelectedLevelOfElementComplexity}" SelectedIndex="0" ItemsSource="{Binding LevelOfElementComplexity}" />
 
-                <Label Margin="10" Grid.Row="1">External inputs</Label>
+                <Label Margin="10" Grid.Row="1">External inputs:</Label>
                 <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding NumberOfElements[0]}" />
 
-                <Label Margin="10" Grid.Row="2">External outputs</Label>
+                <Label Margin="10" Grid.Row="2">External outputs:</Label>
                 <TextBox Margin="10" Grid.Row="2" Grid.Column="1" Text="{Binding NumberOfElements[1]}" />
 
-                <Label Margin="10" Grid.Row="3">External inquires</Label>
+                <Label Margin="10" Grid.Row="3">External inquires:</Label>
                 <TextBox Margin="10" Grid.Row="3" Grid.Column="1" Text="{Binding NumberOfElements[2]}" />
 
-                <Label Margin="10" Grid.Row="4">Internal logical files</Label>
+                <Label Margin="10" Grid.Row="4">Internal logical files:</Label>
                 <TextBox Margin="10" Grid.Row="4" Grid.Column="1" Text="{Binding NumberOfElements[3]}" />
                 
-                <Label Margin="10" Grid.Row="5">External interface files</Label>
+                <Label Margin="10" Grid.Row="5">External interface files:</Label>
                 <TextBox Margin="10" Grid.Row="5" Grid.Column="1" Text="{Binding NumberOfElements[4]}" />
 
                 <Label Margin="10" Grid.Row="6" Grid.ColumnSpan="2">Set scale: 0 - No influence, 1 - Incidental, 2 - Moderate, 3 - Avrage, 4 - Significant, 5 - Essential</Label>
                 
-                <Label Margin="10" Grid.Row="7">Data Communication</Label>
+                <Label Margin="10" Grid.Row="7">Data Communication:</Label>
                 <ComboBox Margin="10" Grid.Row="7" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[0]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[0]}" />
 
-                <Label Margin="10" Grid.Row="8">Distributed data processing</Label>
+                <Label Margin="10" Grid.Row="8">Distributed data processing:</Label>
                 <ComboBox Margin="10" Grid.Row="8" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[1]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[1]}" />
 
-                <Label Margin="10" Grid.Row="9">Performance</Label>
+                <Label Margin="10" Grid.Row="9">Performance:</Label>
                 <ComboBox Margin="10" Grid.Row="9" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[2]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[2]}" />
 
-                <Label Margin="10" Grid.Row="10">Heavily used configuration</Label>
+                <Label Margin="10" Grid.Row="10">Heavily used configuration:</Label>
                 <ComboBox Margin="10" Grid.Row="10" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[3]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[3]}" />
 
-                <Label Margin="10" Grid.Row="11">Transaction rate</Label>
+                <Label Margin="10" Grid.Row="11">Transaction rate:</Label>
                 <ComboBox Margin="10" Grid.Row="11" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[4]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[4]}" />
 
-                <Label Margin="10" Grid.Row="12">Online data entry</Label>
+                <Label Margin="10" Grid.Row="12">Online data entry:</Label>
                 <ComboBox Margin="10" Grid.Row="12" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[5]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[5]}" />
 
-                <Label Margin="10" Grid.Row="13">End user efficiency</Label>
+                <Label Margin="10" Grid.Row="13">End user efficiency:</Label>
                 <ComboBox Margin="10" Grid.Row="13" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[6]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[6]}" />
 
-                <Label Margin="10" Grid.Row="14">Online update</Label>
+                <Label Margin="10" Grid.Row="14">Online update:</Label>
                 <ComboBox Margin="10" Grid.Row="14" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[7]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[7]}" />
 
-                <Label Margin="10" Grid.Row="15">Complex processing</Label>
+                <Label Margin="10" Grid.Row="15">Complex processing:</Label>
                 <ComboBox Margin="10" Grid.Row="15" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[8]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[8]}" />
 
-                <Label Margin="10" Grid.Row="16">Reusability</Label>
+                <Label Margin="10" Grid.Row="16">Reusability:</Label>
                 <ComboBox Margin="10" Grid.Row="16" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[9]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[9]}" />
 
-                <Label Margin="10" Grid.Row="17">Installation ease</Label>
+                <Label Margin="10" Grid.Row="17">Installation ease:</Label>
                 <ComboBox Margin="10" Grid.Row="17" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[10]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[10]}" />
 
-                <Label Margin="10" Grid.Row="18">Operational ease</Label>
+                <Label Margin="10" Grid.Row="18">Operational ease:</Label>
                 <ComboBox Margin="10" Grid.Row="18" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[11]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[11]}" />
 
-                <Label Margin="10" Grid.Row="19">Facilitate change</Label>
+                <Label Margin="10" Grid.Row="19">Facilitate change:</Label>
                 <ComboBox Margin="10" Grid.Row="19" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[12]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[12]}" />
 
-                <Label Margin="10" Grid.Row="20">Multiple sites</Label>
+                <Label Margin="10" Grid.Row="20">Multiple sites:</Label>
                 <ComboBox Margin="10" Grid.Row="20" Grid.Column="1" SelectedValue="{Binding SelectedCorrectTable[13]}" SelectedIndex="0" ItemsSource="{Binding CorrectTable[13]}" />
 
-                <Label Margin="10" Grid.Row="21">Select language</Label>
+                <Label Margin="10" Grid.Row="21">Select language:</Label>
                 <ComboBox Margin="10" Grid.Row="21" Grid.Column="1" SelectedValue="{Binding SelectedLanguageName}" SelectedIndex="0" ItemsSource="{Binding LanguageName}" />
                 
                 <Button Grid.Row="22" Grid.ColumnSpan="2" Margin="10" Command="{Binding FunctionPointButton}">Calculate</Button>
@@ -129,6 +132,7 @@
                 <Label Margin="10" Grid.Row="20" Grid.Column="1" Content="{Binding PhaseWiseDistributionOfEffortDevelopmentTime}"/>-->
 
             </Grid>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
     

@@ -9,104 +9,107 @@
 
     <ScrollViewer>
         <Grid Background="LightSeaGreen" Margin="10">
-            <Grid Background="LightGray" Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Cocomo intermediate</Label>
+                <Grid Background="LightGray" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Label Margin="10">KLOC:</Label>
-                <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = KLOC}"/>
-                
-                <Label Margin="10" Grid.Row="1">Project type</Label>
-                <ComboBox Margin="10" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding SelectedProjectType}" SelectedIndex="0" ItemsSource="{Binding ProjectTypes}" />
-                
-                <Label Margin="10" Grid.Row="2">Required software reliability extent</Label>
-                <ComboBox Margin="10" Grid.Row="2" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[0]}" SelectedIndex="0" ItemsSource="{Binding Drivers[0]}" />
+                    <Label Margin="10">KLOC:</Label>
+                    <TextBox Grid.Column="1" Margin="10" Text="{Binding Path = KLOC}"/>
 
-                <Label Margin="10" Grid.Row="3">Size of the application database</Label>
-                <ComboBox Margin="10" Grid.Row="3" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[1]}" SelectedIndex="0" ItemsSource="{Binding Drivers[1]}" />
+                    <Label Margin="10" Grid.Row="1">Project type:</Label>
+                    <ComboBox Margin="10" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding SelectedProjectType}" SelectedIndex="0" ItemsSource="{Binding ProjectTypes}" />
 
-                <Label Margin="10" Grid.Row="4">The complexity of the product</Label>
-                <ComboBox Margin="10" Grid.Row="4" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[2]}" SelectedIndex="0" ItemsSource="{Binding Drivers[2]}" />
+                    <Label Margin="10" Grid.Row="2">Required software reliability extent:</Label>
+                    <ComboBox Margin="10" Grid.Row="2" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[0]}" SelectedIndex="0" ItemsSource="{Binding Drivers[0]}" />
 
-                <Label Margin="10" Grid.Row="5">Run-time performance constraints</Label>
-                <ComboBox Margin="10" Grid.Row="5" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[3]}" SelectedIndex="0" ItemsSource="{Binding Drivers[3]}" />
+                    <Label Margin="10" Grid.Row="3">Size of the application database:</Label>
+                    <ComboBox Margin="10" Grid.Row="3" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[1]}" SelectedIndex="0" ItemsSource="{Binding Drivers[1]}" />
 
-                <Label Margin="10" Grid.Row="6">Memory constraints</Label>
-                <ComboBox Margin="10" Grid.Row="6" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[4]}" SelectedIndex="0" ItemsSource="{Binding Drivers[4]}" />
+                    <Label Margin="10" Grid.Row="4">The complexity of the product:</Label>
+                    <ComboBox Margin="10" Grid.Row="4" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[2]}" SelectedIndex="0" ItemsSource="{Binding Drivers[2]}" />
 
-                <Label Margin="10" Grid.Row="7">The volatility of the virtual machine environment</Label>
-                <ComboBox Margin="10" Grid.Row="7" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[5]}" SelectedIndex="0" ItemsSource="{Binding Drivers[5]}" />
+                    <Label Margin="10" Grid.Row="5">Run-time performance constraints:</Label>
+                    <ComboBox Margin="10" Grid.Row="5" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[3]}" SelectedIndex="0" ItemsSource="{Binding Drivers[3]}" />
 
-                <Label Margin="10" Grid.Row="8">Required turnabout time</Label>
-                <ComboBox Margin="10" Grid.Row="8" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[6]}" SelectedIndex="0" ItemsSource="{Binding Drivers[6]}" />
+                    <Label Margin="10" Grid.Row="6">Memory constraints:</Label>
+                    <ComboBox Margin="10" Grid.Row="6" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[4]}" SelectedIndex="0" ItemsSource="{Binding Drivers[4]}" />
 
-                <Label Margin="10" Grid.Row="9">Analyst capability</Label>
-                <ComboBox Margin="10" Grid.Row="9" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[7]}" SelectedIndex="0" ItemsSource="{Binding Drivers[7]}" />
+                    <Label Margin="10" Grid.Row="7">The volatility of the virtual machine environment:</Label>
+                    <ComboBox Margin="10" Grid.Row="7" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[5]}" SelectedIndex="0" ItemsSource="{Binding Drivers[5]}" />
 
-                <Label Margin="10" Grid.Row="10">Software engineering capability</Label>
-                <ComboBox Margin="10" Grid.Row="10" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[8]}" SelectedIndex="0" ItemsSource="{Binding Drivers[8]}" />
+                    <Label Margin="10" Grid.Row="8">Required turnabout time:</Label>
+                    <ComboBox Margin="10" Grid.Row="8" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[6]}" SelectedIndex="0" ItemsSource="{Binding Drivers[6]}" />
 
-                <Label Margin="10" Grid.Row="11">Applications experience</Label>
-                <ComboBox Margin="10" Grid.Row="11" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[9]}" SelectedIndex="0" ItemsSource="{Binding Drivers[9]}" />
+                    <Label Margin="10" Grid.Row="9">Analyst capability:</Label>
+                    <ComboBox Margin="10" Grid.Row="9" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[7]}" SelectedIndex="0" ItemsSource="{Binding Drivers[7]}" />
 
-                <Label Margin="10" Grid.Row="12">Virtual machine experience</Label>
-                <ComboBox Margin="10" Grid.Row="12" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[10]}" SelectedIndex="0" ItemsSource="{Binding Drivers[10]}" />
+                    <Label Margin="10" Grid.Row="10">Software engineering capability:</Label>
+                    <ComboBox Margin="10" Grid.Row="10" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[8]}" SelectedIndex="0" ItemsSource="{Binding Drivers[8]}" />
 
-                <Label Margin="10" Grid.Row="13">Programming language experience</Label>
-                <ComboBox Margin="10" Grid.Row="13" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[11]}" SelectedIndex="0" ItemsSource="{Binding Drivers[11]}" />
+                    <Label Margin="10" Grid.Row="11">Applications experience:</Label>
+                    <ComboBox Margin="10" Grid.Row="11" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[9]}" SelectedIndex="0" ItemsSource="{Binding Drivers[9]}" />
 
-                <Label Margin="10" Grid.Row="14">Use of software tools</Label>
-                <ComboBox Margin="10" Grid.Row="14" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[12]}" SelectedIndex="0" ItemsSource="{Binding Drivers[12]}" />
+                    <Label Margin="10" Grid.Row="12">Virtual machine experience:</Label>
+                    <ComboBox Margin="10" Grid.Row="12" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[10]}" SelectedIndex="0" ItemsSource="{Binding Drivers[10]}" />
 
-                <Label Margin="10" Grid.Row="15">Application of software engineering methods</Label>
-                <ComboBox Margin="10" Grid.Row="15" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[13]}" SelectedIndex="0" ItemsSource="{Binding Drivers[13]}" />
+                    <Label Margin="10" Grid.Row="13">Programming language experience:</Label>
+                    <ComboBox Margin="10" Grid.Row="13" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[11]}" SelectedIndex="0" ItemsSource="{Binding Drivers[11]}" />
 
-                <Label Margin="10" Grid.Row="16">Required development schedule</Label>
-                <ComboBox Margin="10" Grid.Row="16" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[14]}" SelectedIndex="0" ItemsSource="{Binding Drivers[14]}" />
+                    <Label Margin="10" Grid.Row="14">Use of software tools:</Label>
+                    <ComboBox Margin="10" Grid.Row="14" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[12]}" SelectedIndex="0" ItemsSource="{Binding Drivers[12]}" />
 
+                    <Label Margin="10" Grid.Row="15">Application of software engineering methods:</Label>
+                    <ComboBox Margin="10" Grid.Row="15" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[13]}" SelectedIndex="0" ItemsSource="{Binding Drivers[13]}" />
 
+                    <Label Margin="10" Grid.Row="16">Required development schedule:</Label>
+                    <ComboBox Margin="10" Grid.Row="16" Grid.Column="1" SelectedValue="{Binding SelectedDrivers[14]}" SelectedIndex="0" ItemsSource="{Binding Drivers[14]}" />
 
 
-                <Button Grid.Row="17" Grid.ColumnSpan="2" Margin="10" Command="{Binding CocomoIntermediateButton}" >Calculate</Button>
 
-                <Label Margin="10" Grid.Row="18">Effort (person-month) =</Label>
-                <TextBox Margin="10" Grid.Row="18" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Effort}"/>
 
-                <Label Margin="10" Grid.Row="19">Development time (months) =</Label>
-                <TextBox Margin="10" Grid.Row="19" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Time}"/>
+                    <Button Grid.Row="17" Grid.ColumnSpan="2" Margin="10" Command="{Binding CocomoIntermediateButton}" >Calculate</Button>
 
-                <Label Margin="10" Grid.Row="20">Average staff required (persons) =</Label>
-                <TextBox Margin="10" Grid.Row="20" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Staff}"/>
+                    <Label Margin="10" Grid.Row="18">Effort (person-month) =</Label>
+                    <TextBox Margin="10" Grid.Row="18" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Effort}"/>
 
-                <Label Margin="10" Grid.Row="21">Productivity (KLOC/person-month) =</Label>
-                <TextBox Margin="10" Grid.Row="21" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Productivity}"/>
-            </Grid>
+                    <Label Margin="10" Grid.Row="19">Development time (months) =</Label>
+                    <TextBox Margin="10" Grid.Row="19" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Time}"/>
+
+                    <Label Margin="10" Grid.Row="20">Average staff required (persons) =</Label>
+                    <TextBox Margin="10" Grid.Row="20" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Staff}"/>
+
+                    <Label Margin="10" Grid.Row="21">Productivity (KLOC/person-month) =</Label>
+                    <TextBox Margin="10" Grid.Row="21" Grid.Column="1" IsReadOnly="True" Text="{Binding Path = Productivity}"/>
+                </Grid>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 

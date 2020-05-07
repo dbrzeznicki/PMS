@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class fullDatabase : DbMigration
+    public partial class editMaintask : DbMigration
     {
         public override void Up()
         {
@@ -104,13 +104,10 @@
                         LateFinish = c.DateTime(nullable: false),
                         Effort = c.Int(nullable: false),
                         Status = c.Boolean(nullable: false),
-                        MainTask_MainTaskID = c.Int(),
                     })
                 .PrimaryKey(t => t.MainTaskID)
-                .ForeignKey("dbo.MainTasks", t => t.MainTask_MainTaskID)
                 .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: true)
-                .Index(t => t.ProjectID)
-                .Index(t => t.MainTask_MainTaskID);
+                .Index(t => t.ProjectID);
             
             CreateTable(
                 "dbo.Projects",
@@ -240,6 +237,19 @@
                     })
                 .PrimaryKey(t => t.VacationTypeID);
             
+            CreateTable(
+                "dbo.maintask_related",
+                c => new
+                    {
+                        MainTaskID = c.Int(nullable: false),
+                        RelatedID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.MainTaskID, t.RelatedID })
+                .ForeignKey("dbo.MainTasks", t => t.MainTaskID)
+                .ForeignKey("dbo.MainTasks", t => t.RelatedID)
+                .Index(t => t.MainTaskID)
+                .Index(t => t.RelatedID);
+            
         }
         
         public override void Down()
@@ -258,8 +268,11 @@
             DropForeignKey("dbo.Resources", "ProjectID", "dbo.Projects");
             DropForeignKey("dbo.Projects", "ProjectStatusID", "dbo.ProjectStatus");
             DropForeignKey("dbo.Projects", "ClientID", "dbo.Clients");
-            DropForeignKey("dbo.MainTasks", "MainTask_MainTaskID", "dbo.MainTasks");
+            DropForeignKey("dbo.maintask_related", "RelatedID", "dbo.MainTasks");
+            DropForeignKey("dbo.maintask_related", "MainTaskID", "dbo.MainTasks");
             DropForeignKey("dbo.PayoutBonus", "UserID", "dbo.Users");
+            DropIndex("dbo.maintask_related", new[] { "RelatedID" });
+            DropIndex("dbo.maintask_related", new[] { "MainTaskID" });
             DropIndex("dbo.Vacations", new[] { "VacationTypeID" });
             DropIndex("dbo.Vacations", new[] { "UserID" });
             DropIndex("dbo.RecentActivities", new[] { "TeamID" });
@@ -267,7 +280,6 @@
             DropIndex("dbo.Projects", new[] { "TeamID" });
             DropIndex("dbo.Projects", new[] { "ProjectStatusID" });
             DropIndex("dbo.Projects", new[] { "ClientID" });
-            DropIndex("dbo.MainTasks", new[] { "MainTask_MainTaskID" });
             DropIndex("dbo.MainTasks", new[] { "ProjectID" });
             DropIndex("dbo.Subtasks", new[] { "UserID" });
             DropIndex("dbo.Subtasks", new[] { "MainTaskID" });
@@ -276,6 +288,7 @@
             DropIndex("dbo.Users", new[] { "TeamID" });
             DropIndex("dbo.Users", new[] { "UserRoleID" });
             DropIndex("dbo.Articles", new[] { "UserID" });
+            DropTable("dbo.maintask_related");
             DropTable("dbo.VacationTypes");
             DropTable("dbo.Vacations");
             DropTable("dbo.UserRoles");

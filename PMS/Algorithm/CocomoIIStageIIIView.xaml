@@ -10,7 +10,9 @@
 
     <ScrollViewer>
         <Grid Background="LightSeaGreen" Margin="10">
-            <Grid Background="LightGray" Margin="10">
+            <StackPanel>
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Cocomo II Stage III</Label>
+                <Grid Background="LightGray" Margin="10">
                 <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -65,7 +67,7 @@
             <Label Margin="10" Grid.Row="5">Team Cohesion:</Label>
             <ComboBox Margin="10" Grid.Row="5" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[3]}" SelectedIndex="0" ItemsSource="{Binding RateScale[3]}" />
 
-            <Label Margin="10" Grid.Row="6">Process Maturity</Label>
+            <Label Margin="10" Grid.Row="6">Process Maturity:</Label>
             <ComboBox Margin="10" Grid.Row="6" Grid.Column="1" SelectedValue="{Binding SelectedRateScale[4]}" SelectedIndex="0" ItemsSource="{Binding RateScale[4]}" />
 
 
@@ -128,6 +130,7 @@
             <Label Margin="10" Grid.Row="26" Grid.Column="1" Content="{Binding AdjustedPM}"/>
 
         </Grid>
+                </StackPanel>
         </Grid>
     </ScrollViewer>
     

@@ -22,7 +22,8 @@ namespace PMS.Model
         public DateTime LateFinish { get; set; }
         public int Effort { get; set; }
         public bool Status { get; set; }
-        public List<MainTask> PrecedingMainTasks { get; set; }
+
+        public virtual ICollection<MainTask> PrecedingMainTasks { get; set; }
 
         public virtual ICollection<Subtask> Subtasks { get; set; }
         public virtual Project Project { get; set; }

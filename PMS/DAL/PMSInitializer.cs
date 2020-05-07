@@ -261,7 +261,7 @@ namespace PMS.DAL
                         LateStart=new DateTime(2020, 05, 14), LateFinish=new DateTime(2020, 05, 17), Effort = 3
                     },
 
-
+                    
 
                     //PROJECT 2
                     new MainTask() { MainTaskID=12, ProjectID=2, Name="Prototype", Status=true, PrecedingMainTasks=new List<MainTask>(),
@@ -294,25 +294,28 @@ namespace PMS.DAL
                 };
 
             //Project 1
-            mainTask[1].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
-            mainTask[4].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
-            mainTask[5].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
-            mainTask[7].PrecedingMainTasks = new List<MainTask> { mainTask[0] };
+            mainTask[1].PrecedingMainTasks.Add(mainTask[0]); // = new List<MainTask> { mainTask[0] };
+            mainTask[4].PrecedingMainTasks.Add(mainTask[0]); //= new List<MainTask> { mainTask[0] };
+            mainTask[5].PrecedingMainTasks.Add(mainTask[0]); //= new List<MainTask> { mainTask[0] };
+            mainTask[7].PrecedingMainTasks.Add(mainTask[0]); //= new List<MainTask> { mainTask[0] };
 
-            mainTask[2].PrecedingMainTasks = new List<MainTask> { mainTask[1] };
-            mainTask[6].PrecedingMainTasks = new List<MainTask> { mainTask[4], mainTask[5] };
-            mainTask[8].PrecedingMainTasks = new List<MainTask> { mainTask[7] };
+            mainTask[2].PrecedingMainTasks.Add(mainTask[1]); //= new List<MainTask> { mainTask[1] };
+            mainTask[6].PrecedingMainTasks.Add(mainTask[4]); //= new List<MainTask> { mainTask[4], mainTask[5] };
+            mainTask[6].PrecedingMainTasks.Add(mainTask[5]); //= new List<MainTask> { mainTask[4], mainTask[5] };
+            mainTask[8].PrecedingMainTasks.Add(mainTask[7]); //= new List<MainTask> { mainTask[7] };
 
-            mainTask[3].PrecedingMainTasks = new List<MainTask> { mainTask[2], mainTask[6] };
-            mainTask[9].PrecedingMainTasks = new List<MainTask> { mainTask[8] };
+            mainTask[3].PrecedingMainTasks.Add(mainTask[2]); //= new List<MainTask> { mainTask[2], mainTask[6] };
+            mainTask[3].PrecedingMainTasks.Add(mainTask[6]); //= new List<MainTask> { mainTask[2], mainTask[6] };
+            mainTask[9].PrecedingMainTasks.Add(mainTask[8]); //= new List<MainTask> { mainTask[8] };
 
-            mainTask[10].PrecedingMainTasks = new List<MainTask> { mainTask[3], mainTask[9] };
+            mainTask[10].PrecedingMainTasks.Add(mainTask[3]); //= new List<MainTask> { mainTask[3], mainTask[9] };
+            mainTask[10].PrecedingMainTasks.Add(mainTask[9]); //= new List<MainTask> { mainTask[3], mainTask[9] };
 
             //Project 2
-            mainTask[5].PrecedingMainTasks = new List<MainTask> { mainTask[4] };
-            mainTask[6].PrecedingMainTasks = new List<MainTask> { mainTask[4] };
-            mainTask[7].PrecedingMainTasks = new List<MainTask> { mainTask[5], mainTask[6]};
-            mainTask[8].PrecedingMainTasks = new List<MainTask> { mainTask[7]};
+            //mainTask[5].PrecedingMainTasks = new List<MainTask> { mainTask[4] };
+            //mainTask[6].PrecedingMainTasks = new List<MainTask> { mainTask[4] };
+            //mainTask[7].PrecedingMainTasks = new List<MainTask> { mainTask[5], mainTask[6]};
+            //mainTask[8].PrecedingMainTasks = new List<MainTask> { mainTask[7]};
 
             mainTask.ForEach(mt => context.MainTask.AddOrUpdate(mt));
             context.SaveChanges();

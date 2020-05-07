@@ -39,11 +39,17 @@ namespace PMS.DAL
         public DbSet<PayoutBonus> PayoutBonus { get; set; }
         public DbSet<Resources> Resources { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    //...
-        //    //modelBuilder.Entity<Parent>().HasMany(e => e.ParentDetails).WithOptional(s => s.Parent).WillCascadeOnDelete(true);
-        //    //...
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MainTask>()
+                .HasMany(p => p.PrecedingMainTasks)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.MapLeftKey("MainTaskID");
+                    m.MapRightKey("RelatedID");
+                    m.ToTable("maintask_related");
+                });
+        }
     }
 }

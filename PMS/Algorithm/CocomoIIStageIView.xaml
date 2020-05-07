@@ -10,65 +10,68 @@
 
     <ScrollViewer>
         <Grid Background="LightSeaGreen" Margin="10">
-            <Grid Background="LightGray" Margin="10">
+            <StackPanel>
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Cocomo II Stage I</Label>
+                <Grid Background="LightGray" Margin="10">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-
-                <Label Margin="10" Grid.ColumnSpan="2" FontSize="20">Complexity levels for screens</Label>
-                <Label Margin="10" Grid.Row="1">Number of screens:</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[0]}"/>
-                <Label Margin="10" Grid.Row="2">Number of screens views:</Label>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[1]}"/>
-                <Label Margin="10" Grid.Row="3">Number of clients:</Label>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[2]}"/>
-                <Label Margin="10" Grid.Row="4">Number of servers:</Label>
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[3]}"/>
-
-                <Label Grid.Row="5" Margin="10" Grid.ColumnSpan="2" FontSize="20">Complexity levels for reports</Label>
-                <Label Margin="10" Grid.Row="6">Number of reports:</Label>
-                <TextBox Grid.Row="6" Grid.Column="1" Margin="10" Text="{Binding Path = Report[0]}"/>
-                <Label Margin="10" Grid.Row="7">Number of reports section:</Label>
-                <TextBox Grid.Row="7" Grid.Column="1" Margin="10" Text="{Binding Path = Report[1]}"/>
-                <Label Margin="10" Grid.Row="8">Number of clients:</Label>
-                <TextBox Grid.Row="8" Grid.Column="1" Margin="10" Text="{Binding Path = Report[2]}"/>
-                <Label Margin="10" Grid.Row="9">Number of servers: </Label>
-                <TextBox Grid.Row="9" Grid.Column="1" Margin="10" Text="{Binding Path = Report[3]}"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
 
-                <Label Grid.Row="10" Margin="10" Grid.ColumnSpan="2" FontSize="20">Reuse and developers experience and capability</Label>
-                <Label Margin="10" Grid.Row="11">Reuse [%]: </Label>
-                <TextBox Grid.Row="11" Grid.Column="1" Margin="10" Text="{Binding Path = Reuse}"/>
-                <Label Margin="10" Grid.Row="12">Developers exeprience and capability:</Label>
-                <ComboBox Margin="10" Grid.Row="12" Grid.Column="1" SelectedValue="{Binding SelectedDevelopersExperienceAndCapability}" SelectedIndex="0" ItemsSource="{Binding DevelopersExperienceAndCapability}" />
-                
-                
-                <Button Grid.Row="13" Grid.ColumnSpan="2" Margin="10" Command="{Binding CocomoIIStageIButton}" >Calculate</Button>
+                    <Label Margin="10" Grid.ColumnSpan="2" FontSize="20">Complexity levels for screens</Label>
+                    <Label Margin="10" Grid.Row="1">Number of screens:</Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[0]}"/>
+                    <Label Margin="10" Grid.Row="2">Number of screens views:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[1]}"/>
+                    <Label Margin="10" Grid.Row="3">Number of clients:</Label>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[2]}"/>
+                    <Label Margin="10" Grid.Row="4">Number of servers:</Label>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="10" Text="{Binding Path = Screen[3]}"/>
 
-                <Label Margin="10" Grid.Row="14">Effort (person-month):</Label>
-                <Label Margin="10" Grid.Row="14" Grid.Column="1" Content="{Binding Effort}"/>
+                    <Label Grid.Row="5" Margin="10" Grid.ColumnSpan="2" FontSize="20">Complexity levels for reports</Label>
+                    <Label Margin="10" Grid.Row="6">Number of reports:</Label>
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="10" Text="{Binding Path = Report[0]}"/>
+                    <Label Margin="10" Grid.Row="7">Number of reports section:</Label>
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="10" Text="{Binding Path = Report[1]}"/>
+                    <Label Margin="10" Grid.Row="8">Number of clients:</Label>
+                    <TextBox Grid.Row="8" Grid.Column="1" Margin="10" Text="{Binding Path = Report[2]}"/>
+                    <Label Margin="10" Grid.Row="9">Number of servers:</Label>
+                    <TextBox Grid.Row="9" Grid.Column="1" Margin="10" Text="{Binding Path = Report[3]}"/>
 
-            </Grid>
+
+                    <Label Grid.Row="10" Margin="10" Grid.ColumnSpan="2" FontSize="20">Reuse and developers experience and capability</Label>
+                    <Label Margin="10" Grid.Row="11">Reuse [%]:</Label>
+                    <TextBox Grid.Row="11" Grid.Column="1" Margin="10" Text="{Binding Path = Reuse}"/>
+                    <Label Margin="10" Grid.Row="12">Developers exeprience and capability:</Label>
+                    <ComboBox Margin="10" Grid.Row="12" Grid.Column="1" SelectedValue="{Binding SelectedDevelopersExperienceAndCapability}" SelectedIndex="0" ItemsSource="{Binding DevelopersExperienceAndCapability}" />
+
+
+                    <Button Grid.Row="13" Grid.ColumnSpan="2" Margin="10" Command="{Binding CocomoIIStageIButton}" >Calculate</Button>
+
+                    <Label Margin="10" Grid.Row="14">Effort (person-month):</Label>
+                    <Label Margin="10" Grid.Row="14" Grid.Column="1" Content="{Binding Effort}"/>
+
+                </Grid>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
     
