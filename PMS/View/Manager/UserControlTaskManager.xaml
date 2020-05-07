@@ -23,7 +23,7 @@
         <Grid Margin="10">
 
             <StackPanel>
-
+                <Label Margin="10" FontSize="20" FontWeight="Bold">Task</Label>
                 <Expander Header="My tasks" Margin="10" Background="WhiteSmoke" IsExpanded="True">
 
                     <StackPanel>

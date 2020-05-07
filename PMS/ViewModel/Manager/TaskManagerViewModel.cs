@@ -471,6 +471,7 @@ namespace PMS
 
             Subtasks = new ObservableCollection<Subtask>(dbContext.Subtask.Where(x => x.UserID == Global.user.UserID));
             SelectedSubtask = null;
+            SelectedSubtaskStatus = null;
             ErrorMessage er = new ErrorMessage("Subtask status change successfully!");
             er.ShowDialog();
         }
