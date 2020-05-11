@@ -1,9 +1,7 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace PMS.Model
 {
@@ -12,24 +10,32 @@ namespace PMS.Model
         public string Name { get; set; }
         public bool CC { get; set; } //critical condition
         public int ES { get; set; }
-        public int EF{ get; set; }
-        public int LS{ get; set; }
-        public int LF{ get; set; }
-        public int  Slack { get; set; }
+        public int EF { get; set; }
+        public int LS { get; set; }
+        public int LF { get; set; }
+        public int Slack { get; set; }
         public int CS { get; set; }
-        public int Cost { get; set; } //early start  early finish  latest start   latest finish   luz   critical cost  
+        public int Expected_t { get; set; }
+        public int Optimistic_a { get; set; }
+        public int MostLikely_m { get; set; }
+        public int Pessimistic_b { get; set; }
         public static int maxCost { get; set; }
-        public List<PERTTask> PostTask { get; set; } 
-        public List<PERTTask> PreTask { get; set; } 
+        public List<PERTTask> PostTask { get; set; }
+        public List<PERTTask> PreTask { get; set; }
+
+        public double Variance { get; set; }
+        public double StandardDeviation { get; set; }
 
         public PERTTask()
         {
         }
 
-        public PERTTask(String name, int cost, List<PERTTask> postTask)
+        public PERTTask(String name, int optimistic_a, int mostLikely_m, int pessimistic_b, List<PERTTask> postTask)
         {
             Name = name;
-            Cost = cost;
+            Optimistic_a = optimistic_a;
+            Pessimistic_b = pessimistic_b;
+            MostLikely_m = mostLikely_m;
             EF = -1;
             PostTask = new List<PERTTask>();
             PreTask = new List<PERTTask>();
@@ -41,7 +47,7 @@ namespace PMS.Model
         public void setLSAndLF()
         {
             LS = maxCost - CS;
-            LF = Cost + LS;
+            LF = Expected_t + LS;
         }
 
         public void setCC(PERTTask t)
@@ -62,7 +68,7 @@ namespace PMS.Model
             foreach (PERTTask t in initTasks)
             {
                 t.ES = 0;
-                t.EF = t.Cost;
+                t.EF = t.Expected_t;
                 setESAndEFOneTask(t);
             }
         }
@@ -76,7 +82,7 @@ namespace PMS.Model
                 if (t.ES < ct)
                 {
                     t.ES = ct;
-                    t.EF = ct + t.Cost;
+                    t.EF = ct + t.Expected_t;
                 }
                 setESAndEFOneTask(t);
             }
@@ -112,6 +118,26 @@ namespace PMS.Model
                 return string.Join(",", tmp);
             }
         }
+
+        public void setExpectedTime(List<PERTTask> tasks)
+        {
+            foreach (PERTTask t in tasks)
+                t.Expected_t = (t.Optimistic_a + 4 * t.MostLikely_m + t.Pessimistic_b) / 6;
+        }
+
+        public void setStandardDeviation(List<PERTTask> tasks)
+        {
+            foreach (PERTTask t in tasks)
+                t.StandardDeviation = Math.Round((t.Pessimistic_b - t.Optimistic_a) / 6.0, 2);
+        }
+
+        public void setVariance(List<PERTTask> tasks)
+        {
+            foreach (PERTTask t in tasks)
+                t.Variance = Math.Round(Math.Pow((t.Pessimistic_b - t.Optimistic_a) / 6.0, 2), 2);
+        }
+
     }
 }
+
 

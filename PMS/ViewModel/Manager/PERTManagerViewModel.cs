@@ -1,6 +1,7 @@
 ﻿using DlhSoft.Windows.Controls.Pert;
 using PMS.Algorithm;
 using PMS.Model;
+using PMS.Utils;
 using Prism.Commands;
 //using PMS.Model;
 using Prism.Mvvm;
@@ -28,7 +29,9 @@ namespace PMS
 
         //DODANIE PERT TASKA
         private string _Name = "";
-        private int _Cost = 0;
+        private int _Optimistic_a = 0;
+        private int _MostLikely_m = 0;
+        private int _Pessimistic_b = 0;
 
         //DODANIE PRE TASKA
         private ObservableCollection<PERTTask> _TaskWhereAddThePretask;
@@ -43,11 +46,17 @@ namespace PMS
         private ObservableCollection<PERTTask> _RemovePretask = null;
         private PERTTask _SelectedRemovePretask = null;
 
+        private double _ProbabilityOfCompletingDays = 0.0;
+        private double _ProbabilityOfCompletingPercent = 0.0;
+        private double _ProjectDaysTime = 0.0;
+        private int _ProjectPercentTime = 0;
         #endregion
 
 
         #region command
 
+        public ICommand CalculateProbabilityOfCompletingDaysButton { get; set; }
+        public ICommand CalculateProbabilityOfCompletingPercentButton { get; set; }
         public ICommand CalculateButton { get; set; }
         public ICommand RemovePERTTaskButton { get; set; }
         public ICommand AddPERTTaskButton { get; set; }
@@ -81,6 +90,9 @@ namespace PMS
             OpenCocomoIIStageIButton = new DelegateCommand(OpenCocomoIIStageI);
             OpenCocomoIIStageIIButton = new DelegateCommand(OpenCocomoIIStageII);
             OpenCocomoIIStageIIIButton = new DelegateCommand(OpenCocomoIIStageIII);
+
+            CalculateProbabilityOfCompletingDaysButton = new DelegateCommand(CalculateProbabilityOfCompletingDays);
+            CalculateProbabilityOfCompletingPercentButton = new DelegateCommand(CalculateProbabilityOfCompletingPercent);
         }
 
         #endregion
@@ -119,16 +131,93 @@ namespace PMS
             }
         }
 
-        public int Cost
+        public int Optimistic_a
         {
             get
             {
-                return _Cost;
+                return _Optimistic_a;
             }
             set
             {
-                _Cost = value;
-                RaisePropertyChanged("Cost");
+                _Optimistic_a = value;
+                RaisePropertyChanged("Optimistic_a");
+            }
+        }
+
+        public int Pessimistic_b
+        {
+            get
+            {
+                return _Pessimistic_b;
+            }
+            set
+            {
+                _Pessimistic_b = value;
+                RaisePropertyChanged("Pessimistic_b");
+            }
+        }
+
+        public int MostLikely_m
+        {
+            get
+            {
+                return _MostLikely_m;
+            }
+            set
+            {
+                _MostLikely_m = value;
+                RaisePropertyChanged("MostLikely_m");
+            }
+        }
+
+        public double ProbabilityOfCompletingDays
+        {
+            get
+            {
+                return _ProbabilityOfCompletingDays;
+            }
+            set
+            {
+                _ProbabilityOfCompletingDays = value;
+                RaisePropertyChanged("ProbabilityOfCompletingDays");
+            }
+        }
+
+        public double ProbabilityOfCompletingPercent
+        {
+            get
+            {
+                return _ProbabilityOfCompletingPercent;
+            }
+            set
+            {
+                _ProbabilityOfCompletingPercent = value;
+                RaisePropertyChanged("ProbabilityOfCompletingPercent");
+            }
+        }
+
+        public double ProjectDaysTime
+        {
+            get
+            {
+                return _ProjectDaysTime;
+            }
+            set
+            {
+                _ProjectDaysTime = value;
+                RaisePropertyChanged("ProjectDaysTime");
+            }
+        }
+        public int ProjectPercentTime
+        {
+            get
+            {
+                return _ProjectPercentTime;
+            }
+            set
+            {
+                _ProjectPercentTime = value;
+                RaisePropertyChanged("ProjectPercentTime");
             }
         }
 
@@ -349,9 +438,9 @@ namespace PMS
                 if (t.Name == Name)
                     checkName = false;
 
-            if (Name != null && Name.Length > 0 && Cost > 0 && checkName == true)
+            if (Name != null && Name.Length > 0 && Optimistic_a > 0 && Pessimistic_b > 0 && MostLikely_m > 0 && checkName == true)
             {
-                PERTTask perttask = new PERTTask(Name, Cost, new List<PERTTask>());
+                PERTTask perttask = new PERTTask(Name, Optimistic_a, Pessimistic_b, MostLikely_m, new List<PERTTask>());
                 PERTTaskList.Add(perttask);
             }
             else
@@ -453,16 +542,15 @@ namespace PMS
 
         private void initializePertTaskList()
         {
-            PERTTask C = new PERTTask("C", 5, new List<PERTTask> { });
-            PERTTask B = new PERTTask("B", 10, new List<PERTTask> { });
-            PERTTask A = new PERTTask("A", 12, new List<PERTTask> { });
-            PERTTask D = new PERTTask("D", 7, new List<PERTTask> { B, C });
-            PERTTask G = new PERTTask("G", 4, new List<PERTTask> { A });
-            PERTTask F = new PERTTask("F", 6, new List<PERTTask> { A });
-            PERTTask E = new PERTTask("E", 8, new List<PERTTask> { B });
-            PERTTask H = new PERTTask("H", 9, new List<PERTTask> { G });
-            PERTTask I = new PERTTask("I", 7, new List<PERTTask> { E, F, H });
-            PERTTask J = new PERTTask("J", 10, new List<PERTTask> { D, I });
+            PERTTask A = new PERTTask("A", 1, 2, 3, new List<PERTTask> { });
+            PERTTask B = new PERTTask("B", 2, 3, 4, new List<PERTTask> { });
+            PERTTask C = new PERTTask("C", 1, 2, 3, new List<PERTTask> { A });
+            PERTTask D = new PERTTask("D", 1, 2, 3, new List<PERTTask> { A });
+            PERTTask E = new PERTTask("E", 3, 4, 5, new List<PERTTask> { B });
+            PERTTask F = new PERTTask("F", 2, 4, 6, new List<PERTTask> { D, E });
+            PERTTask G = new PERTTask("G", 1, 3, 5, new List<PERTTask> { C });
+            PERTTask H = new PERTTask("H", 3, 5, 7, new List<PERTTask> { C });
+            PERTTask I = new PERTTask("I", 5, 7, 9, new List<PERTTask> { F, H });
 
             _PERTTaskList.Add(A);
             _PERTTaskList.Add(B);
@@ -473,7 +561,6 @@ namespace PMS
             _PERTTaskList.Add(G);
             _PERTTaskList.Add(H);
             _PERTTaskList.Add(I);
-            _PERTTaskList.Add(J);
         }
 
         private void resertPostTask()
@@ -517,7 +604,7 @@ namespace PMS
             {
                 NetworkDiagramItem item = new NetworkDiagramItem { DisplayedText = PERTTaskResult[i].Name, Content = PERTTaskResult[i].Name };
 
-                item.Effort = TimeSpan.Parse(PERTTaskResult[i].Cost + ":00:00:00");
+                item.Effort = TimeSpan.Parse(PERTTaskResult[i].Expected_t + ":00:00:00");
                 item.EarlyStart = StartProject.AddDays(PERTTaskResult[i].ES);
                 item.EarlyFinish = StartProject.AddDays(PERTTaskResult[i].EF);
                 item.LateStart = StartProject.AddDays(PERTTaskResult[i].LS);
@@ -562,7 +649,9 @@ namespace PMS
             SelectedTaskWhereRemoveThePretask = null;
 
             Name = "";
-            Cost = 0;
+            Pessimistic_b = 0;
+            Optimistic_a = 0;
+            MostLikely_m = 0;
         }
 
         private void setDependencies(List<NetworkDiagramItem> listItem, NetworkDiagramItem itemStart, NetworkDiagramItem lastItem)
@@ -597,6 +686,56 @@ namespace PMS
         {
             for (int i = 0; i < listItem.Count(); i++)
                 _items.Add(listItem[i]);
+        }
+
+        private void CalculateProbabilityOfCompletingDays()
+        {
+            double allvarianceCP = 0;
+            int maxCost = 0;
+
+            foreach (PERTTask t in PERTTaskResult)
+                if (t.CC == true)
+                {
+                    allvarianceCP += t.Variance;
+                    maxCost += t.Expected_t;
+                }
+
+            double wynik = (ProjectDaysTime - maxCost) / Math.Sqrt(allvarianceCP);
+
+            ProbabilityOfCompletingDays = Math.Round(NormalDistribution.calculateNormalDistribution(wynik), 2);
+
+            ProbabilityOfCompletingDays *= 100;
+        }
+
+
+        
+
+        private void CalculateProbabilityOfCompletingPercent()
+        {
+
+
+            double allvarianceCP = 0;
+            int maxCost = 0;
+
+            foreach (PERTTask t in PERTTaskResult)
+                if (t.CC == true)
+                {
+                    allvarianceCP += t.Variance;
+                    maxCost += t.Expected_t;
+                }
+
+
+            for (double day = 0; day < maxCost + 50; day += 0.1)
+            {
+                double wynik = (day - maxCost) / Math.Sqrt(allvarianceCP);
+                ProbabilityOfCompletingPercent = Math.Round(NormalDistribution.calculateNormalDistribution(wynik), 2);
+                ProbabilityOfCompletingPercent *= 100;
+                if (ProbabilityOfCompletingPercent >= ProjectPercentTime)
+                {
+                    ProbabilityOfCompletingPercent = Math.Round(day, 2);
+                    break;
+                }     
+            }
         }
         #endregion
     }

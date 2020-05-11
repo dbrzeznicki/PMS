@@ -27,6 +27,9 @@ namespace PMS.Algorithm
         {
 
             PERTTask tt = new PERTTask();
+            tt.setExpectedTime(tasks);
+            tt.setStandardDeviation(tasks);
+            tt.setVariance(tasks);
             List<PERTTask> calc = new List<PERTTask>();
             List<PERTTask> tmpTaskList = new List<PERTTask>(tasks);
 
@@ -45,7 +48,7 @@ namespace PMS.Algorithm
                             if (t.CS > critical)
                                 critical = t.CS;
 
-                        task.CS = critical + task.Cost;
+                        task.CS = critical + task.Expected_t;
 
                         calc.Add(task);
                         tmpTaskList.Remove(task);

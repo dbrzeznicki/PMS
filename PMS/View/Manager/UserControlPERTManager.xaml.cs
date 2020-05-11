@@ -52,36 +52,40 @@ namespace PMS
 
         private void CriticalPathButton(object sender, RoutedEventArgs e)
         {
-            if (i == 0)
-            {
-                foreach (NetworkDiagramItem i in NDV.ManagedItems)
-                {
-                    NetworkDiagramView.SetShapeFill(i, false ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
-                    NetworkDiagramView.SetShapeStroke(i, false ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
-                    if (i.Predecessors != null)
-                        foreach (NetworkPredecessorItem PI in i.Predecessors)
-                            NetworkDiagramView.SetDependencyLineStroke(PI, false ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
-                }
-                foreach (NetworkDiagramItem i in NDV.GetCriticalItems())
-                {
-                    NetworkDiagramView.SetShapeFill(i, true ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
-                    NetworkDiagramView.SetShapeStroke(i, true ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
-                }
-                foreach (NetworkPredecessorItem PI in NDV.GetCriticalDependencies())
-                    NetworkDiagramView.SetDependencyLineStroke(PI, true ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
 
-                i = 1;
-            } 
-            else
+            if(NDV.ManagedItems.Count() > 0 )
             {
-                foreach (NetworkPredecessorItem PI in NDV.GetCriticalDependencies())
-                    NetworkDiagramView.SetDependencyLineStroke(PI, false ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
-                foreach (NetworkDiagramItem i in NDV.GetCriticalItems())
+                if (i == 0)
                 {
-                    NetworkDiagramView.SetShapeFill(i, false ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
-                    NetworkDiagramView.SetShapeStroke(i, false ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                    foreach (NetworkDiagramItem i in NDV.ManagedItems)
+                    {
+                        NetworkDiagramView.SetShapeFill(i, false ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
+                        NetworkDiagramView.SetShapeStroke(i, false ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                        if (i.Predecessors != null)
+                            foreach (NetworkPredecessorItem PI in i.Predecessors)
+                                NetworkDiagramView.SetDependencyLineStroke(PI, false ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
+                    }
+                    foreach (NetworkDiagramItem i in NDV.GetCriticalItems())
+                    {
+                        NetworkDiagramView.SetShapeFill(i, true ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
+                        NetworkDiagramView.SetShapeStroke(i, true ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                    }
+                    foreach (NetworkPredecessorItem PI in NDV.GetCriticalDependencies())
+                        NetworkDiagramView.SetDependencyLineStroke(PI, true ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
+
+                    i = 1;
                 }
-                i = 0;
+                else
+                {
+                    foreach (NetworkPredecessorItem PI in NDV.GetCriticalDependencies())
+                        NetworkDiagramView.SetDependencyLineStroke(PI, false ? Resources["CustomDependencyLineStroke"] as Brush : NDV.DependencyLineStroke);
+                    foreach (NetworkDiagramItem i in NDV.GetCriticalItems())
+                    {
+                        NetworkDiagramView.SetShapeFill(i, false ? Resources["CustomShapeFill"] as Brush : NDV.ShapeFill);
+                        NetworkDiagramView.SetShapeStroke(i, false ? Resources["CustomShapeStroke"] as Brush : NDV.ShapeStroke);
+                    }
+                    i = 0;
+                }
             }
         }
 
