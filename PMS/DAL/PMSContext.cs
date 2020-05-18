@@ -20,7 +20,7 @@ namespace PMS.DAL
             Database.SetInitializer<PMSContext>(new PMSInitializer());
         }
 
-        //tutaj dodajmy wszystkie tabele jakie mamy w bazie/modelu
+        //tutaj dodajmy wszystkie tabele jakie mamy w bazie/modelu 
 
 
         public DbSet<UserRole> UserRole { get; set; }
